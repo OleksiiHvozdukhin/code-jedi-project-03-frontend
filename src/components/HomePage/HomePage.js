@@ -1,5 +1,6 @@
 import { DailyNorma } from './DailyNorma/DailyNorma';
 import { DailyNormaModal } from './DailyNormaModal/DailyNormaModal';
+import { DaysGeneralStats } from './DaysGeneralStats/DaysGeneralStats';
 import { MonthStatsTable } from './MonthStatsTable/MonthStatsTable';
 import { TodayListModal } from './TodayListModal/TodayListModal';
 import { TodayWaterList } from './TodayWaterList/TodayWaterList';
@@ -15,6 +16,7 @@ export const HomePageComponent = () => {
       <TodayWaterList />
       <TodayListModal />
       <MonthStatsTable />
+      <DaysGeneralStats/>
     </div>
   );
 };
