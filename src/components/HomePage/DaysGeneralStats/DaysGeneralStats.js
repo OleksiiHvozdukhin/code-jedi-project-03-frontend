@@ -1,8 +1,20 @@
+import { getDateInfo } from "../MonthStatsTable/MonthStatsTable";
 import { Date, DaysCloseButton, DayStats, DayStatsHead, DayStatsWrap } from "./DaysGeneralStats.styled";
 
-export const DaysGeneralStats = () => {
+const overlayStyle = {
+backgroundColor: "transparent",
+};
+export const DaysGeneralStats = ({ isModalOpen, closeModal, selectedDay }) => {
+  if (!selectedDay) {
+    return;
+  }
   return (
-    <DayStatsWrap>
+    <DayStatsWrap
+      isOpen={isModalOpen}
+      onRequestClose={closeModal}
+      ariaHideApp={false}
+      style={{ overlay: overlayStyle }}
+    >
       <div
         style={{
           display: 'flex',
@@ -11,8 +23,10 @@ export const DaysGeneralStats = () => {
           marginBottom: '18px',
         }}
       >
-        <Date>5, April</Date>
-        <DaysCloseButton>
+        <Date>
+          {getDateInfo(selectedDay.date).day}, {getDateInfo(selectedDay.date).month}
+        </Date>
+        <DaysCloseButton onClick={closeModal}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -39,7 +53,7 @@ export const DaysGeneralStats = () => {
         }}
       >
         <DayStatsHead>Daily Norma:</DayStatsHead>
-        <DayStats>1.5 L</DayStats>
+        <DayStats>{selectedDay.norm}</DayStats>
       </div>
       <div
         style={{
@@ -50,7 +64,7 @@ export const DaysGeneralStats = () => {
         }}
       >
         <DayStatsHead>Fulfillment of the daily norm:</DayStatsHead>
-        <DayStats>100%</DayStats>
+        <DayStats>{selectedDay.percentage}</DayStats>
       </div>
       <div
         style={{
@@ -60,7 +74,7 @@ export const DaysGeneralStats = () => {
         }}
       >
         <DayStatsHead>How many servings of water:</DayStatsHead>
-        <DayStats>6</DayStats>
+        <DayStats>{selectedDay.servings}</DayStats>
       </div>
     </DayStatsWrap>
   );

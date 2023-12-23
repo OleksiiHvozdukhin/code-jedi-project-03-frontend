@@ -10,8 +10,72 @@ import {
   MonthNextButton,
   MonthTableWrap,
 } from './MonthsStatsTable.styled';
+import { useState } from 'react';
+import { DaysGeneralStats } from '../DaysGeneralStats/DaysGeneralStats';
+
+export const getDateInfo = date => {
+  const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+
+  const dateObject = new Date(date);
+  const monthName = months[dateObject.getMonth()];
+  const dayOfMonth = dateObject.getDate();
+  const year = dateObject.getFullYear();
+
+  return {
+    month: monthName,
+    day: dayOfMonth,
+    year: year,
+  };
+};
+
+const daysArray = () => {
+  return Array.from({ length: 31 }, (_, index) => {
+    const dayNumber = index + 1;
+    const date = `2023-12-${dayNumber < 10 ? '0' : ''}${dayNumber}`;
+    const norm = 1.8;
+    const shouldHave100Percent = Math.random() < 0.32;
+    const percentage = shouldHave100Percent
+      ? 100
+      : Math.floor(Math.random() * 51) + 50;
+    const servings = Math.floor(Math.random() * 4) + 5;
+    return {
+      date,
+      norm,
+      percentage,
+      servings,
+    };
+  });
+};
+const initialDaysArray = daysArray();
+
 
 export const MonthStatsTable = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedDay, setSelectedDay] = useState(null);
+const [daysArray] = useState(initialDaysArray);
+
+const handleOpenModal = selectedDay => {
+  setIsModalOpen(true);
+  setSelectedDay(selectedDay);
+};
+const handleCloseModal = () => {
+  setIsModalOpen(false);
+  setSelectedDay(null);
+  };
+
   return (
     <MonthTableWrap>
       <div
@@ -39,7 +103,9 @@ export const MonthStatsTable = () => {
               />
             </svg>
           </MonthBackButton>
-          <MonthAndYear>April, 2023</MonthAndYear>
+          <MonthAndYear>
+            {getDateInfo(daysArray[0].date).month}, {getDateInfo(daysArray[0].date).year}
+          </MonthAndYear>
           <MonthNextButton>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -58,51 +124,29 @@ export const MonthStatsTable = () => {
         </MonthSelector>
       </div>
       <DaysList>
-        <DayItem>
-          <DayNumber>1</DayNumber>
-          <DayPercentage>100%</DayPercentage>
-        </DayItem>
-        <DayItem>
-          <DayNumber>2</DayNumber>
-          <DayPercentage>100%</DayPercentage>
-        </DayItem>
-        <DayItem>
-          <DayNumber>3</DayNumber>
-          <DayPercentage>100%</DayPercentage>
-        </DayItem>
-        <DayItem>
-          <DayNumber>4</DayNumber>
-          <DayPercentage>100%</DayPercentage>
-        </DayItem>
-        <DayItem>
-          <DayNumber>5</DayNumber>
-          <DayPercentage>100%</DayPercentage>
-        </DayItem>
-        <DayItem>
-          <DayNumber>6</DayNumber>
-          <DayPercentage>100%</DayPercentage>
-        </DayItem>
-        <DayItem>
-          <DayNumber>7</DayNumber>
-          <DayPercentage>100%</DayPercentage>
-        </DayItem>
-        <DayItem>
-          <DayNumber>8</DayNumber>
-          <DayPercentage>100%</DayPercentage>
-        </DayItem>
-        <DayItem>
-          <DayNumber>9</DayNumber>
-          <DayPercentage>100%</DayPercentage>
-        </DayItem>
-        <DayItem>
-          <DayNumber>10</DayNumber>
-          <DayPercentage>100%</DayPercentage>
-        </DayItem>
-        <DayItem>
-          <DayNumber>11</DayNumber>
-          <DayPercentage>100%</DayPercentage>
-        </DayItem>
+        {daysArray.map((day, i) => {
+          
+          return (
+            <DayItem key={day.date}>
+              <DayNumber
+                onClick={() => handleOpenModal(day)}
+                style={{
+                  border:
+                    day.percentage < 100 ? '1px solid #FF9D43' : 'transparent',
+                }}
+              >
+                {getDateInfo(day.date).day}
+              </DayNumber>
+              <DayPercentage>{day.percentage}</DayPercentage>
+            </DayItem>
+          );
+        })}
       </DaysList>
+      <DaysGeneralStats
+        closeModal={handleCloseModal}
+        isModalOpen={isModalOpen}
+        selectedDay={selectedDay}
+      />
     </MonthTableWrap>
   );
 };

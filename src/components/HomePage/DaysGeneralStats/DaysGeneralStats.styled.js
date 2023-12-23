@@ -1,8 +1,13 @@
+import Modal from "react-modal";
 import styled from "styled-components";
 import { theme } from '../../theme.jsx';
 
-
-export const DayStatsWrap = styled.div`
+export const DayStatsWrap = styled(Modal)`
+width: 100%;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+  position: absolute;
   max-width: 254px;
   padding: 24px 13px;
   border-radius: 10px;
@@ -14,7 +19,6 @@ export const DayStatsWrap = styled.div`
     padding: 24px 16px;
   }
   @media screen and (min-width: 1440px) {
-
   }
 `;
 
@@ -47,7 +51,6 @@ export const DaysCloseButton = styled.button`
   @media screen and (min-width: 768px) {
   }
   @media screen and (min-width: 1440px) {
-    display: none;
   }
 `;
 
