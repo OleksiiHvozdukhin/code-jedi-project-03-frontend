@@ -1,0 +1,36 @@
+.why-drink-water {
+  box-shadow: 0px 4px 14px 0px #407BFF4D;
+  background: #ECF2FF;;
+  width: 494px;
+  height: 332px;
+  border-radius: 10px;
+}
+
+.title {
+  font-family: Roboto;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: left;
+
+}
+
+li {
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin-bottom: 16px;
+}
+
+li::marker {
+
+  color: #407BFF;
+  font-size: 20px;
+  margin-right: 6px;
+
+
+}
