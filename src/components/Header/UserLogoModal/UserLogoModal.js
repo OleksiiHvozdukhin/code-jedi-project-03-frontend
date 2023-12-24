@@ -1,11 +1,13 @@
-export const UserLogoModal = () => {
+import { MenuBtn, MenuItem, MenuList, UserMenu } from './UserLogoModal.styled';
+
+export const UserLogoModal = ({ isActive }) => {
   return (
-    <div className="user_logo_modal_window">
-      This is UserLogoModal
-      <nav className="menu">
-        <ul className="menu__list">
-          <li className="menu__item">
-            <button type="button" className="setting_button">
+    <>
+      <p>This is UserLogoModal</p>
+      <UserMenu className={isActive ? 'active' : ''}>
+        <MenuList>
+          <MenuItem>
+            <MenuBtn type="button" className="setting_button">
               <svg
                 className="setting_icon"
                 aria-label="setting icon"
@@ -15,10 +17,10 @@ export const UserLogoModal = () => {
                 <use href="../../../images/sprite.svg#icon-cog-6-tooth"></use>
               </svg>
               setting
-            </button>
-          </li>
-          <li className="menu__item">
-            <button type="button" className="logout">
+            </MenuBtn>
+          </MenuItem>
+          <MenuItem>
+            <MenuBtn type="button">
               <svg
                 className="logout_icon"
                 aria-label="log out icon"
@@ -28,10 +30,10 @@ export const UserLogoModal = () => {
                 <use href="../../../images/sprite.svg#icon-arrow-right-on-rectangle"></use>
               </svg>
               logout
-            </button>
-          </li>
-        </ul>
-      </nav>
-    </div>
+            </MenuBtn>
+          </MenuItem>
+        </MenuList>
+      </UserMenu>
+    </>
   );
 };

@@ -1,24 +1,34 @@
 import { useState } from 'react';
+import { useClickOutside } from 'components/helpers/useClickOutside';
+import { useRef } from 'react';
+import {
+  MenuBtn,
+  MenuAvatarWrapper,
+  ArrowDownIcon,
+  IconBox,
+} from './UserLogo.styled';
+import { UserLogoModal } from '../UserLogoModal/UserLogoModal.js';
 
 export const UserLogo = () => {
-  const [setIsOpen] = useState(false);
-  const toggleModal = () => setIsOpen(prev => !prev);
+  const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef(null);
+  useClickOutside(menuRef, () => {
+    if (isOpen) setTimeout(() => setIsOpen(false), 50);
+  });
   return (
-    <div>
-      <button tupe="button" className="menu-btn" onClick={toggleModal}>
+    <>
+      <MenuBtn type="button" onClick={() => setIsOpen(!isOpen)}>
         name
-        <div>
+        <MenuAvatarWrapper>
           avatar
-          {/* <svg
-            className="arrow_down_icon"
-            aria-label="arrow down icon"
-            width="16"
-            height="16"
-          > */}
-          {/* <use href="../../../images/sprite.svg#icon-chevron-double-up"></use> */}
-          {/* </svg> */}
-        </div>
-      </button>
-    </div>
+          <IconBox>
+            <ArrowDownIcon aria-label="arrow down icon">
+              <use href="../../../images/sprite.svg#icon-chevron-double-up"></use>
+            </ArrowDownIcon>
+          </IconBox>
+        </MenuAvatarWrapper>
+      </MenuBtn>
+      <UserLogoModal />
+    </>
   );
 };
