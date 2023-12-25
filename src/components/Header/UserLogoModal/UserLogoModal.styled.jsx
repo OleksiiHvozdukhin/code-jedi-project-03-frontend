@@ -1,29 +1,18 @@
 import styled from 'styled-components';
 
-export const UserMenu = styled.nav`
+export const Dropdown = styled.nav`
   position: absolute;
-  top: calc(100% + 5px);
-  right: 10px;
-  width: 118px;
-  height: 88px;
-  padding: 25px;
-  background-color: #fff;
-  opacity: 0;
-  transform: translateY(-10px);
-  visibility: hidden;
-  transition: 0.3s;
-  &.active {
-    transform: translateY(0);
-    opacity: 1;
-    visibility: visible;
-  }
 `;
 
 export const MenuList = styled.ul`
-  margin: 0;
-  width: 100%;
-  padding: 0;
-  list-style-type: none;
+  display: inline-flex;
+  padding: 16px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  border-radius: 10px;
+  background: var(--Primery-Color-White, #fff);
+  box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.2);
 `;
 
 export const MenuItem = styled.li`
@@ -35,4 +24,21 @@ export const MenuItem = styled.li`
   cursor: pointer;
 `;
 
-export const MenuBtn = styled.button``;
+export const MenuBtn = styled.button`
+  border: none;
+  color: blue;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: transparent;
+`;
+
+export const IconBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+`;
+
+export const Icon = styled.svg``;

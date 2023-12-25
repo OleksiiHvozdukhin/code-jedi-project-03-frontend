@@ -1,12 +1,9 @@
-import { Link } from 'react-router-dom';
+import { LogoBox, LogoText, StyledNavLink, TextBox } from './Logo.styled';
 
 export const Logo = () => {
   return (
-    <div className="logo_box">
-      <Link to="/">
-        {/* <svg className="header_logo" aria-label="logo">
-          <use href="/public/favicon.ico"></use>
-        </svg>  */}
+    <LogoBox>
+      <StyledNavLink to="/">
         <svg
           width="40"
           height="48"
@@ -160,9 +157,10 @@ export const Logo = () => {
             </clipPath>
           </defs>
         </svg>
-        {/* <use href="../../../../public/Logo.svg"></use> */}
-        <span className="logo_text">tracker of water</span>
-      </Link>
-    </div>
+        <TextBox>
+          <LogoText>tracker of water</LogoText>
+        </TextBox>
+      </StyledNavLink>
+    </LogoBox>
   );
 };
