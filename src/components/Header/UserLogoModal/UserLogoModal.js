@@ -12,7 +12,7 @@ export const UserLogoModal = () => {
     <Dropdown>
       <MenuList>
         <MenuItem>
-          <MenuBtn>
+          <MenuBtn type="button">
             <IconBox>
               <Icon
                 xmlns="http://www.w3.org/2000/svg"
@@ -39,7 +39,7 @@ export const UserLogoModal = () => {
           </MenuBtn>
         </MenuItem>
         <MenuItem>
-          <MenuBtn>
+          <MenuBtn type="button">
             <IconBox>
               <Icon
                 xmlns="http://www.w3.org/2000/svg"

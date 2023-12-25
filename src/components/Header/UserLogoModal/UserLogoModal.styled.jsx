@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 export const Dropdown = styled.nav`
   position: absolute;
+  right: 8px;
+  top: 60px;
 `;
 
 export const MenuList = styled.ul`
