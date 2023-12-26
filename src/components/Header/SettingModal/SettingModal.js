@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 // import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
+import SpriteIcons from '../../../images/sprite.svg';
+import { HeaderModal, TitleModal } from './SettingModal.styled';
 
 const customStyles = {
   content: {
@@ -10,8 +12,24 @@ const customStyles = {
     bottom: 'auto',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
+    display: 'inline-flex',
+    padding: '32px 24px',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    gap: '24px',
+    borderRadius: ' 10px',
+    background: 'var(--Primery-Color-White, #FFF)',
+    width: '1008px',
+    height: '592px',
+  },
+
+  overlay: {
+    backgroundColor: 'rgba(0, 0, 0, 0.80)',
+    width: '100%',
+    height: '100%',
   },
 };
+
 Modal.setAppElement('#root');
 
 export const SettingModal = () => {
@@ -28,10 +46,26 @@ export const SettingModal = () => {
         style={customStyles}
         contentLabel="Setting Modal"
       >
-        <h2>This is the setting modal</h2>
-        {/* <h2 ref={_subtitle => (subtitle = _subtitle)}>Hello</h2> */}
-        <button onClick={closeModal}>close</button>
-        <div>I am a modal</div>
+        <HeaderModal>
+          <TitleModal>setting</TitleModal>
+          <button onClick={closeModal}>
+            <svg width="24" height="24">
+              <use xlinkHref={`${SpriteIcons}#icon-close`} />
+            </svg>
+          </button>
+        </HeaderModal>
+        <div>
+          <div>your photo</div>
+          <div>
+            <img src="" alt="user" />
+            <p>
+              <svg width="24" height="24">
+                <use xlinkHref={`${SpriteIcons}#icon-arrow-up-tray`} />
+              </svg>
+              upload a photo
+            </p>
+          </div>
+        </div>
         <form>
           <input />
           <button>tab navigation</button>
