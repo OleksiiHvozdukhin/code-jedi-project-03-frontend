@@ -16,6 +16,7 @@ export const BtnSave = styled.button`
   line-height: 1.33;
   border: 1px solid transparent;
   transition: box-shadow ${theme.transition};
+  cursor: pointer;
   &:hover,
   &:focus {
     box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
@@ -98,4 +99,5 @@ export const Span = styled.span`
 
 export const StyledErrorMessage = styled(ErrorMessage)`
   color: ${theme.colors.red};
+  margin-bottom: ${theme.spacing(2)};
 `;

@@ -10,25 +10,55 @@ import {
   StyledErrorMessage,
   StyledForm,
 } from './DailyNormaForma.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { saveWaterRateAsync } from 'redux/waterRate/waterRateOperations';
+import { selectError, selectIsLoading } from 'redux/waterRate/selectors';
+import { Loader } from 'components/Loader';
+import { saveWaterRate } from 'redux/waterRate/waterRateSlice';
 
 export const DailyNormaForma = () => {
+  const dispatch = useDispatch();
+  const error = useSelector(selectError);
+  const isLoading = useSelector(selectIsLoading);
+
   const formValidationSchema = Yup.object().shape({
     gender: Yup.string().required('Please select a gender'),
     weight: Yup.number()
       .required('Enter weight')
-      .min(10, 'Weight must be greater than 0'),
+      .min(4, 'Weight must be greater'),
     activityTime: Yup.number()
       .required('Enter activity time')
       .min(0, 'Activity time must be greater than 0'),
     dailyNorma: Yup.number()
-      .required('Enter water intake')
+      .required('Enter water rate')
       .min(0, 'Daily norma must be greater than 0')
       .max(15000, 'Daily norma must be less than 15000'),
   });
 
-  const handleSubmit = (values, { resetForm }) => {
-    // saveDailyNorma(values);
-    resetForm();
+  const calculateWaterRate = ({ weight, activityTime, gender }) => {
+    if (weight > 0) {
+      const weightMultiplier = gender === 'woman' ? 0.03 : 0.04;
+      const activityMultiplier = gender === 'woman' ? 0.4 : 0.6;
+      const calculatedWaterRate = (
+        +weight * weightMultiplier +
+        +activityTime * activityMultiplier
+      ).toFixed(1);
+      return calculatedWaterRate;
+    } else {
+      return 0;
+    }
+  };
+
+  const handleSubmit = async (values, { resetForm }) => {
+    const dailyNormaValue = values.dailyNorma;
+    try {
+      dispatch(saveWaterRate(dailyNormaValue));
+      await dispatch(saveWaterRateAsync(dailyNormaValue));
+      console.log(dailyNormaValue);
+      resetForm();
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
@@ -42,58 +72,74 @@ export const DailyNormaForma = () => {
       validationSchema={formValidationSchema}
       onSubmit={handleSubmit}
     >
-      {({ errors, touched }) => (
-        <StyledForm>
-          <RadioGroup>
+      {({ errors, touched, values, handleChange }) => {
+        return (
+          <StyledForm>
+            <RadioGroup>
+              <Input
+                type="radio"
+                id="woman"
+                name="gender"
+                value="woman"
+                checked={values.gender === 'woman'}
+                onChange={handleChange}
+                className={errors.gender && touched.gender ? 'error' : ''}
+              />
+              <LabelRadio htmlFor="woman">For woman</LabelRadio>
+              <Field
+                type="radio"
+                id="man"
+                name="gender"
+                value="man"
+                checked={values.gender === 'man'}
+                onChange={handleChange}
+              />
+              <LabelRadio htmlFor="man">For man</LabelRadio>
+            </RadioGroup>
+            <StyledErrorMessage name="gender" component="div" />
+            <Label htmlFor="weight">Your weight in kilograms:</Label>
             <Input
-              type="radio"
-              id="woman"
-              name="gender"
-              value="woman"
-              checked
-              className={errors.gender && touched.gender ? 'error' : ''}
+              type="number"
+              name="weight"
+              value={values.weight}
+              onChange={handleChange}
+              className={`special ${
+                errors.weight && touched.weight ? 'error' : ''
+              }`}
             />
-            <LabelRadio htmlFor="woman">For woman</LabelRadio>
-            <Field type="radio" id="man" name="gender" value="man" />
-            <LabelRadio htmlFor="man">For man</LabelRadio>
-          </RadioGroup>
-          <StyledErrorMessage name="gender" component="div" />
-          <Label htmlFor="weight">Your weight in kilograms:</Label>
-          <Input
-            type="number"
-            name="weight"
-            className={`special ${
-              errors.weight && touched.weight ? 'error' : ''
-            }`}
-          />
-          <StyledErrorMessage name="weight" component="div" />
-          <Label htmlFor="activityTime">
-            The time of active participation in sports or other activities with
-            a high physical. load:
-          </Label>
-          <Input
-            type="number"
-            name="activityTime"
-            className={`special ${
-              errors.activityTime && touched.activityTime ? 'error' : ''
-            }`}
-          />
-          <StyledErrorMessage name="activityTime" component="div" />
-          <Label className="special">
-            The required amount of water in liters per day: <Span>1.8 L</Span>
-          </Label>
-          <Label htmlFor="dailyNorma" className="special last">
-            Write down how much water you will drink:
-          </Label>
-          <Input
-            type="number"
-            name="dailyNorma"
-            className={errors.dailyNorma && touched.dailyNorma ? 'error' : ''}
-          />
-          <StyledErrorMessage name="dailyNorma" component="div" />
-          <BtnSave type="submit">Save</BtnSave>
-        </StyledForm>
-      )}
+            <StyledErrorMessage name="weight" component="div" />
+            <Label htmlFor="activityTime">
+              The time of active participation in sports or other activities
+              with a high physical. load:
+            </Label>
+            <Input
+              type="number"
+              name="activityTime"
+              value={values.activityTime}
+              className={`special ${
+                errors.activityTime && touched.activityTime ? 'error' : ''
+              }`}
+            />
+            <StyledErrorMessage name="activityTime" component="div" />
+            <Label className="special">
+              The required amount of water in liters per day:{' '}
+              <Span>{calculateWaterRate(values)} L</Span>
+            </Label>
+            <Label htmlFor="dailyNorma" className="special last">
+              Write down how much water you will drink:
+            </Label>
+            <Input
+              type="number"
+              name="dailyNorma"
+              className={errors.dailyNorma && touched.dailyNorma ? 'error' : ''}
+            />
+            <StyledErrorMessage name="dailyNorma" component="div" />
+            <BtnSave type="submit">Save</BtnSave>
+            {isLoading && <Loader />}
+            {error && !isLoading && <p>{error}</p>}
+          </StyledForm>
+        );
+      }}
     </Formik>
   );
 };

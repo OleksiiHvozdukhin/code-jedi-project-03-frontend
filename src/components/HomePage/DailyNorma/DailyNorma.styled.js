@@ -10,7 +10,7 @@ export const NormaWrapper = styled.div`
 
   border-radius: 10px;
   border: 1px solid ${theme.colors.light};
-    box-shadow: 0px 4px 8px 0px rgba(158, 187, 255, 0.12);
+  box-shadow: 0px 4px 8px 0px rgba(158, 187, 255, 0.12);
 `;
 
 export const NormaTitle = styled.h3`
@@ -40,14 +40,15 @@ export const EditBtn = styled.button`
   padding: 0;
   background: transparent;
   border: none;
-  cursor: pointer;
-  transition: color ${theme.transition};
-  color: ${theme.colors.lightblue};
+  color: #8baeff;
   font-size: 16px;
   font-weight: 400;
   line-height: 1.25;
+  cursor: pointer;
+  transition: color ${theme.transition};
   &:hover,
   &:focus {
     color: ${theme.colors.orange};
+    outline: none;
   }
 `;

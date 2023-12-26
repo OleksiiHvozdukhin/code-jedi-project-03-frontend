@@ -46,7 +46,7 @@ export const GlobalStyle = createGlobalStyle`
     font-display: swap;
     font-size: 16px;
     color: ${p => p.theme.colors.dark};
-    background-color: ${p => p.theme.colors.light};
+    background-color: ${p => p.theme.colors.white};
   }
 
   code {

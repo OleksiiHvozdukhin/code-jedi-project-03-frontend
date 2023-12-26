@@ -8,6 +8,7 @@ export const BtnClose = styled.button`
   background: transparent;
   border: none;
   cursor: pointer;
+  outline: none;
   transition: color ${theme.transition};
   &:hover > svg > path {
     stroke: ${theme.colors.orange};
@@ -49,12 +50,17 @@ export const Title = styled.h2`
 export const Text = styled.li`
   line-height: 1.25;
   color: ${theme.colors.dark};
-  /* min-width: 250px; */
+  min-width: 256px;
 `;
 
 export const Span = styled.span`
-  line-height: 1.25;
   color: ${theme.colors.blue};
+
+  @media screen and (min-width: 778px) {
+    font-size: 18px;
+    line-height: 1.33;
+    max-width: 592px;
+  }
 `;
 
 export const TextWrapper = styled.ul`
