@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   Dropdown,
   Icon,
@@ -6,13 +7,24 @@ import {
   MenuItem,
   MenuList,
 } from './UserLogoModal.styled';
+import { SettingModal } from '../SettingModal/SettingModal';
+import { LogoutModal } from '../LogOutModal/LogoutModal';
 
-export const UserLogoModal = ({ openModal }) => {
+export const UserLogoModal = () => {
+  const [isSettingOpen, setIsSettingOpen] = useState(false);
+  const [isLogoutOpen, setIsLogoutOpen] = useState(false);
+
+  const openSettingModal = () => setIsSettingOpen(true);
+  const openLogoutModal = () => setIsLogoutOpen(true);
+
+  const onSettingClose = () => setIsSettingOpen(false);
+  const onLogoutClose = () => setIsLogoutOpen(false);
+
   return (
     <Dropdown>
       <MenuList>
         <MenuItem>
-          <MenuBtn type="button" onClick={openModal}>
+          <MenuBtn type="button" onClick={openSettingModal}>
             <IconBox>
               <Icon
                 xmlns="http://www.w3.org/2000/svg"
@@ -38,8 +50,9 @@ export const UserLogoModal = ({ openModal }) => {
             Setting
           </MenuBtn>
         </MenuItem>
+
         <MenuItem>
-          <MenuBtn type="button" onClick={openModal}>
+          <MenuBtn type="button" onClick={openLogoutModal}>
             <IconBox>
               <Icon
                 xmlns="http://www.w3.org/2000/svg"
@@ -60,6 +73,12 @@ export const UserLogoModal = ({ openModal }) => {
           </MenuBtn>
         </MenuItem>
       </MenuList>
+      {isSettingOpen && (
+        <SettingModal isOpen={openSettingModal} onClose={onSettingClose} />
+      )}
+      {isLogoutOpen && (
+        <LogoutModal isOpen={isLogoutOpen} onClose={onLogoutClose} />
+      )}
     </Dropdown>
   );
 };

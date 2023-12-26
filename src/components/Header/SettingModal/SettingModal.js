@@ -19,18 +19,18 @@ const customStyles = {
 };
 Modal.setAppElement('#root');
 
-export const SettingModal = ({ isOpen, onRequestClose }) => {
+export const SettingModal = ({ isOpen, onClose }) => {
   return (
     <Modal
       isOpen={isOpen}
-      onRequestClose={onRequestClose}
+      onClose={onClose}
       style={customStyles}
       contentLabel="Setting Modal"
     >
       <ModalContainer>
         <HeaderModal>
           <TitleModal>setting</TitleModal>
-          <button onClick={onRequestClose}></button>
+          <button onClick={onClose}></button>
         </HeaderModal>
         <div>
           <p>your photo</p>
