@@ -3,7 +3,7 @@ User:
     id: "1",
     username: "Tony Stark",
     email: "tonystark@gmail.com",
-    password: "warmachinesuck"
+    password: "warmachinesuck",
     gender: "man",
     waternorma: 1.9,
     token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYW1lIjoiVG9ueSBTdGFyayIsImVtYWlsI",
