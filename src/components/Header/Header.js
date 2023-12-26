@@ -1,18 +1,24 @@
-import { Logo } from './Logo/Logo';
-import { SettingModal } from './SettingModal/SettingModal';
-import { UserLogo } from './UserLogo/UserLogo';
-import { UserLogoModal } from './UserLogoModal/UserLogoModal';
-import { UserLogoutModal } from './UserLogoutModal/UserLogoutModal';
+import { useAuth } from 'hooks/useAuth.jsx';
+import { Container } from './Header.styled.jsx';
+import { Logo } from './Logo/Logo.js';
+import { SettingModal } from './SettingModal/SettingModal.js';
+import { UserLogo } from './UserLogo/UserLogo.js';
+// import { UserLogoutModal } from './UserLogoutModal/UserLogoutModal.js';
+import { UserAuth } from './UserAuth/UserAuth.js';
 
 export const Header = () => {
+  const { isLoggedIn } = useAuth();
   return (
-    <div>
-      <p>Header</p>
-      <Logo />
-      <UserLogo />
-      <UserLogoModal />
-      <SettingModal />
-      <UserLogoutModal />
-    </div>
+    <header>
+      <Container>
+        <Logo />
+        {/* <UserLogo /> */}
+        {/* <UserAuth /> */}
+        {isLoggedIn ? <UserLogo /> : <UserAuth />}
+
+        <SettingModal />
+        {/* <UserLogoutModal /> */}
+      </Container>
+    </header>
   );
 };
