@@ -7,12 +7,12 @@ import {
   MenuList,
 } from './UserLogoModal.styled';
 
-export const UserLogoModal = () => {
+export const UserLogoModal = ({ openModal }) => {
   return (
     <Dropdown>
       <MenuList>
         <MenuItem>
-          <MenuBtn type="button">
+          <MenuBtn type="button" onClick={openModal}>
             <IconBox>
               <Icon
                 xmlns="http://www.w3.org/2000/svg"
@@ -39,7 +39,7 @@ export const UserLogoModal = () => {
           </MenuBtn>
         </MenuItem>
         <MenuItem>
-          <MenuBtn type="button">
+          <MenuBtn type="button" onClick={openModal}>
             <IconBox>
               <Icon
                 xmlns="http://www.w3.org/2000/svg"
