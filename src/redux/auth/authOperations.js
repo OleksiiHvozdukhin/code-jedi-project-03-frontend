@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 // СЮДА ВСТАВИТЬ URL ДЛЯ ЗАПРОСОВ
-axios.defaults.baseURL = '';
+axios.defaults.baseURL = 'http://localhost:8000/';
 
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
