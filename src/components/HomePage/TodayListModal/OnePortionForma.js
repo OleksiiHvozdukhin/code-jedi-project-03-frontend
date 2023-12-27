@@ -1,4 +1,4 @@
-import * as Yup from 'yup';
+// import * as Yup from 'yup';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 
 export const OnePortionForma = () => {
