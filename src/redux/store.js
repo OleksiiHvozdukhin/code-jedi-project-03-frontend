@@ -1,7 +1,3 @@
-import storage from 'redux-persist/lib/storage';
-import { waterReducer } from './water/waterSlice';
-// import { filterReducer } from './filterSlice';
-import { authReducer } from './auth/authSlice';
 import { configureStore } from '@reduxjs/toolkit';
 import {
   persistStore,
@@ -13,6 +9,9 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import { authReducer } from './auth/authSlice';
+import { waterRateReducer } from './waterRate/waterRateSlice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -22,8 +21,8 @@ const authPersistConfig = {
 
 export const store = configureStore({
   reducer: {
+    waterRate: waterRateReducer,
     auth: persistReducer(authPersistConfig, authReducer),
-    contacts: waterReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

@@ -2,39 +2,57 @@ import { createGlobalStyle } from 'styled-components';
 import 'modern-normalize';
 
 export const GlobalStyle = createGlobalStyle`
-	html {
-		box-sizing: border-box;
-		width: 100vw;
-		overflow-x: hidden;
-	}
 
-	*,
-	*::before,
-	*::after {
-		box-sizing: inherit;
-	}
+ /* ці стилі потрібні для того, щоб в інпуті не відображалися стрілки збільшення/зменшення значення */
+  /* Firefox */
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
 
-	img {
-		display: block;
-		max-width: 100%;
-		height: auto;
-	}
+  /* Chrome, Safari, Edge, Opera */
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 
-	body {
-		margin: 0;
-		font-family: 'Roboto';
-		font-style: normal;
-		font-weight: 400;
-		font-display: swap;
-		font-size: 16px;
-		color: ${p => p.theme.colors.dark};
-		background-color: ${p => p.theme.colors.light};
-	}
+  /* Firefox on Windows */
+  input[type="number"] {
+    -moz-appearance: textfield !important;
+  }
 
-	code {
-		font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-			monospace;
-	}
+  html {
+    box-sizing: border-box;
+    width: 100vw;
+    overflow-x: hidden;
+  }
+
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    font-size: 16px;
+    color: ${p => p.theme.colors.dark};
+    background-color: ${p => p.theme.colors.white};
+  }
+
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+  }
 
   h1,h2,h3,h4,h5,h6,p {
     margin: 0;
@@ -46,14 +64,14 @@ export const GlobalStyle = createGlobalStyle`
     list-style: none;
   }
 
-	a {
-		text-decoration: none;
-		color: inherit;
-	}
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 
-	button {
-		font-family: inherit;
-		padding: 0;
-		margin: 0;
-	}
+  button {
+    font-family: inherit;
+    padding: 0;
+    margin: 0;
+  }
 `;
