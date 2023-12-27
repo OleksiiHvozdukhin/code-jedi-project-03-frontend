@@ -11,7 +11,7 @@ import {
 import { SettingModal } from '../SettingModal/SettingModal';
 import { LogoutModal } from '../LogOutModal/LogoutModal';
 
-export const UserLogoModal = ({ openLogoutModal }) => {
+export const UserLogoModal = () => {
   const [isSettingOpen, setIsSettingOpen] = useState(false);
   const [isLogoutOpen, setIsLogoutOpen] = useState(false);
   return (
@@ -69,8 +69,18 @@ export const UserLogoModal = ({ openLogoutModal }) => {
           </MenuItem>
         </MenuList>
       </Dropdown>
-      <SettingModal isOpen={isSettingOpen} />
-      <LogoutModal isopen={isLogoutOpen} />
+      <SettingModal
+        isOpen={isSettingOpen}
+        onCloseSettingModal={() => {
+          setIsSettingOpen(false);
+        }}
+      />
+      <LogoutModal
+        isOpen={isLogoutOpen}
+        onCloseLogoutModal={() => {
+          setIsLogoutOpen(false);
+        }}
+      />
     </>
   );
 };

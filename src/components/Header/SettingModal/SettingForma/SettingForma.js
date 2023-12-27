@@ -1,11 +1,6 @@
 // import { validateUserInfoSchema } from 'schemas/validateUserInfoSchema.js';
 import { Field, Formik } from 'formik';
-import {
-  Input,
-  LabelRadio,
-  RadioGroup,
-  StyledForm,
-} from './SettingForma.styled';
+import { LabelRadio, RadioGroup, StyledForm } from './SettingForma.styled';
 
 export const SettingForma = () => {
   return (
@@ -13,16 +8,15 @@ export const SettingForma = () => {
       {({ errors, touched }) => (
         <StyledForm>
           <RadioGroup>
-            <Input
+            <Field
               type="radio"
               id="woman"
               name="gender"
-              value="woman"
               checked
               className={errors.gender && touched.gender ? 'error' : ''}
             />
             <LabelRadio htmlFor="woman">For woman</LabelRadio>
-            <Field type="radio" id="man" name="gender" value="man" />
+            <Field type="radio" id="man" name="gender" />
             <LabelRadio htmlFor="man">For man</LabelRadio>
           </RadioGroup>
         </StyledForm>

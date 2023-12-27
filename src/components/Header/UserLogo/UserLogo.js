@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import {
   UserBtn,
@@ -11,18 +11,18 @@ import { UserLogoModal } from '../UserLogoModal/UserLogoModal.js';
 
 export const UserLogo = () => {
   const [isOpen, setIsOpen] = useState(false);
-  useEffect(() => {
-    const handleFocus = () => {
-      setIsOpen(true);
-    };
+  // useEffect(() => {
+  //   const handleFocus = () => {
+  //     setIsOpen(true);
+  //   };
 
-    const handleBlur = () => {
-      setIsOpen(false);
-    };
+  //   const handleBlur = () => {
+  //     setIsOpen(false);
+  //   };
 
-    document.getElementById('dropdown').addEventListener('focus', handleFocus);
-    document.getElementById('dropdown').addEventListener('blur', handleBlur);
-  }, []);
+  //   document.getElementById('dropdown').addEventListener('focus', handleFocus);
+  //   document.getElementById('dropdown').addEventListener('blur', handleBlur);
+  // }, []);
   return (
     <>
       <UserBtn type="button" id="dropdown" onClick={() => setIsOpen(!isOpen)}>
