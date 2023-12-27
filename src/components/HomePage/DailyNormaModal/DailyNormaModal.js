@@ -12,6 +12,7 @@ import {
   Title,
   TitleWrapper,
 } from './DailyNormaModal.styled';
+import SpriteIcons from '../../../images/sprite.svg';
 
 const customStyles = {
   content: {
@@ -30,14 +31,6 @@ const customStyles = {
 };
 Modal.setAppElement('#root');
 
-// export const CloseIcon = () => {
-//   return (
-//     <svg>
-//       <use href="../../../images/sprite.svg#icon-close"></use>
-//     </svg>
-//   );
-// };
-
 export const DailyNormaModal = ({ isOpen, onRequestClose }) => {
   return (
     <Modal isOpen={isOpen} onRequestClose={onRequestClose} style={customStyles}>
@@ -45,20 +38,9 @@ export const DailyNormaModal = ({ isOpen, onRequestClose }) => {
         <TitleWrapper>
           <Title>My daily norma</Title>
           <BtnClose onClick={onRequestClose}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-            >
-              <path
-                d="M6 18L18 6M6 6L18 18"
-                stroke="#407BFF"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
+            <svg width="24" height="24" stroke="#407BFF" fill="none">
+              <use xlinkHref={`${SpriteIcons}#icon-close`} />
             </svg>
-            {/* <StyledSvgClose /> */}
           </BtnClose>
         </TitleWrapper>
 

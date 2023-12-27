@@ -10,16 +10,10 @@ export const BtnClose = styled.button`
   cursor: pointer;
   outline: none;
   transition: color ${theme.transition};
-  &:hover > svg > path {
+  &:hover > svg {
     stroke: ${theme.colors.orange};
   }
 `;
-
-// export const StyledSvgClose = styled.svg`
-//   width: 24px;
-//   height: 24px;
-//   fill: ${theme.colors.blue};
-// `;
 
 export const ModalContainer = styled.div`
   padding: 32px 24px;
@@ -86,7 +80,6 @@ export const SmallText = styled.p`
   font-size: 12px;
   line-height: 1.33;
   color: #8f8f8f;
-  /* color: ${theme.colors.blue}; */
 `;
 
 export const Symbol = styled.span`
