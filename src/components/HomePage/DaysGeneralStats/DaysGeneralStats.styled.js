@@ -8,14 +8,14 @@ width: 100%;
           left: 50%;
           transform: translate(-50%, -50%);
   position: absolute;
-  max-width: 254px;
+  max-width: 280px;
   padding: 24px 13px;
   border-radius: 10px;
   background: ${theme.colors.white};
   box-shadow: 0px 4px 4px 0px rgba(64, 123, 255, 0.3);
 
   @media screen and (min-width: 768px) {
-    max-width: 260px;
+    max-width: 292px;
     padding: 24px 16px;
   }
   @media screen and (min-width: 1440px) {

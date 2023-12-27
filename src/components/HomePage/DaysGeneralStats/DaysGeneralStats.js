@@ -1,5 +1,6 @@
 import { getDateInfo } from "../MonthStatsTable/MonthStatsTable";
 import { Date, DaysCloseButton, DayStats, DayStatsHead, DayStatsWrap } from "./DaysGeneralStats.styled";
+import SpriteIcons from '../../../images/sprite.svg';
 
 const overlayStyle = {
 backgroundColor: "transparent",
@@ -24,23 +25,17 @@ export const DaysGeneralStats = ({ isModalOpen, closeModal, selectedDay }) => {
         }}
       >
         <Date>
-          {getDateInfo(selectedDay.date).day}, {getDateInfo(selectedDay.date).month}
+          {getDateInfo(selectedDay.date).day},{' '}
+          {getDateInfo(selectedDay.date).month}
         </Date>
         <DaysCloseButton onClick={closeModal}>
           <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            viewBox="0 0 16 16"
+            width="16px"
+            height="16px"
+            stroke="currentColor"
             fill="currentColor"
           >
-            <path
-              d="M4 12L12 4M4 4L12 12"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
+            <use xlinkHref={`${SpriteIcons}#icon-close`} />
           </svg>
         </DaysCloseButton>
       </div>
@@ -53,7 +48,7 @@ export const DaysGeneralStats = ({ isModalOpen, closeModal, selectedDay }) => {
         }}
       >
         <DayStatsHead>Daily Norma:</DayStatsHead>
-        <DayStats>{selectedDay.norm}</DayStats>
+        <DayStats>{selectedDay.norm} L</DayStats>
       </div>
       <div
         style={{
@@ -64,7 +59,7 @@ export const DaysGeneralStats = ({ isModalOpen, closeModal, selectedDay }) => {
         }}
       >
         <DayStatsHead>Fulfillment of the daily norm:</DayStatsHead>
-        <DayStats>{selectedDay.percentage}</DayStats>
+        <DayStats>{selectedDay.percentage}%</DayStats>
       </div>
       <div
         style={{

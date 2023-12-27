@@ -145,13 +145,12 @@ export const MonthAndYear = styled.p`
 `;
 
 export const MonthBackButton = styled.button`
-  width: 14px;
-  height: 14px;
   padding: 0;
   background: transparent;
   border: none;
+  cursor: pointer;
   color: ${theme.colors.blue};
-  /* transform: rotate(90deg), */
+  transform: rotate(90deg);
   cursor: pointer;
 &:hover,
   &:focus {
@@ -163,14 +162,12 @@ export const MonthBackButton = styled.button`
   }
 `;
 export const MonthNextButton = styled.button`
-  width: 14px;
-  height: 14px;
   padding: 0;
   background: transparent;
   border: none;
   cursor: pointer;
   color: ${theme.colors.blue};
-  /* transform: rotate(-90deg); */
+  transform: rotate(-90deg);
   &:hover,
   &:focus {
     color: ${theme.colors.orange};
