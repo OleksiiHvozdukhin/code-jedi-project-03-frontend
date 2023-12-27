@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { useNavigate } from 'react-router-dom';
 import { Calendar, Desk, Tools } from '../../../images/icons/icons';
 import {
   ElementText,
@@ -12,6 +12,13 @@ import {
 
 
 export const WaterOnsumptionTracker = () => {
+  const navigate = useNavigate();
+
+  function TryButton () {
+    navigate('/signup');
+
+  }
+
   return (
     <WaterTrackerContainer>
       <Title>Water consumption tracker</Title>
@@ -31,7 +38,7 @@ export const WaterOnsumptionTracker = () => {
           <ElementText>Personal rate setting</ElementText>
         </TrackerListElement>
       </TrackerList>
-      <TryTrackerButton type="button" onClick={TryTrackerButton}>Try tracker</TryTrackerButton>
+      <TryTrackerButton type="button" onClick={TryButton}>Try tracker</TryTrackerButton>
     </WaterTrackerContainer>
   );
 };

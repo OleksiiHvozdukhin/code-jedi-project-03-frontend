@@ -65,6 +65,7 @@ const TryTrackerButton = styled.button`
   font-weight: 500;
   line-height: 24px;
   color: #FFFFFF;
+  cursor: pointer;
 `;
 
 export {

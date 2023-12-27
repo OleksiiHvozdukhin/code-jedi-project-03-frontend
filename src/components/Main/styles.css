@@ -1,3 +1,25 @@
-.background-main-page {
-  background-image: url(".");
+.my-component {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .my-component {
+    width: 100%;
+    height: 50vh;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .my-component {
+    width: 75%;
+    height: 75%;
+  }
+}
+
+@media (min-width: 1025px) {
+  .my-component {
+    width: 50%;
+    height: 50%;
+  }
 }
