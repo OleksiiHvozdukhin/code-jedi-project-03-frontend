@@ -11,21 +11,51 @@ import { UserLogoModal } from '../UserLogoModal/UserLogoModal.js';
 
 export const UserLogo = () => {
   const [isOpen, setIsOpen] = useState(false);
+  // useEffect(() => {
+  //   const handleFocus = () => {
+  //     setIsOpen(true);
+  //   };
+
+  //   const handleBlur = () => {
+  //     setIsOpen(false);
+  //   };
+
+  //   document.getElementById('dropdown').addEventListener('focus', handleFocus);
+  //   document.getElementById('dropdown').addEventListener('blur', handleBlur);
+  // }, []);
   useEffect(() => {
-    const handleFocus = () => {
-      setIsOpen(true);
+    const handleClickOutside = event => {
+      const dropdown = document.getElementById('dropdown');
+      const modal = document.getElementById('userLogoModal');
+      const settingModal = document.getElementById('settingModal');
+
+      if (settingModal && settingModal.contains(event.target)) {
+        console.log('Это внутри сеттинг-модала');
+      }
+
+      console.log(`Setting: ${settingModal}`);
+
+      if (
+        dropdown &&
+        modal &&
+        !dropdown.contains(event.target) &&
+        !modal.contains(event.target)
+      ) {
+        console.log('Modal close');
+        setIsOpen(false);
+      }
     };
 
-    const handleBlur = () => {
-      setIsOpen(false);
-    };
+    document.addEventListener('click', handleClickOutside);
 
-    document.getElementById('dropdown').addEventListener('focus', handleFocus);
-    document.getElementById('dropdown').addEventListener('blur', handleBlur);
-  }, []);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [isOpen]);
+
   return (
     <>
-      <UserBtn type="button" id="dropdown" onClick={() => setIsOpen(!isOpen)}>
+      <UserBtn type="button" id="dropdown" onClick={() => setIsOpen(true)}>
         <UserName>name</UserName>
 
         <MenuAvatarWrapper>
@@ -49,6 +79,7 @@ export const UserLogo = () => {
         </MenuAvatarWrapper>
       </UserBtn>
       {isOpen && <UserLogoModal />}
+      {/* <UserLogoModal /> */}
     </>
   );
 };

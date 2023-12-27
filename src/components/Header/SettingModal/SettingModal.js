@@ -15,12 +15,10 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 export const SettingModal = () => {
-  const [modalIsOpen, setIsOpen] = useState(false);
-  const openModal = () => setIsOpen(true);
+  const [modalIsOpen, setIsOpen] = useState(true);
   const closeModal = () => setIsOpen(false);
   return (
     <div>
-      <button onClick={openModal}>Open Modal</button>
       <Modal
         isOpen={modalIsOpen}
         // onAfterOpen={afterOpenModal}

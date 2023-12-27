@@ -14,6 +14,7 @@ const HomePage = lazy(() => import('../pages/HomePage'));
 const SignupPage = lazy(() => import('../pages/SignupPage'));
 const SigninPage = lazy(() => import('../pages/SigninPage'));
 const MainPage = lazy(() => import('../pages/WelcomePage'));
+const ForgotPasswordPage = lazy(() => import('../pages/ForgotPasswordPage'));
 
 export const App = () => {
   // const dispatch = useDispatch();
@@ -34,6 +35,7 @@ export const App = () => {
           <Route path="signup" element={<SignupPage />} />
           <Route path="signin" element={<SigninPage />} />
           <Route path="/homepage" element={<HomePage />} />
+          <Route path="/forgotpassword" element={<ForgotPasswordPage />} />
           {/* //! Это временное решение, пока не сделана проверка на аутентификацию пользователя */}
           <Route path="*" element={<HomePage />} />
         </Route>

@@ -3,15 +3,19 @@ import { Header } from '../Header/Header';
 import { Suspense } from 'react';
 
 import { Navigation } from 'components/TemporaryNavigation/TemporaryNavigation';
+import { Loader } from 'components/Loader';
+import { Wrapper } from './SharedLayout.styled';
 
 export const SharedLayout = () => {
   return (
-    <div>
+    <Wrapper>
       <Navigation />
       <Header />
-      <Suspense fallback={null}>
-        <Outlet />
-      </Suspense>
-    </div>
+      <main>
+        <Suspense fallback={Loader}>
+          <Outlet />
+        </Suspense>
+      </main>
+    </Wrapper>
   );
 };

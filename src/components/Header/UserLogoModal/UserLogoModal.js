@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import { SettingModal } from '../SettingModal/SettingModal';
 import {
   Dropdown,
   Icon,
@@ -8,11 +10,21 @@ import {
 } from './UserLogoModal.styled';
 
 export const UserLogoModal = () => {
+  const [settingModalIsOpen, setSettingModalIsOpen] = useState(false);
+
+  const openSettingModal = () => {
+    setSettingModalIsOpen(true);
+  };
+
+  // const closeSettingModal = () => {
+  //   setSettingModalIsOpen(false);
+  // };
+
   return (
-    <Dropdown>
+    <Dropdown id="userLogoModal">
       <MenuList>
         <MenuItem>
-          <MenuBtn type="button">
+          <MenuBtn type="button" onClick={openSettingModal}>
             <IconBox>
               <Icon
                 xmlns="http://www.w3.org/2000/svg"
@@ -60,6 +72,7 @@ export const UserLogoModal = () => {
           </MenuBtn>
         </MenuItem>
       </MenuList>
+      {settingModalIsOpen && <SettingModal id="settingModal" />}
     </Dropdown>
   );
 };

@@ -1,7 +1,7 @@
 // import { useAuth } from 'hooks/useAuth.jsx';
 import { Container } from './Header.styled.jsx';
 import { Logo } from './Logo/Logo.js';
-import { SettingModal } from './SettingModal/SettingModal.js';
+// import { SettingModal } from './SettingModal/SettingModal.js';
 import { UserLogo } from './UserLogo/UserLogo.js';
 // import { UserLogoutModal } from './UserLogoutModal/UserLogoutModal.js';
 // import { UserAuth } from './UserAuth/UserAuth.js';
@@ -16,7 +16,7 @@ export const Header = () => {
         {/* <UserAuth /> */}
         {/* {isLoggedIn ? <UserLogo /> : <UserAuth />} */}
 
-        <SettingModal />
+        {/* <SettingModal /> */}
         {/* <UserLogoutModal /> */}
       </Container>
     </header>

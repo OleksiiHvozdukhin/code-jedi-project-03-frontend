@@ -1,9 +1,21 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const fadeInDown = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 
 export const Dropdown = styled.nav`
   position: absolute;
-  right: 8px;
-  top: 60px;
+  right: 0px;
+  top: 38px;
+  z-index: 1;
 `;
 
 export const MenuList = styled.ul`
@@ -15,6 +27,8 @@ export const MenuList = styled.ul`
   border-radius: 10px;
   background: var(--Primery-Color-White, #fff);
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.2);
+  animation: ${fadeInDown} 0.3s ease;
+  z-index: 0;
 `;
 
 export const MenuItem = styled.li`

@@ -23,7 +23,6 @@ export const GlobalStyle = createGlobalStyle`
 
   html {
     box-sizing: border-box;
-    width: 100vw;
     overflow-x: hidden;
   }
 
@@ -39,7 +38,6 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    margin: 0;
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;

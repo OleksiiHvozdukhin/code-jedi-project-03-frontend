@@ -11,4 +11,5 @@ export const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   margin: 0 auto;
+  position: relative;
 `;
