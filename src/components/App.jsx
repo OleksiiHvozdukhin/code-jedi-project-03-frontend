@@ -3,6 +3,7 @@ import { lazy } from 'react';
 // import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { SharedLayout } from './SharedLayout/SharedLayout';
+import { GlobalStyle } from './GlobalStyle';
 // import { PrivateRoute } from './Route/PrivateRoute';
 // import { RestrictedRoute } from './Route/RestrictedRoute';
 // import { refreshUser } from 'redux/auth/authOperations';
@@ -37,6 +38,7 @@ export const App = () => {
           <Route path="*" element={<HomePage />} />
         </Route>
       </Routes>
+      <GlobalStyle />
     </>
   );
 };
