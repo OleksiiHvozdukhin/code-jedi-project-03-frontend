@@ -21,7 +21,7 @@ const customStyles = {
     backgroundColor: 'rgba(0, 0, 0, 0.80)',
   },
 };
-Modal.setAppElement('#root');
+// Modal.setAppElement('#root');
 
 export const SettingModal = ({ isOpen, onCloseSettingModal }) => {
   return createPortal(
