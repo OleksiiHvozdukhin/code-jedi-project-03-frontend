@@ -2,14 +2,19 @@ import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import {
+  BackImage,
+  BottleImage,
   Container,
   Input,
   Label,
   SendBtn,
   StyledErrorMessage,
+  Subcontainer,
   Title,
 } from './ForgotPassword.styled';
 import { SignInLink } from 'components/ForgotPassword/ForgotPassword.styled';
+import bottle from '../../images/Desktop/Desktop Bottle for Sign in-1x.png';
+import bgscreen from '../../images/Desktop/Desktop Background element Main Page-1x.png';
 
 const validationSchema = Yup.object({
   email: Yup.string()
@@ -37,29 +42,33 @@ export const ForgotPassword = () => {
   // }
 
   return (
-    <Container>
-      <Title>Restore password</Title>
-      <Formik
-        initialValues={{ email: '' }}
-        validationSchema={validationSchema}
-        onSubmit={handleSubmit}
-      >
-        <Form>
-          <Label htmlFor="email">Enter your email</Label>
-          <Field
-            as={Input}
-            type="email"
-            id="email"
-            name="email"
-            placeholder="E-mail"
-          />
-          <StyledErrorMessage name="email" component="div" />
-          <SendBtn type="submit">Send</SendBtn>
-        </Form>
-      </Formik>
-        <SignInLink to="/signin">Sign In</SignInLink>
-      {/* {forgotPassword && <p>Password has been sent to your mailbox</p>} */}
-      {/* {forgotPasswordError && <p>{forgotPasswordError}</p>} */}
-    </Container>
+    <Subcontainer>
+      <BackImage width="1404" height="582" src={bgscreen} alt="" />
+      <BottleImage width="600" src={bottle} alt="" />
+      <Container>
+        <Formik
+          initialValues={{ email: '' }}
+          validationSchema={validationSchema}
+          onSubmit={handleSubmit}
+        >
+          <Form>
+            <Title>Restore password</Title>
+            <Label htmlFor="email">Enter your email</Label>
+            <Field
+              as={Input}
+              type="email"
+              id="email"
+              name="email"
+              placeholder="E-mail"
+            />
+            <StyledErrorMessage name="email" component="div" />
+            <SendBtn type="submit">Send</SendBtn>
+            <SignInLink to="/signin">Sign In</SignInLink>
+          </Form>
+        </Formik>
+        {/* {forgotPassword && <p>Password has been sent to your mailbox</p>} */}
+        {/* {forgotPasswordError && <p>{forgotPasswordError}</p>} */}
+      </Container>
+    </Subcontainer>
   );
 };
