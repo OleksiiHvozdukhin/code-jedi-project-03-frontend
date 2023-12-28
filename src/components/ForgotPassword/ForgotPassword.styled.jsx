@@ -9,8 +9,8 @@ export const Subcontainer = styled.div`
 
 export const Container = styled.div`
   @media screen and (min-width: 1440px) {
-    margin-top: 120px;
-    margin-left: 600px;
+    margin-top: ${theme.spacing(60)};
+    margin-left: ${theme.spacing(300)};
   }
 `;
 
@@ -59,6 +59,7 @@ export const Input = styled.input`
     color: ${theme.colors.blue};
     border-color: ${theme.colors.skyblue};
   }
+
   &:invalid {
     color: ${theme.colors.red};
     border-color: ${theme.colors.red};
@@ -117,6 +118,7 @@ export const BottleImage = styled.img`
   position: absolute;
   top: 400px;
   z-index: -1;
+
   @media screen and (max-width: 767px) {
     max-width: 280px;
     background-image: url('../../images/Mobile/Mobile Bottle Sign In-1x.png');
@@ -126,6 +128,7 @@ export const BottleImage = styled.img`
       background-image: url('../../images/Mobile/Mobile Bottle Sign In-2x.png');
     }
   }
+
   @media screen and (min-width: 768px) {
     top: 160px;
     left: 250px;
@@ -137,6 +140,7 @@ export const BottleImage = styled.img`
       background-image: url('../../images/Tablet/Tablet Bottle for Sign in-2x.png');
     }
   }
+
   @media screen and (min-width: 1400px) {
     left: 210px;
     max-width: 916px;
@@ -152,15 +156,18 @@ export const BottleImage = styled.img`
 export const BackImage = styled.img`
   position: absolute;
   z-index: -1;
-  @media screen and (min-width: 1400px) {
-    width: 822px;
-    background-image: url('../../images/Desktop/Desktop Background element Main Page-1x.png');
+
+  @media screen and (max-width: 767px) {
+    top: 400px;
+    max-width: 280px;
+    background-image: url('../../images/Mobile/Mobile Background element Home screen-1x.png');
     @media screen and (min-device-pixel-ratio: 2),
       screen and (min-resolution: 192dpi),
       screen and (min-resolution: 2dppx) {
-      background-image: url('../../images/Desktop/Desktop Background element Main Page-2x.png');
+      background-image: url('../../images/Mobile/Mobile Background element Home screen-2x.png');
     }
   }
+
   @media screen and (min-width: 768px) {
     top: 200px;
     left: 260px;
@@ -172,14 +179,14 @@ export const BackImage = styled.img`
       background-image: url('../../images/Tablet/Tablet Background element Home Screen-2x.png');
     }
   }
-  @media screen and (max-width: 767px) {
-    top: 400px;
-    max-width: 280px;
-    background-image: url('../../images/Mobile/Mobile Background element Home screen-1x.png');
+
+  @media screen and (min-width: 1400px) {
+    width: 822px;
+    background-image: url('../../images/Desktop/Desktop Background element Main Page-1x.png');
     @media screen and (min-device-pixel-ratio: 2),
       screen and (min-resolution: 192dpi),
       screen and (min-resolution: 2dppx) {
-      background-image: url('../../images/Mobile/Mobile Background element Home screen-2x.png');
+      background-image: url('../../images/Desktop/Desktop Background element Main Page-2x.png');
     }
   }
 `;

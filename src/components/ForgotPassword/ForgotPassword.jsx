@@ -43,8 +43,8 @@ export const ForgotPassword = () => {
 
   return (
     <Subcontainer>
-      <BackImage width="1404" height="582" src={bgscreen} alt="" />
-      <BottleImage width="600" src={bottle} alt="" />
+      <BackImage width="1404" src={bgscreen}/>
+      <BottleImage width="600" src={bottle}/>
       <Container>
         <Formik
           initialValues={{ email: '' }}
