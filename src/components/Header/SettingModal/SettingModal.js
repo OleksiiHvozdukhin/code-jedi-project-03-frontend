@@ -2,6 +2,10 @@ import Modal from 'react-modal';
 import { SettingForma } from './SettingForma/SettingForma';
 import { HeaderModal, ModalContainer, TitleModal } from './SettingModal.styled';
 
+import { createPortal } from 'react-dom';
+
+const modalRoot = document.querySelector('#modal-root');
+
 const customStyles = {
   content: {
     top: '50%',
@@ -20,7 +24,7 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 export const SettingModal = ({ isOpen, onCloseSettingModal }) => {
-  return (
+  return createPortal(
     <Modal
       isOpen={isOpen}
       onRequestClose={onCloseSettingModal}
@@ -43,6 +47,7 @@ export const SettingModal = ({ isOpen, onCloseSettingModal }) => {
         </div>
         <SettingForma />
       </ModalContainer>
-    </Modal>
+    </Modal>,
+    modalRoot
   );
 };
