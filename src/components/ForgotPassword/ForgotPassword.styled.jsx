@@ -117,14 +117,13 @@ export const BottleImage = styled.img`
   position: absolute;
   top: 400px;
   z-index: -1;
-  @media screen and (min-width: 1400px) {
-    left: 210px;
-    max-width: 916px;
-    background-image: url('../../images/Desktop/Desktop Bottle for Sign in-1x.png');
+  @media screen and (max-width: 767px) {
+    max-width: 280px;
+    background-image: url('../../images/Mobile/Mobile Bottle Sign In-1x.png');
     @media screen and (min-device-pixel-ratio: 2),
       screen and (min-resolution: 192dpi),
       screen and (min-resolution: 2dppx) {
-      background-image: url('../../images/Desktop/Desktop Bottle for Sign in-2x.png');
+      background-image: url('../../images/Mobile/Mobile Bottle Sign In-2x.png');
     }
   }
   @media screen and (min-width: 768px) {
@@ -138,13 +137,14 @@ export const BottleImage = styled.img`
       background-image: url('../../images/Tablet/Tablet Bottle for Sign in-2x.png');
     }
   }
-  @media screen and (max-width: 767px) {
-    max-width: 280px;
-    background-image: url('../../images/Mobile/Mobile Bottle Sign In-1x.png');
+  @media screen and (min-width: 1400px) {
+    left: 210px;
+    max-width: 916px;
+    background-image: url('../../images/Desktop/Desktop Bottle for Sign in-1x.png');
     @media screen and (min-device-pixel-ratio: 2),
       screen and (min-resolution: 192dpi),
       screen and (min-resolution: 2dppx) {
-      background-image: url('../../images/Mobile/Mobile Bottle Sign In-2x.png');
+      background-image: url('../../images/Desktop/Desktop Bottle for Sign in-2x.png');
     }
   }
 `;
