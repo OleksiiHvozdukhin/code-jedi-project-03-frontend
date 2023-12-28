@@ -1,13 +1,21 @@
 import { theme } from 'components/theme';
 import styled from 'styled-components';
 
+import bgMobileBottle from '../../../images/Mobile/Mobile Bottle home screen-1x.png';
+import bgMobileBottleRetina from '../../../images/Mobile/Mobile Bottle home screen-2x.png';
+
+import bgTabletBottle from '../../../images/Tablet/Tablet Bottle Home Screen-1x.png';
+import bgTabletBottleRetina from '../../../images/Tablet/Tablet Bottle Home Screen-2x.png';
+
+import bgDesktopBottle from '../../../images/Desktop/Desktop Botle Home screen-1x.png';
+import bgDesktopBottleRetina from '../../../images/Desktop/Desktop Botle Home screen-1x.png';
+
 export const NormaWrapper = styled.div`
   display: inline-flex;
   padding: 8px 20px;
   flex-direction: column;
   align-items: flex-start;
   gap: ${theme.spacing(6)};
-
   border-radius: 10px;
   border: 1px solid ${theme.colors.light};
   box-shadow: 0px 4px 8px 0px rgba(158, 187, 255, 0.12);
@@ -52,3 +60,19 @@ export const EditBtn = styled.button`
     outline: none;
   }
 `;
+
+export const bottleImage = {
+  mobile: {
+    bottle: bgMobileBottle,
+    bottleRetina: bgMobileBottleRetina,
+  },
+  tablet: {
+    bottle: bgTabletBottle,
+    bottleRetina: bgTabletBottleRetina,
+  },
+  desktop: {
+    bottle: bgDesktopBottle,
+    bottleRetina: bgDesktopBottleRetina,
+  },
+};
+export const BottleImg = styled.img``;
