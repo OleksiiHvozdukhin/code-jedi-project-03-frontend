@@ -3,19 +3,13 @@ import styled from "styled-components";
 import { theme } from '../../theme.jsx';
 
 export const DayStatsWrap = styled(Modal)`
-width: 100%;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-  position: absolute;
-  max-width: 280px;
+  width: 280px;
   padding: 24px 13px;
   border-radius: 10px;
   background: ${theme.colors.white};
   box-shadow: 0px 4px 4px 0px rgba(64, 123, 255, 0.3);
-
-  @media screen and (min-width: 768px) {
-    max-width: 292px;
+@media screen and (min-width: 768px) {
+    width: 292px;
     padding: 24px 16px;
   }
   @media screen and (min-width: 1440px) {

@@ -13,6 +13,7 @@ import {
 import { useState } from 'react';
 import { DaysGeneralStats } from '../DaysGeneralStats/DaysGeneralStats';
 import SpriteIcons from "../../../images/sprite.svg";
+import Modal from 'react-modal';
 
 export const getDateInfo = date => {
   const months = [
@@ -61,22 +62,44 @@ const daysArray = () => {
   });
 };
 const initialDaysArray = daysArray();
-
+Modal.setAppElement('#root');
 
 export const MonthStatsTable = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedDay, setSelectedDay] = useState(null);
-const [daysArray] = useState(initialDaysArray);
+  const [daysArray] = useState(initialDaysArray);
+  const [modalPosition, setModalPosition] = useState({ top: 0, right: 0 });
 
-const handleOpenModal = selectedDay => {
-  setIsModalOpen(true);
-  setSelectedDay(selectedDay);
-};
+  const handleOpenModal = (clickedDay, event) => {
+    if (selectedDay) {
+      if (clickedDay.date === selectedDay.date) {
+        setIsModalOpen(false);
+      } else {
+        setSelectedDay(clickedDay);
+        setIsModalOpen(true);
+        calculateModalPosition(event);
+      }
+    } else {
+      setIsModalOpen(true);
+      setSelectedDay(clickedDay);
+      calculateModalPosition(event);
+    }
+  };
 const handleCloseModal = () => {
   setIsModalOpen(false);
   setSelectedDay(null);
   };
-
+const calculateModalPosition = event => {
+  const dayElement = event.currentTarget;
+  const dayRect = dayElement.getBoundingClientRect();
+  const top = (dayRect.top - 1);
+  const left =
+    dayRect.left > 292
+      ? dayRect.left + dayRect.width / 2
+      : dayRect.left + 292 + dayRect.width / 2; ;
+  setModalPosition({ top, left });
+  console.log({ top, left });
+};
   return (
     <MonthTableWrap>
       <div
@@ -90,7 +113,7 @@ const handleCloseModal = () => {
         <MonthsHead>Month</MonthsHead>
         <MonthSelector>
           <MonthBackButton>
-            <svg width='14px' height='14px'>
+            <svg width="14px" height="14px">
               <use xlinkHref={`${SpriteIcons}#icon-chevron-double-up`} />
             </svg>
           </MonthBackButton>
@@ -99,7 +122,7 @@ const handleCloseModal = () => {
             {getDateInfo(daysArray[0].date).year}
           </MonthAndYear>
           <MonthNextButton>
-            <svg width='14px' height='14px'>
+            <svg width="14px" height="14px">
               <use xlinkHref={`${SpriteIcons}#icon-chevron-double-up`} />
             </svg>
           </MonthNextButton>
@@ -110,7 +133,7 @@ const handleCloseModal = () => {
           return (
             <DayItem key={day.date}>
               <DayNumber
-                onClick={() => handleOpenModal(day)}
+                onClick={event => handleOpenModal(day, event)}
                 style={{
                   border:
                     day.percentage < 100 ? '1px solid #FF9D43' : 'transparent',
@@ -127,6 +150,7 @@ const handleCloseModal = () => {
         closeModal={handleCloseModal}
         isModalOpen={isModalOpen}
         selectedDay={selectedDay}
+        modalPosition={modalPosition}
       />
     </MonthTableWrap>
   );

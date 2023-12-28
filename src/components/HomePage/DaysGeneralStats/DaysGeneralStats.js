@@ -3,18 +3,35 @@ import { Date, DaysCloseButton, DayStats, DayStatsHead, DayStatsWrap } from "./D
 import SpriteIcons from '../../../images/sprite.svg';
 
 const overlayStyle = {
-backgroundColor: "transparent",
+  backgroundColor: "transparent",
+  zIndex: 0,
 };
-export const DaysGeneralStats = ({ isModalOpen, closeModal, selectedDay }) => {
+export const DaysGeneralStats = ({
+  isModalOpen,
+  closeModal,
+  selectedDay,
+  modalPosition,
+}) => {
   if (!selectedDay) {
-    return;
+    return null;
   }
+  const { top, left } = modalPosition;
+  const modalStyle = {
+    top: `${top}px`,
+    left: window.innerWidth >= 768 ? `${left}px` : '50%',
+    transform:
+      window.innerWidth >= 768
+        ? 'translate(-100%, -100%)'
+        : 'translate(-50%, -100%)',
+    position: 'absolute',
+  };
+
   return (
     <DayStatsWrap
       isOpen={isModalOpen}
       onRequestClose={closeModal}
       ariaHideApp={false}
-      style={{ overlay: overlayStyle }}
+      style={{ overlay: overlayStyle, content: modalStyle }}
     >
       <div
         style={{
