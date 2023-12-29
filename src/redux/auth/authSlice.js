@@ -19,7 +19,7 @@ import {
   handlerEditUserInfo,
 } from './handlers';
 
-const initialState = {
+export const initialState = {
   user: {
     name: '',
     email: '',
