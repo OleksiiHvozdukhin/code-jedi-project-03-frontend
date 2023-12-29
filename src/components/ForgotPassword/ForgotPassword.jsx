@@ -2,7 +2,6 @@ import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import {
-  BackImage,
   BottleImage,
   Container,
   Input,
@@ -14,7 +13,6 @@ import {
 } from './ForgotPassword.styled';
 import { SignInLink } from 'components/ForgotPassword/ForgotPassword.styled';
 import bottle from '../../images/Desktop/Desktop Bottle for Sign in-1x.png';
-import bgscreen from '../../images/Desktop/Desktop Background element Main Page-1x.png';
 
 const validationSchema = Yup.object({
   email: Yup.string()
@@ -43,7 +41,6 @@ export const ForgotPassword = () => {
 
   return (
     <Subcontainer>
-      <BackImage width="1404" src={bgscreen}/>
       <BottleImage width="600" src={bottle}/>
       <Container>
         <Formik
