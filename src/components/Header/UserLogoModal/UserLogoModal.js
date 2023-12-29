@@ -11,11 +11,13 @@ import {
 import { SettingModal } from '../SettingModal/SettingModal';
 // import { LogoutModal } from '../LogOutModal/LogoutModal';
 import { ModalWindow } from 'components/ModalWindow/ModalWindow';
+import { LogoutModal } from '../LogOutModal/LogoutModal';
 
 export const UserLogoModal = () => {
   const [isSettingOpen, setIsSettingOpen] = useState(false);
   // const [isLogoutOpen, setIsLogoutOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+
   return (
     <>
       <Dropdown>
@@ -84,11 +86,14 @@ export const UserLogoModal = () => {
         }}
       /> */}
       <ModalWindow
+        title="Log out"
         isOpen={isOpen}
         onRequestClose={() => {
           setIsOpen(false);
         }}
-      />
+      >
+        <LogoutModal />
+      </ModalWindow>
     </>
   );
 };
