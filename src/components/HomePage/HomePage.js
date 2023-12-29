@@ -13,12 +13,16 @@ export const HomePageComponent = () => {
   const closeModal = () => setModalIsOpen(false);
   return (
     <HomeContainer>
-      <DailyNorma openModal={openModal} />
-      <DailyNormaModal isOpen={modalIsOpen} onRequestClose={closeModal} />
-      <WaterRatioPanel />
-      <TodayWaterList />
-      <TodayListModal />
-      <MonthStatsTable />
+      <div>
+        <DailyNorma openModal={openModal} />
+        <DailyNormaModal isOpen={modalIsOpen} onRequestClose={closeModal} />
+        <WaterRatioPanel />
+      </div>
+      <div>
+        <TodayWaterList />
+        <TodayListModal />
+        <MonthStatsTable />
+      </div>
     </HomeContainer>
   );
 };

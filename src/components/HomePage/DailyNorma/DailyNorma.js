@@ -1,20 +1,20 @@
 import { useSelector } from 'react-redux';
 import {
-  BottleImg,
+  BottleImage,
   EditBtn,
   InfoBox,
   NormaTitle,
   NormaValue,
   NormaWrapper,
+  Section,
 } from './DailyNorma.styled';
 import { selectWaterRate } from 'redux/waterRate/selectors';
-import { bottleImage } from './DailyNorma.styled';
+import bottle from '../../../images/Desktop/Desktop Botle Home screen-1x.png';
 
 export const DailyNorma = ({ openModal }) => {
   const dailyNormaValue = useSelector(selectWaterRate);
   return (
-    <section>
-      <BottleImg src={`${bottleImage.desktop.bottle}`} />
+    <Section>
       <NormaWrapper>
         <NormaTitle>My daily norma</NormaTitle>
         <InfoBox>
@@ -24,6 +24,7 @@ export const DailyNorma = ({ openModal }) => {
           </EditBtn>
         </InfoBox>
       </NormaWrapper>
-    </section>
+      <BottleImage src={bottle} />
+    </Section>
   );
 };
