@@ -1,14 +1,24 @@
-import Modal from "react-modal";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { theme } from '../../theme.jsx';
+const fadeInDown = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
 
-export const DayStatsWrap = styled(Modal)`
+export const DayStatsWrap = styled.div`
   width: 280px;
   padding: 24px 13px;
   border-radius: 10px;
+  position: absolute;
   background: ${theme.colors.white};
   box-shadow: 0px 4px 4px 0px rgba(64, 123, 255, 0.3);
-@media screen and (min-width: 768px) {
+  animation: ${fadeInDown} 0.3s ease;
+  transition: transform
+  @media screen and (min-width: 768px) {
     width: 292px;
     padding: 24px 16px;
   }
@@ -36,6 +46,7 @@ export const DaysCloseButton = styled.button`
   height: 16px;
   padding: 0;
   background: transparent;
+  transition: color ${theme.transition};
   border: none;
   cursor: pointer;
   &:hover,
