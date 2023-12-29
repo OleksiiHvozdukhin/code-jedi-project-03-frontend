@@ -4,7 +4,7 @@ export const validateUserInfoSchema = yup.object({
   email: yup
     .string('Enter your email')
     .email('Enter a valid email')
-    .requtred('Email is required'),
+    .required('Email is required'),
   password: yup
     .string('Enter your password')
     .min(8, 'Password should be of minimum 8 characters length')
@@ -19,5 +19,5 @@ export const validateUserInfoSchema = yup.object({
   name: yup
     .string('Enter your name')
     .max(32, 'name should be maximum 32 characters length')
-    .requtred('Name is required'),
+    .required('Name is required'),
 });

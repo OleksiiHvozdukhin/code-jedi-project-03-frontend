@@ -1,8 +1,17 @@
 import Modal from 'react-modal';
 import { createPortal } from 'react-dom';
+import {
+  CloseBtn,
+  ModalBody,
+  ModalHeader,
+  ModalTitle,
+} from './ModalWindow.styled';
+
+Modal.setAppElement('#modal-root');
 
 const modalRoot = document.querySelector('#modal-root');
-const mediaQuery = '@media screen and (max-width: 320px)';
+const mediaQuery = '@media screen and (maxWidth: 320px)';
+
 const customStyles = {
   content: {
     top: '50%',
@@ -40,29 +49,27 @@ export const ModalWindow = ({ isOpen, onRequestClose, title, children }) => {
       style={customStyles}
       contentLabel="Modal"
     >
-      <div className="modal">
-        <div className="Modal__header">
-          <h2>{title}</h2>
-          <button onClick={onRequestClose}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-            >
-              <path
-                d="M6 18L18 6M6 6L18 18"
-                stroke="#407BFF"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </button>
-        </div>
-        <div className="Modal__body">{children}</div>
-      </div>
+      <ModalHeader>
+        <ModalTitle>{title}</ModalTitle>
+        <CloseBtn onClick={onRequestClose}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+          >
+            <path
+              d="M6 18L18 6M6 6L18 18"
+              stroke="#407BFF"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </CloseBtn>
+      </ModalHeader>
+      <ModalBody>{children}</ModalBody>
     </Modal>,
     modalRoot
   );

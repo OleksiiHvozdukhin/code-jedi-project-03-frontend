@@ -15,8 +15,8 @@ import { LogoutModal } from '../LogOutModal/LogoutModal';
 
 export const UserLogoModal = () => {
   const [isSettingOpen, setIsSettingOpen] = useState(false);
-  // const [isLogoutOpen, setIsLogoutOpen] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isLogoutOpen, setIsLogoutOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
@@ -51,7 +51,7 @@ export const UserLogoModal = () => {
           </MenuItem>
 
           <MenuItem>
-            <MenuBtn type="button" onClick={() => setIsOpen(true)}>
+            <MenuBtn type="button" onClick={() => setIsLogoutOpen(true)}>
               <IconBox>
                 <Icon
                   xmlns="http://www.w3.org/2000/svg"
@@ -73,23 +73,40 @@ export const UserLogoModal = () => {
           </MenuItem>
         </MenuList>
       </Dropdown>
-      <SettingModal
+      {/* <SettingModal
         isOpen={isSettingOpen}
         onCloseSettingModal={() => {
           setIsSettingOpen(false);
         }}
-      />
+      /> */}
       {/* <LogoutModal
         isOpen={isLogoutOpen}
         onCloseLogoutModal={() => {
           setIsLogoutOpen(false);
         }}
       /> */}
+
+      <ModalWindow
+        title="Setting"
+        isOpen={isSettingOpen}
+        onRequestClose={() => {
+          setIsSettingOpen(false);
+        }}
+      >
+        <SettingModal
+          title="Setting"
+          isOpen={isSettingOpen}
+          onRequestClose={() => {
+            setIsSettingOpen(false);
+          }}
+        />
+      </ModalWindow>
+
       <ModalWindow
         title="Log out"
-        isOpen={isOpen}
+        isOpen={isLogoutOpen}
         onRequestClose={() => {
-          setIsOpen(false);
+          setIsLogoutOpen(false);
         }}
       >
         <LogoutModal />
