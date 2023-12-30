@@ -44,7 +44,7 @@ export const BgImage = styled.img`
     }
   }
 
-  @media screen and (min-width: 1400px) {
+  @media screen and (min-width: 1440px) {
     top: 82px;
     background-image: url('../../images/Desktop/Desktop Background element Main Page-1x.png');
 
