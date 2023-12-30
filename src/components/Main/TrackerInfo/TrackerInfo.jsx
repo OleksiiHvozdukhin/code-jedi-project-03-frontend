@@ -1,15 +1,14 @@
-import { SubTitle } from 'CommonStyle/Title/Title.styled';
 import {
   InfoItems,
   InfoList,
-  TrackerInfoContainer
+  TrackerInfoContainer,
 } from './TrackerInfo.styled';
 
 export const TrackerInfo = () => {
   return (
     <>
       <TrackerInfoContainer>
-        <SubTitle>Why drink water</SubTitle>
+        <h2>Why drink water</h2>
         <InfoList>
           <InfoItems>Supply of nutrients to all organs</InfoItems>
           <InfoItems>Providing oxygen to the lungs</InfoItems>

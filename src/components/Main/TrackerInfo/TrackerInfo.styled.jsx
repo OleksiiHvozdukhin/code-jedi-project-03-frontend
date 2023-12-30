@@ -1,5 +1,5 @@
+import { theme } from 'components/theme';
 import styled from 'styled-components';
-import theme from 'CommonStyle/themeJSX';
 
 export const TrackerInfoContainer = styled.div`
   background-color: ${theme.colors.secondaryLight};

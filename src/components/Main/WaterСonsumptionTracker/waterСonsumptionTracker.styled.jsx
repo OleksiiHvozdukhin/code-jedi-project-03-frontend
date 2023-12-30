@@ -1,74 +1,93 @@
+import { theme } from 'components/theme';
 import styled from 'styled-components';
-
 
 const WaterTrackerContainer = styled.div`
   display: flex;
   flex-direction: column;
-  font-family: 'Roboto';
-  letter-spacing: 0em;
-  text-align: left;
-
-  padding: 32px, 24px, 32px, 24px
 `;
 
-const Title = styled.span`
-  font-size: 36px;
+const Title = styled.h2`
+  font-size: 28px;
   font-weight: 700;
-  line-height: 42px;
+  line-height: 1.14;
   margin-bottom: 16px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 36px;
+    line-height: 1.17;
+  }
 `;
 
-const SecondTitle = styled.span`
-  font-size: 26px;
-  font-weight: 400;
-  line-height: 32px;
+const SecondTitle = styled.h3`
+  font-size: 24px;
+  line-height: 1.25;
   margin-bottom: 24px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 26px;
+    line-height: 1.23;
+  }
 `;
 
-const TrackerHeading = styled.span`
+const TrackerHeading = styled.h4`
   font-size: 18px;
   font-weight: 500;
-  line-height: 20px;
+  line-height: 1.11;
   margin-bottom: 12px;
 `;
 
-const TrackerList = styled.div`
+const TrackerList = styled.ul`
   margin-bottom: 24px;
+
+  @media screen and (min-width: 768px) and (max-width: 1439px) {
+    display: flex;
+    justify-content: space-between;
+  }
 `;
 
-const TrackerListElement = styled.div`
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 20px;
+const TrackerListElement = styled.li`
   margin-bottom: 16px;
   display: flex;
-  text-align: center;
   align-items: center;
-  height: 40px;
 `;
 
-const ElementText = styled.div`
-  height: 20px;
-  text-align: center;
+const ElementText = styled.p`
   margin-left: 8px;
+  line-height: 1.25;
 `;
 
 const TryTrackerButton = styled.button`
-  width: 384px;
-  height: 44px;
   padding: 10px 30px;
   border-radius: 10px;
-  gap: 10px;
-  background: #407BFF;
+  background: ${theme.colors.blue};
+  box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
   border: 0;
   font-size: 18px;
   font-weight: 500;
-  line-height: 24px;
-  color: #FFFFFF;
+  line-height: 1.33;
+  color: ${theme.colors.white};
+  transition: box-shadow ${theme.transition};
   cursor: pointer;
+  &:hover,
+  &:focus {
+    box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
+  }
+  @media screen and (min-width: 768px) {
+    width: 336px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 384px;
+  }
 `;
 
 export {
-  WaterTrackerContainer, Title, SecondTitle, TrackerHeading, TrackerList, ElementText,
-  TryTrackerButton, TrackerListElement
+  WaterTrackerContainer,
+  Title,
+  SecondTitle,
+  TrackerHeading,
+  TrackerList,
+  ElementText,
+  TryTrackerButton,
+  TrackerListElement,
 };
