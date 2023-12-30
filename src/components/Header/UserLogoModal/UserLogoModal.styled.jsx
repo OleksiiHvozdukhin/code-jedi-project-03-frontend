@@ -2,19 +2,20 @@ import styled from 'styled-components';
 
 export const Dropdown = styled.nav`
   position: absolute;
-  right: 8px;
-  top: 60px;
+  top: 80px;
+  right: 0;
+  padding: 16px;
+  background: var(--Primery-Color-White, #fff);
+  width: fit-content;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.2);
 `;
 
 export const MenuList = styled.ul`
-  display: inline-flex;
-  padding: 16px;
+  display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 16px;
-  border-radius: 10px;
-  background: var(--Primery-Color-White, #fff);
-  box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.2);
 `;
 
 export const MenuItem = styled.li`
@@ -43,4 +44,7 @@ export const IconBox = styled.div`
   height: 16px;
 `;
 
-export const Icon = styled.svg``;
+export const Icon = styled.svg`
+  stroke: #407bff;
+  fill: none;
+`;

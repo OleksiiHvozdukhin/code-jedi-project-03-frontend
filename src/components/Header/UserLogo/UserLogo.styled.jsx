@@ -1,28 +1,64 @@
 import styled from 'styled-components';
 
-export const UserBtn = styled.button`
+export const UserLogoWrapper = styled.div`
   position: relative;
-  margin-left: auto;
-  width: 122px;
+  display: flex;
+  max-width: calc(100% - 102px);
   height: 28px;
-  padding: 0;
+  width: auto;
+  flex-shrink: 2;
+`;
+
+export const UserBtn = styled.button`
   border: none;
   display: flex;
   gap: 8px;
   text-transform: capitalize;
   text-align: center;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  padding: 10px 0;
+
+  & span {
+    flex-shrink: 2;
+    margin-right: 8px;
+    font-family: 'Roboto-regular';
+    font-size: 16px;
+    color: var(--primaryBlack);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: auto;
+  }
+
+  & img {
+    flex-shrink: 0;
+    border-radius: 50%;
+    margin-right: 4px;
+  }
+
+  & svg {
+    flex-shrink: 0;
+  }
+
+  &.open {
+    & svg {
+      transform: rotateX(180deg);
+    }
+  }
 `;
 
 export const UserName = styled.span`
-  width: 66px;
+  /* width: 66px;
   color: var(--Primery-Color-Blue, #407bff)
   font-family: Roboto;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
-  line-height: 24px; /* 133.333% */
-  text-align: right;
-  
+  line-height: 24px; 
+  text-align: right; */
 `;
 
 export const MenuAvatarWrapper = styled.div`

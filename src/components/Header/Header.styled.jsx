@@ -1,12 +1,6 @@
 import styled from 'styled-components';
 
-export const header = styled.header`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const Container = styled.div`
+export const HeaderContainer = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
