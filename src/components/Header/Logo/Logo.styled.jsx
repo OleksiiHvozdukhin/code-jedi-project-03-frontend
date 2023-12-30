@@ -13,6 +13,12 @@ export const StyledNavLink = styled(NavLink)`
   gap: 4px;
 `;
 
+export const IconBox = styled.div`
+  display: block;
+  width: 40px;
+  heigt: 48px;
+`;
+
 export const TextBox = styled.div`
   display: flex;
   align-items: center;

@@ -1,6 +1,6 @@
 import Modal from 'react-modal';
 import { createPortal } from 'react-dom';
-// import SpriteIcons from '../../images/sprite.svg';
+import sprite from '../../images/sprite.svg';
 
 import {
   CloseBtn,
@@ -54,24 +54,9 @@ export const ModalWindow = ({ isOpen, onRequestClose, title, children }) => {
       <ModalHeader>
         <ModalTitle>{title}</ModalTitle>
         <CloseBtn onClick={onRequestClose}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-          >
-            <path
-              d="M6 18L18 6M6 6L18 18"
-              stroke="#407BFF"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
+          <svg width="16" height="16" stroke="#407BFF" fill="none">
+            <use href={`${sprite}#icon-close`}></use>
           </svg>
-          {/* <svg width="16" height="16">
-            <use href={SpriteIcons + 'icon-close'}></use>
-          </svg> */}
         </CloseBtn>
       </ModalHeader>
       <ModalBody>{children}</ModalBody>

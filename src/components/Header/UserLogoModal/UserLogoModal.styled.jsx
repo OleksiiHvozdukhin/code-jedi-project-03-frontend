@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const Dropdown = styled.nav`
   position: absolute;
-  top: 80px;
-  right: 0;
+  top: 100px;
+  right: 32px;
   padding: 16px;
   background: var(--Primery-Color-White, #fff);
   width: fit-content;

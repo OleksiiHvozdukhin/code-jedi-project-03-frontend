@@ -1,11 +1,4 @@
 import styled from 'styled-components';
-
-// export const ModalContainer = styled.div``;
-
-// export const HeaderModal = styled.div`
-//   display: flex;
-//   justify-content: space-between;
-// `;
 // export const TitleModal = styled.h2`
 //   display: block;
 //   text-transform: capitalize;

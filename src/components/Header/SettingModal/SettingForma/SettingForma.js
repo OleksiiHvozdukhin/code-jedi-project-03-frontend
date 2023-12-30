@@ -13,18 +13,18 @@ import {
   PasswordBoxTitle,
 } from './SettingForma.styled';
 import { validateUserInfoSchema } from 'schemas/validateUserInfoSchema';
-// import { useDispatch } from 'react-redux';
-// import { refreshUser } from 'redux/auth/authOperations';
+import { useDispatch } from 'react-redux';
+import { refreshUser } from 'redux/auth/authOperations';
 
 export const SettingForma = ({ onClose, id, name, email }) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // const handleRefresh = (editedContact, actions) => {
-  //   dispatch(refreshUser({ ...editedContact, id })).then(() => {
-  //     onClose();
-  //   });
-  //   actions.resetForm();
-  // };
+  const handleRefresh = (editedContact, actions) => {
+    dispatch(refreshUser({ ...editedContact, id })).then(() => {
+      onClose();
+    });
+    actions.resetForm();
+  };
   return (
     <Formik
       initialValues={{
@@ -32,7 +32,7 @@ export const SettingForma = ({ onClose, id, name, email }) => {
         email,
       }}
       validationSchema={validateUserInfoSchema}
-      // onSubmit={handleRefresh}
+      onSubmit={handleRefresh}
     >
       {({ errors, touched }) => (
         <StyledForm>
