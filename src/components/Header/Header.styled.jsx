@@ -6,5 +6,11 @@ export const HeaderContainer = styled.header`
   justify-content: space-between;
   margin: 16px 32px 24px;
   height: 48px;
-  width: auto;
+  width: 100%;
+`;
+
+export const LogoBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

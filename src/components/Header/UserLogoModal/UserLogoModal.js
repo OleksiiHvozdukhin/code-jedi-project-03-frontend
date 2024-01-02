@@ -1,4 +1,3 @@
-// import { useState } from 'react';
 import { useState } from 'react';
 import {
   Dropdown,
@@ -9,15 +8,13 @@ import {
   MenuList,
 } from './UserLogoModal.styled';
 import { SettingModal } from '../SettingModal/SettingModal';
-// import { LogoutModal } from '../LogOutModal/LogoutModal';
-import { ModalWindow } from 'components/ModalWindow/ModalWindow';
+import { ModalWindow } from 'components/ModalWindow/ModalWindow.js';
 import { LogoutModal } from '../LogOutModal/LogoutModal';
 import SpriteIcons from '../../../images/sprite.svg';
 
 export const UserLogoModal = () => {
   const [isSettingOpen, setIsSettingOpen] = useState(false);
   const [isLogoutOpen, setIsLogoutOpen] = useState(false);
-  // const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>

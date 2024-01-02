@@ -4,41 +4,32 @@ import SpriteIcons from '../../../images/sprite.svg';
 import {
   UserBtn,
   MenuAvatarWrapper,
-  IconBox,
   UserIconBox,
+  UserLogoWrapper,
 } from './UserLogo.styled';
 import { UserLogoModal } from '../UserLogoModal/UserLogoModal.js';
-// import { useSelector } from 'react-redux';
-// import { selectUser } from 'redux/auth/authSelectors';
+import { useSelector } from 'react-redux';
+import { selectUser } from 'redux/auth/authSelectors';
 
 export const UserLogo = () => {
   const [isOpen, setIsOpen] = useState(false);
-  // const { avatar } = useSelector(selectUser);
+  const { avatarUrl, name } = useSelector(selectUser);
   return (
-    <div>
+    <UserLogoWrapper>
       <UserBtn type="button" id="dropdown" onClick={() => setIsOpen(!isOpen)}>
-        <span>name</span>
+        <span>{name}</span>
 
         <MenuAvatarWrapper>
           <UserIconBox>
-            <img
-              height="28"
-              width="28"
-              src={
-                'avatar' ||
-                'https://s.gravatar.com/avatar/8f175290e672fb87ec57c5e10a6e804e?s=250&r=g&d=retro'
-              }
-              alt="User avatar"
-            />
+            <img height="28" width="28" src={avatarUrl} alt="User avatar" />
           </UserIconBox>
-          <IconBox>
-            <svg width="24" height="24">
-              <use xlinkHref={SpriteIcons + '#icon-chevron-double-up'} />
-            </svg>
-          </IconBox>
+
+          <svg width="24" height="24">
+            <use xlinkHref={SpriteIcons + '#icon-chevron-double-up'} />
+          </svg>
         </MenuAvatarWrapper>
       </UserBtn>
       {isOpen && <UserLogoModal />}
-    </div>
+    </UserLogoWrapper>
   );
 };

@@ -1,15 +1,9 @@
-import {
-  IconBox,
-  LogoBox,
-  LogoText,
-  StyledNavLink,
-  TextBox,
-} from './Logo.styled';
+import { IconBox, LogoText, StyledNavLink, TextBox } from './Logo.styled';
 import SpriteIcons from '../../../images/sprite.svg';
 
 export const Logo = () => {
   return (
-    <LogoBox>
+    <>
       <StyledNavLink to="/">
         {/*
          */}
@@ -22,6 +16,6 @@ export const Logo = () => {
           <LogoText>tracker of water</LogoText>
         </TextBox>
       </StyledNavLink>
-    </LogoBox>
+    </>
   );
 };

@@ -14,13 +14,13 @@ import {
 } from './SettingForma.styled';
 import { validateUserInfoSchema } from 'schemas/validateUserInfoSchema';
 import { useDispatch } from 'react-redux';
-import { refreshUser } from 'redux/auth/authOperations';
+import { refreshUserThunk } from 'redux/auth/authOperations';
 
 export const SettingForma = ({ onClose, id, name, email }) => {
   const dispatch = useDispatch();
 
   const handleRefresh = (editedContact, actions) => {
-    dispatch(refreshUser({ ...editedContact, id })).then(() => {
+    dispatch(refreshUserThunk({ ...editedContact, id })).then(() => {
       onClose();
     });
     actions.resetForm();

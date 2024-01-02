@@ -1,20 +1,20 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
-const fadeInDown = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
+// const fadeInDown = keyframes`
+//   from {
+//     opacity: 0;
+//     transform: translateY(-10px);
+//   }
+//   to {
+//     opacity: 1;
+//     transform: translateY(0);
+//   }
+// `;
 
 export const Dropdown = styled.nav`
   position: absolute;
-  top: 100px;
-  right: 32px;
+  top: 40px;
+  right: 0;
   padding: 16px;
   background: var(--Primery-Color-White, #fff);
   width: fit-content;

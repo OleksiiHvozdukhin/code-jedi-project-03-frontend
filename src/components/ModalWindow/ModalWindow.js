@@ -1,66 +1,74 @@
-import { useEffect, useRef } from 'react';
+import Modal from 'react-modal';
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
-import {
-  BaseModalStyled,
-  CloseButton,
-  CloseIcon,
-  ModalContent,
-  ModalHeader,
-} from './ModalWindow.styled';
-
 import sprite from '../../images/sprite.svg';
+import {
+  CloseBtn,
+  ModalHeader,
+  ModalTitle,
+  ModalBody,
+  CloseIcon,
+} from './ModalWindow.styled.jsx';
 
-export const ModalWindow = ({ onShow = true, children, title, onClose }) => {
-  const modalRoot = document.querySelector('#modal-root');
+Modal.setAppElement('#modal-root');
+const modalRoot = document.querySelector('#modal-root');
+const mediaQuery = '@media screen and (maxWidth: 320px)';
 
-  const modalContainerRef = useRef(null);
-  const backdropRef = useRef(null);
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    zIndex: '1300',
+    backgroundColor: '#fff',
+    padding: '32px 24px',
+    [mediaQuery]: '24px 12px',
+  },
+  overlay: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'rgba(0, 0, 0, 0.80)',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+};
 
-  useEffect(() => {
-    const bodyScroll = disable => {
-      document.body.style.overflow = disable ? 'hidden' : 'auto';
-    };
-
-    if (onShow || modalRoot.children.length !== 0) {
-      bodyScroll(true);
-    }
-
-    const handleEsc = e => {
-      if (e.code === 'Escape') {
-        onClose();
-      }
-    };
-
-    window.addEventListener('keydown', handleEsc);
-
-    return () => {
-      bodyScroll(false);
-      window.removeEventListener('keydown', handleEsc);
-    };
-  }, [modalRoot.children.length, onShow, onClose]);
+export const ModalWindow = ({ isOpen, onRequestClose, title, children }) => {
+  if (!isOpen) {
+    return null;
+  }
 
   return createPortal(
-    <BaseModalStyled onClick={onClose} ref={backdropRef}>
-      <ModalContent onClick={e => e.stopPropagation()} ref={modalContainerRef}>
-        <ModalHeader>
-          <h2>{title}</h2>
-          <CloseButton onClick={onClose}>
-            <CloseIcon>
-              <use href={`${sprite}#icon-close`}></use>
-            </CloseIcon>
-          </CloseButton>
-        </ModalHeader>
-        <div>{children}</div>
-      </ModalContent>
-    </BaseModalStyled>,
+    <Modal
+      isOpen={isOpen}
+      onRequestClose={onRequestClose}
+      style={customStyles}
+      contentLabel="Modal"
+    >
+      <ModalHeader>
+        <ModalTitle>{title}</ModalTitle>
+        <CloseBtn onClick={onRequestClose}>
+          <CloseIcon width="16px" height="16px">
+            <use href={`${sprite}#icon-close`}></use>
+          </CloseIcon>
+        </CloseBtn>
+      </ModalHeader>
+      <ModalBody>{children}</ModalBody>
+    </Modal>,
     modalRoot
   );
 };
 
 ModalWindow.propTypes = {
-  onClose: PropTypes.func.isRequired,
+  onRequestClose: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
-  onShow: PropTypes.bool,
+  isOpen: PropTypes.bool,
   title: PropTypes.string.isRequired,
 };
