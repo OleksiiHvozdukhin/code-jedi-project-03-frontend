@@ -117,6 +117,7 @@ export const SignInLink = styled(Link)`
 export const BottleImage = styled.img`
   position: absolute;
   top: 60%;
+  z-index: -1;
 
   @media screen and (max-width: 767px) {
     background-image: url('../../images/Mobile/Mobile Bottle Sign In-1x.png');
