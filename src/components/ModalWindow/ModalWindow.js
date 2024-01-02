@@ -1,66 +1,66 @@
-import Modal from 'react-modal';
+import { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import sprite from '../../images/sprite.svg';
-
+import PropTypes from 'prop-types';
 import {
-  CloseBtn,
-  ModalBody,
+  BaseModalStyled,
+  CloseButton,
+  CloseIcon,
+  ModalContent,
   ModalHeader,
-  ModalTitle,
 } from './ModalWindow.styled';
 
-Modal.setAppElement('#modal-root');
+import sprite from '../../images/sprite.svg';
 
-const modalRoot = document.querySelector('#modal-root');
-const mediaQuery = '@media screen and (maxWidth: 320px)';
+export const ModalWindow = ({ onShow = true, children, title, onClose }) => {
+  const modalRoot = document.querySelector('#modal-root');
 
-const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    zIndex: '1300',
-    backgroundColor: '#fff',
-    padding: '32px 24px',
-    [mediaQuery]: '24px 12px',
-  },
-  overlay: {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    backgroundColor: 'rgba(0, 0, 0, 0.80)',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-};
+  const modalContainerRef = useRef(null);
+  const backdropRef = useRef(null);
 
-export const ModalWindow = ({ isOpen, onRequestClose, title, children }) => {
-  if (!isOpen) {
-    return null;
-  }
+  useEffect(() => {
+    const bodyScroll = disable => {
+      document.body.style.overflow = disable ? 'hidden' : 'auto';
+    };
+
+    if (onShow || modalRoot.children.length !== 0) {
+      bodyScroll(true);
+    }
+
+    const handleEsc = e => {
+      if (e.code === 'Escape') {
+        onClose();
+      }
+    };
+
+    window.addEventListener('keydown', handleEsc);
+
+    return () => {
+      bodyScroll(false);
+      window.removeEventListener('keydown', handleEsc);
+    };
+  }, [modalRoot.children.length, onShow, onClose]);
+
   return createPortal(
-    <Modal
-      isOpen={isOpen}
-      onRequestClose={onRequestClose}
-      style={customStyles}
-      contentLabel="Modal"
-    >
-      <ModalHeader>
-        <ModalTitle>{title}</ModalTitle>
-        <CloseBtn onClick={onRequestClose}>
-          <svg width="16" height="16" stroke="#407BFF" fill="none">
-            <use href={`${sprite}#icon-close`}></use>
-          </svg>
-        </CloseBtn>
-      </ModalHeader>
-      <ModalBody>{children}</ModalBody>
-    </Modal>,
+    <BaseModalStyled onClick={onClose} ref={backdropRef}>
+      <ModalContent onClick={e => e.stopPropagation()} ref={modalContainerRef}>
+        <ModalHeader>
+          <h2>{title}</h2>
+          <CloseButton onClick={onClose}>
+            <CloseIcon>
+              <use href={`${sprite}#icon-close`}></use>
+            </CloseIcon>
+          </CloseButton>
+        </ModalHeader>
+        <div>{children}</div>
+      </ModalContent>
+    </BaseModalStyled>,
     modalRoot
   );
+};
+
+ModalWindow.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
+  onShow: PropTypes.bool,
+  title: PropTypes.string.isRequired,
 };

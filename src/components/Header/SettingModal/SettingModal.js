@@ -23,8 +23,32 @@ import { ContentSettingModal } from './SettingModal.styled';
 // };
 // Modal.setAppElement('#root');
 
+export const SettingModal = () => {
+  const [modalIsOpen, setIsOpen] = useState(true);
+  const closeModal = () => setIsOpen(false);
 export const SettingModal = ({ isOpen, onCloseSettingModal }) => {
   return (
+    <div>
+      <Modal
+        isOpen={modalIsOpen}
+        // onAfterOpen={afterOpenModal}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Setting Modal"
+      >
+        <h2>This is the setting modal</h2>
+        {/* <h2 ref={_subtitle => (subtitle = _subtitle)}>Hello</h2> */}
+        <button onClick={closeModal}>close</button>
+        <div>I am a modal</div>
+        <form>
+          <input />
+          <button>tab navigation</button>
+          <button>stays</button>
+          <button>inside</button>
+          <button>the modal</button>
+        </form>
+      </Modal>
+    </div>
     // <Modal
     //   isOpen={isOpen}
     //   onRequestClose={onCloseSettingModal}
