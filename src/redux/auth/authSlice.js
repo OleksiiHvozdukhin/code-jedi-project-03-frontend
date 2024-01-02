@@ -1,9 +1,32 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { register, logIn, logOut, refreshUser } from './authOperations';
+import {
+  registerThunk,
+  loginThunk,
+  logoutThunk,
+  refreshUserThunk,
+  updateAvatarThunk,
+  editUserInfoThunk,
+} from './authOperations';
 
-const initialState = {
-  // ! PhotoURL
-  user: { name: null, email: null, waterNorma: 2000, gender: null },
+import {
+  handleLogin,
+  handleRegister,
+  handleLogout,
+  handleRefreshFulfield,
+  handleRefreshPending,
+  handleRefreshReject,
+  handlerUpdateAvatar,
+  handlerEditUserInfo,
+} from './handlers';
+
+export const initialState = {
+  user: {
+    name: '',
+    email: '',
+    waterNorma: '',
+    gender: '',
+    avatarURL: '',
+  },
   token: null,
   isLoggedIn: false,
   // isLoggedIn: true,
@@ -13,33 +36,16 @@ const initialState = {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  extraReducers: {
-    [register.fulfilled](state, { payload }) {
-      state.user = payload.user;
-      state.token = payload.token;
-      state.isLoggedIn = true;
-    },
-    [logIn.fulfilled](state, { payload }) {
-      state.user = payload.user;
-      state.token = payload.token;
-      state.isLoggedIn = true;
-    },
-    [logOut.fulfilled](state) {
-      state.user = { name: null, email: null };
-      state.token = null;
-      state.isLoggedIn = false;
-    },
-    [refreshUser.pending](state) {
-      state.isRefreshing = true;
-    },
-    [refreshUser.fulfilled](state, { payload }) {
-      state.user = payload;
-      state.isLoggedIn = true;
-      state.isRefreshing = false;
-    },
-    [refreshUser.rejected](state) {
-      state.isRefreshing = false;
-    },
+  extraReducers: builder => {
+    builder
+      .addCase(registerThunk.fulfilled, handleRegister)
+      .addCase(loginThunk.fulfilled, handleLogin)
+      .addCase(logoutThunk.fulfilled, handleLogout)
+      .addCase(refreshUserThunk.fulfilled, handleRefreshFulfield)
+      .addCase(refreshUserThunk.pending, handleRefreshPending)
+      .addCase(refreshUserThunk.rejected, handleRefreshReject)
+      .addCase(updateAvatarThunk.fulfilled, handlerUpdateAvatar)
+      .addCase(editUserInfoThunk.fulfilled, handlerEditUserInfo);
   },
 });
 
