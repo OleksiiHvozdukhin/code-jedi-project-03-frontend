@@ -85,7 +85,7 @@ export const BottleImage = styled.img`
     }
   }
 
-  @media screen and (min-width: 1400px) {
+  @media screen and (min-width: 1440px) {
     background-image: url('../../../images/Desktop/Desktop Botle Home screen-1x.png');
     @media screen and (min-device-pixel-ratio: 2),
       screen and (min-resolution: 192dpi),
