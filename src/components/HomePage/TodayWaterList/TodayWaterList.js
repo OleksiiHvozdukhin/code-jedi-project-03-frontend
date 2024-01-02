@@ -1,3 +1,9 @@
+import { OnePortionWater } from './OnePortionWater';
 export const TodayWaterList = () => {
-  return <div>This Today Water List!</div>;
+  return (
+    <div>
+      <h2>Today</h2>
+      <OnePortionWater />
+    </div>
+  );
 };

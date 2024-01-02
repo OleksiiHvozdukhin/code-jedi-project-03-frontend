@@ -1,19 +1,24 @@
 // import * as Yup from 'yup';
-import { ErrorMessage, Field, Form, Formik } from 'formik';
-
+import { Field, Formik } from 'formik';
+import {
+  Label,
+  StyledForm,
+  BtnSave,
+  StyledErrorMessage,
+} from './OnePortionForma.styled';
 export const OnePortionForma = () => {
   return (
-    <Formik initialValues={{}}>
-      <Form>
-        <label htmlFor="time">Recording time:</label>
-        <Field type="text" id="time" name="time" value="0:00" />
-        <ErrorMessage name="time" component="div" />
-        <label htmlFor="portion">Recording time:</label>
-        <Field type="number" id="portion" name="portion" value="0" />
-        <ErrorMessage name="portion" component="div" />
-        <span>250ml</span>
-        <button type="submit">Submit</button>
-      </Form>
+    <Formik initialValues={{ time: '', portion: '' }}>
+      <StyledForm>
+        <Label htmlFor="time">Recording time:</Label>
+        <Field type="text" id="time" name="time" />
+        <StyledErrorMessage name="time" component="div" />
+        <Label htmlFor="portion">Enter the value of the water used:</Label>
+        <Field type="number" id="portion" name="portion" />
+        <StyledErrorMessage name="portion" component="div" />
+        <span>50ml</span>
+        <BtnSave type="submit">Save</BtnSave>
+      </StyledForm>
     </Formik>
   );
 };

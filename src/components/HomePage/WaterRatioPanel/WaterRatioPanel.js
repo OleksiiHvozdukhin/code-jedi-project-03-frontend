@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Modal from 'react-modal';
 import {
   BtnAddWater,
   PercentageValue,
@@ -9,26 +8,14 @@ import {
   WaterRangeField,
   WaterWrapper,
 } from './WaterRatioPanelstyled';
+// import SpriteIcons from '../../../images/sprite.svg';
+import { ModalWindow } from 'components/ModalWindow/ModalWindow';
+import { OnePortionForma } from '../TodayListModal/OnePortionForma';
 
-const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    zIndex: '1300',
-    padding: 0,
-  },
-  overlay: {
-    backgroundColor: 'rgba(0, 0, 0, 0.80)',
-  },
-};
 export const WaterRatioPanel = () => {
-  const [modalIsOpen, setIsOpen] = useState(false);
-  const openModal = () => setIsOpen(true);
-  const closeModal = () => setIsOpen(false);
+  const [isAddWaterOpen, setIsAddWaterOpen] = useState(false);
+  // const openM = () => setIsAddWaterOpen(true);
+  // const closeModal = () => setIsAddWaterOpen(false);
 
   return (
     <WaterWrapper>
@@ -52,19 +39,23 @@ export const WaterRatioPanel = () => {
           </PercentageValue>
         </PercentageWrapper>
       </WaterPanel>
-      <BtnAddWater type="button" onClick={openModal}>
+      <BtnAddWater type="button" onClick={() => setIsAddWaterOpen(true)}>
         Add water
       </BtnAddWater>
-      <Modal
-        isOpen={modalIsOpen}
-        // onAfterOpen={afterOpenModal}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Setting Modal"
+      <ModalWindow
+        title="Add water"
+        onShow={isAddWaterOpen}
+        isOpen={isAddWaterOpen}
+        onRequestClose={() => {
+          setIsAddWaterOpen(false);
+        }}
       >
-        <button onClick={closeModal}>close</button>
-        <div>I am a modal</div>
-      </Modal>
+        <p>Amount of water:</p>
+        <button onClick="decrement">-</button>
+        <span>50ml</span>
+        <button onClick="increment">+</button>
+        <OnePortionForma />
+      </ModalWindow>
     </WaterWrapper>
   );
 };
