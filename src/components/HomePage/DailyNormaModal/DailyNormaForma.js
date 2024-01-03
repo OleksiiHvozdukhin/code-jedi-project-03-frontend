@@ -54,7 +54,7 @@ export const DailyNormaForma = () => {
     try {
       dispatch(saveWaterRate(dailyNormaValue));
       await dispatch(saveWaterRateAsync(dailyNormaValue));
-      console.log(dailyNormaValue);
+
       resetForm();
     } catch (error) {
       console.log(error.message);

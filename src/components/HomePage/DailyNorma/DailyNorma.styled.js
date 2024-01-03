@@ -23,6 +23,7 @@ export const NormaWrapper = styled.div`
   @media screen and (min-width: 768px) {
     margin-bottom: 0;
     position: absolute;
+    z-index: 50;
   }
 `;
 
