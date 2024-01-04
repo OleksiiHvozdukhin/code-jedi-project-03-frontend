@@ -54,6 +54,7 @@ export const DailyNormaForma = () => {
     try {
       dispatch(saveWaterRate(dailyNormaValue));
       await dispatch(saveWaterRateAsync(dailyNormaValue));
+      // toast.success('Daily norma saved');
 
       resetForm();
     } catch (error) {
@@ -137,6 +138,7 @@ export const DailyNormaForma = () => {
             <BtnSave type="submit">Save</BtnSave>
             {isLoading && <Loader />}
             {error && !isLoading && <p>{error}</p>}
+            {/* {error && !isLoading && toast.error(error)} */}
           </StyledForm>
         );
       }}
