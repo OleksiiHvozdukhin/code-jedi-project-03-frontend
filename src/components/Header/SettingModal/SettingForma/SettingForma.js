@@ -1,5 +1,5 @@
-// import { validateUserInfoSchema } from 'schemas/validateUserInfoSchema.js';
-import { ErrorMessage, Formik } from 'formik';
+import { validateUserInfoSchema } from 'schemas/validateUserInfoSchema.js';
+import { Formik } from 'formik';
 import {
   LabelRadio,
   RadioGroup,
@@ -11,28 +11,44 @@ import {
   SubmitBtn,
   PasswordBox,
   PasswordBoxTitle,
+  ErrorMessage,
 } from './SettingForma.styled';
-import { validateUserInfoSchema } from 'schemas/validateUserInfoSchema';
-import { useDispatch } from 'react-redux';
-import { refreshUserThunk } from 'redux/auth/authOperations';
 
-export const SettingForma = ({ onClose, id, name, email }) => {
+import { editUserInfoThunk } from 'redux/auth/authOperations';
+import { useDispatch } from 'react-redux';
+import { useAuth } from '../../../../hooks/useAuth.jsx';
+import { useState } from 'react';
+
+export const SettingForma = ({ id }) => {
+  const { name, email, gender } = useAuth();
+
+  const [isPassword, setIsPassword] = useState({
+    oldPassword: false,
+    newPassword: false,
+    confirmPassword: false,
+  });
+
+  const initialValues = {
+    name,
+    email,
+    gender,
+    oldPassword: '',
+    newPassword: '',
+    confirmPassword: '',
+  };
+
   const dispatch = useDispatch();
 
-  const handleRefresh = (editedContact, actions) => {
-    dispatch(refreshUserThunk({ ...editedContact, id })).then(() => {
-      onClose();
-    });
+  const handleEditUserInfo = async (editedUser, actions) => {
+    dispatch(editUserInfoThunk({ ...editedUser, id }));
     actions.resetForm();
   };
+
   return (
     <Formik
-      initialValues={{
-        name,
-        email,
-      }}
+      initialValues={initialValues}
       validationSchema={validateUserInfoSchema}
-      onSubmit={handleRefresh}
+      onSubmit={handleEditUserInfo}
     >
       {({ errors, touched }) => (
         <StyledForm>
@@ -100,7 +116,7 @@ export const SettingForma = ({ onClose, id, name, email }) => {
           <SubmitBtn
             type="submit"
             onClick={() => {
-              onClose();
+              handleEditUserInfo();
             }}
           >
             Save

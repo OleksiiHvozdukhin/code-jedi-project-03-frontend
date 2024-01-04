@@ -1,55 +1,27 @@
 // import Modal from 'react-modal';
 import { SettingForma } from './SettingForma/SettingForma';
-import { ContentSettingModal } from './SettingModal.styled';
 
-// import { createPortal } from 'react-dom';
+import sprite from '../../../images/sprite.svg';
+import { Text } from './SettingModal.styled';
+// import { useState } from 'react';
 
-// const modalRoot = document.querySelector('#modal-root');
-
-// const customStyles = {
-//   content: {
-//     top: '50%',
-//     left: '50%',
-//     right: 'auto',
-//     bottom: 'auto',
-//     marginRight: '-50%',
-//     transform: 'translate(-50%, -50%)',
-//     zIndex: '1300',
-//     padding: 0,
-//   },
-//   overlay: {
-//     backgroundColor: 'rgba(0, 0, 0, 0.80)',
-//   },
-// };
-// Modal.setAppElement('#root');
-
-export const SettingModal = ({ isOpen, onCloseSettingModal }) => {
+export const SettingModal = ({ isOpen, name, number, onClose, id }) => {
   return (
-    // <Modal
-    //   isOpen={isOpen}
-    //   onRequestClose={onCloseSettingModal}
-    //   style={customStyles}
-    //   contentLabel="Setting Modal"
-    // >
-    //   <ModalContainer>
-    //     <HeaderModal>
-    //       <TitleModal>setting</TitleModal>
-    //       <button onClick={onCloseSettingModal}>X</button>
-    //     </HeaderModal>
     <>
-      <ContentSettingModal>
-        <p>your photo</p>
+      <Text>Your photo</Text>
+      <div>
         <div>
-          <div>
-            <img src="" alt="user" />
-          </div>
-          <p>upload a photo</p>
+          <img src="" alt="user" />
         </div>
-      </ContentSettingModal>
+        <button type="button" onClick={() => {}}>
+          <svg width="16" height="16">
+            <use xlinkHref={`${sprite}#icon-arrow-up-tray`} />
+          </svg>
+          <p>Upload a photo</p>
+        </button>
+      </div>
+
       <SettingForma />
-      {/* </ModalContainer> */}
-      {/* </Modal>, */}
-      {/* modalRoot */}
     </>
   );
 };

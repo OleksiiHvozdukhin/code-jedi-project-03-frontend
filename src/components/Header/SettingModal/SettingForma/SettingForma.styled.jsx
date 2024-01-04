@@ -20,3 +20,5 @@ export const PasswordBoxTitle = styled.h3``;
 export const PasswordLabel = styled.label``;
 
 export const SubmitBtn = styled.button``;
+
+export const ErrorMessage = styled.div``;

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 // export const TitleModal = styled.h2`
 //   display: block;
 //   text-transform: capitalize;
@@ -14,4 +15,12 @@ import styled from 'styled-components';
 //   height: 24px;
 // `;
 
-export const ContentSettingModal = styled.div``;
+export const Text = styled.p`
+  color: #2f2f2f;
+  font-family: Roboto;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 111.111%;
+  margin-bottom: 8px;
+`;
