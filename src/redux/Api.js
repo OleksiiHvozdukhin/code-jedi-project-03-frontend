@@ -47,7 +47,7 @@ export const updateAvatar = async newPhotoFile => {
 };
 
 export const editUserInfo = async body => {
-  const data = await axios.patch('/user/edit', body, {
+  const data = await axios.patch('/users/:userId', body, {
     headers: {
       'Content-Type': 'application/json',
     },
