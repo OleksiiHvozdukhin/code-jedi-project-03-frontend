@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   box-shadow: 0px 4px 14px 0px rgba (64, 123, 255, 0.3);
-  background-color: ${theme.colors.secondaryLight};
+  background-color: ${theme.colors.light};
   border-radius: 10px;
   margin-top: 40px;
   padding: 24px 16px;
@@ -12,6 +12,7 @@ const Container = styled.div`
     padding: 32px 24px;
     margin-top: 60px;
   }
+
   @media screen and (min-width: 1440px) {
     margin-left: 81px;
     margin-top: 34px;
