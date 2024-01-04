@@ -4,7 +4,7 @@ import { SignInLink } from 'components/ForgotPassword/ForgotPassword.styled';
 import { Loader } from 'components/Loader';
 import bottle from '../../images/Desktop/Desktop Bottle for Sign in-1x.png';
 import axios from 'axios';
-// import toast from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 
 import * as Yup from 'yup';
 import {
@@ -27,18 +27,18 @@ const validationSchema = Yup.object({
 
 export const ForgotPassword = () => {
   const navigate = useNavigate();
-  // const [isError, setIsError] = useState('');
+  const [isError, setIsError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async ({ email }) => {
     try {
       setIsLoading(true);
-      // setIsError(false);
-      await axios.post('http://localhost:8000/users/forgotPassword', { email });
-      // toast.success('Password has been sent');
+      setIsError(false);
+      await axios.post('http://localhost:8000/users/forgot-password', { email });
+      toast.success('Password has been sent');
       navigate('/signin');
     } catch (error) {
-      // setIsError(true);
+      setIsError(true);
     } finally {
       setIsLoading(false);
     }
@@ -71,8 +71,9 @@ export const ForgotPassword = () => {
           </Formik>
         </Container>
       </Subcontainer>
+      <Toaster />
       {isLoading && <Loader />}
-      {/* {isError && !isLoading && toast.error('Error send email')} */}
+      {isError && !isLoading && toast.error('Error send email')}
     </>
   );
 };
