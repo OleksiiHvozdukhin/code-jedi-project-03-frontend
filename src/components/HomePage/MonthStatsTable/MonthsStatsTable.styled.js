@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import {theme} from "../../theme.jsx";
+import styled from 'styled-components';
+import { theme } from '../../theme.jsx';
 
 export const MonthTableWrap = styled.div`
   border-radius: 10px;
@@ -16,7 +16,20 @@ export const MonthTableWrap = styled.div`
     max-width: 592px;
   }
 `;
-
+export const PaginationWrap = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  max-width: 264px;
+  @media screen and (min-width: 768px) {
+    max-width: none;
+    width: 656px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 544px;
+  }
+`;
 export const DaysList = styled.ul`
   padding: 0;
   margin: 0;
@@ -114,7 +127,6 @@ export const MonthsHead = styled.p`
     line-height: 1.23;
   }
   @media screen and (min-width: 1440px) {
-
   }
 `;
 
@@ -125,7 +137,6 @@ export const MonthSelector = styled.div`
   gap: ${theme.spacing(6)};
 
   @media screen and (min-width: 768px) {
-
   }
   @media screen and (min-width: 1440px) {
   }
@@ -180,4 +191,3 @@ export const MonthNextButton = styled.button`
   @media screen and (min-width: 1440px) {
   }
 `;
-

@@ -13,11 +13,11 @@ export const DayStatsWrap = styled.div`
   width: 280px;
   padding: 24px 13px;
   border-radius: 10px;
-  position: absolute;
+  position: fixed;
   background: ${theme.colors.white};
   box-shadow: 0px 4px 4px 0px rgba(64, 123, 255, 0.3);
   animation: ${fadeInDown} 0.3s ease;
-  transition: transform
+  /* transition: transform */
   @media screen and (min-width: 768px) {
     width: 292px;
     padding: 24px 16px;
