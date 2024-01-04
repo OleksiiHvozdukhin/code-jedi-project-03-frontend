@@ -1,14 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import {
-  persistStore,
-  persistReducer,
   FLUSH,
-  REHYDRATE,
-  PAUSE,
   PERSIST,
   PURGE,
   REGISTER,
+  REHYDRATE,
+  PAUSE,
 } from 'redux-persist';
+import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth/authSlice';
 import { waterRateReducer } from './waterRate/waterRateSlice';
@@ -19,6 +18,15 @@ const authPersistConfig = {
   whitelist: ['token'],
 };
 
+const ignoredPersistenceActions = [
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+];
+
 export const store = configureStore({
   reducer: {
     waterRate: waterRateReducer,
@@ -27,7 +35,7 @@ export const store = configureStore({
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        ignoredActions: ignoredPersistenceActions,
       },
     }),
   devTools: process.env.NODE_ENV === 'development',
