@@ -8,7 +8,7 @@ import {
 } from './LogOutModal.styled';
 import { logoutThunk } from 'redux/auth/authOperations';
 
-export const LogoutModal = ({ isOpen, onRequestClose }) => {
+export const LogoutModal = ({ onRequestClose }) => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
@@ -22,10 +22,10 @@ export const LogoutModal = ({ isOpen, onRequestClose }) => {
     <LogOutBody>
       <LogOutText>Do you really want to leave?</LogOutText>
       <ButtonGroup>
-        <LogOutBtn type="button" onClick={handleLogout}>
+        <LogOutBtn type="button" onClick={() => handleLogout()}>
           Log out
         </LogOutBtn>
-        <CancelBtn type="button" onClick={handleCansel}>
+        <CancelBtn type="button" onClick={() => handleCansel()}>
           Cancel
         </CancelBtn>
       </ButtonGroup>

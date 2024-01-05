@@ -23,7 +23,7 @@ import sprite from '../../../../images/sprite.svg';
 
 import { useState } from 'react';
 
-export const SettingForma = ({ id }) => {
+export const SettingForma = ({ onRequestClose }) => {
   // const { name, email, gender } = useAuth();
 
   const [isPassword, setIsPassword] = useState({
@@ -52,6 +52,7 @@ export const SettingForma = ({ id }) => {
 
   const handleSubmit = async values => {
     console.log('data has been saved');
+    onRequestClose();
     // try {
     //   await dispatch(editUserInfoThunk({ ...values, id }));
 

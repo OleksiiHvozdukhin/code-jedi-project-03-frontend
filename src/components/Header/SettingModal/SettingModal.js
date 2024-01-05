@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from 'redux/auth/authSelectors';
 import { updateAvatarThunk } from '../../../redux/auth/authOperations';
 
-export const SettingModal = ({ isOpen, name, number, onClose, id }) => {
+export const SettingModal = ({ isOpen, onRequestClose }) => {
   const { avatarUrl } = useSelector(selectUser);
   const [selectedFile, setSelectedFile] = useState(null);
   const dispatch = useDispatch();
@@ -56,7 +56,7 @@ export const SettingModal = ({ isOpen, name, number, onClose, id }) => {
         </AvatarBtn>
       </AvatarWrapper>
 
-      <SettingForma />
+      <SettingForma onSubmit={() => onRequestClose()} />
     </>
   );
 };
