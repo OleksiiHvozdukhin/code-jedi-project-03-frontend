@@ -7,7 +7,6 @@ export const TodayListModal = () => {
   const [isAddWaterOpen, setIsAddWaterOpen] = useState(false);
   return (
     <div>
-      <button onClick={() => setIsAddWaterOpen(true)}>Add water</button>
       <ModalWindow
         title="Add water"
         onShow={isAddWaterOpen}
