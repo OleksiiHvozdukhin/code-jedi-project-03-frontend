@@ -1,6 +1,6 @@
 import React from 'react';
 import { AuthForm } from './AuthForm/AuthForm';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { theme } from 'components/theme';
 
@@ -39,6 +39,7 @@ export const SignUpLink = styled(Link)`
 `;
 
 export const SignInForm = () => {
+  const navigate = useNavigate();
   return (
     <SignInContainer>
       <h2>Sign In</h2>
@@ -47,11 +48,14 @@ export const SignInForm = () => {
         passwordLabel="Enter your password"
         buttonLabel="Sign In"
         onSuccess={() => {
+          navigate('/homepage');
           console.log('Login successful.');
         }}
       />
       <p>
-        <ForgotPasswordLink to="/forgot-password">Forgot your password?</ForgotPasswordLink>
+        <ForgotPasswordLink to="/forgot-password">
+          Forgot your password?
+        </ForgotPasswordLink>
       </p>
       <p>
         <SignUpLink to="/signup">Sign Up</SignUpLink>
