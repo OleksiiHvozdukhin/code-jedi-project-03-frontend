@@ -15,9 +15,14 @@ export const Dropdown = styled.nav`
   position: absolute;
   top: 40px;
   right: 0;
-  padding: 16px;
   background: var(--Primery-Color-White, #fff);
-  width: fit-content;
+  width: 118px;
+  height: 88px;
+  display: inline-flex;
+  padding: 16px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
   border-radius: 10px;
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.2);
 `;
@@ -27,6 +32,7 @@ export const MenuList = styled.ul`
   flex-direction: column;
   align-items: flex-start;
   gap: 16px;
+  margin: 0;
 `;
 
 export const MenuItem = styled.li`
@@ -43,7 +49,6 @@ export const MenuBtn = styled.button`
   color: blue;
   display: flex;
   align-items: center;
-  gap: 8px;
   background-color: transparent;
 `;
 

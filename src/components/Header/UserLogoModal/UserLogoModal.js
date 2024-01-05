@@ -45,18 +45,6 @@ export const UserLogoModal = () => {
           </MenuItem>
         </MenuList>
       </Dropdown>
-      {/* <SettingModal
-        isOpen={isSettingOpen}
-        onCloseSettingModal={() => {
-          setIsSettingOpen(false);
-        }}
-      /> */}
-      {/* <LogoutModal
-        isOpen={isLogoutOpen}
-        onCloseLogoutModal={() => {
-          setIsLogoutOpen(false);
-        }}
-      /> */}
 
       <ModalWindow
         title="Setting"
@@ -81,7 +69,13 @@ export const UserLogoModal = () => {
           setIsLogoutOpen(false);
         }}
       >
-        <LogoutModal />
+        <LogoutModal
+          title="Log out"
+          isOpen={isLogoutOpen}
+          onRequestClose={() => {
+            setIsLogoutOpen(false);
+          }}
+        />
       </ModalWindow>
     </>
   );

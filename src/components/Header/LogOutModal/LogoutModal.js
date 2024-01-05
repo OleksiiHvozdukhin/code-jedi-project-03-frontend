@@ -1,9 +1,34 @@
-export const LogoutModal = () => {
+import { useDispatch } from 'react-redux';
+import {
+  ButtonGroup,
+  CancelBtn,
+  LogOutBody,
+  LogOutBtn,
+  LogOutText,
+} from './LogOutModal.styled';
+import { logoutThunk } from 'redux/auth/authOperations';
+
+export const LogoutModal = ({ isOpen, onRequestClose }) => {
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logoutThunk());
+    onRequestClose();
+  };
+
+  const handleCansel = () => onRequestClose();
+
   return (
-    <div className="Modal__body">
-      <p>Do you really want to leave?</p>
-      <button type="button">Log out</button>
-      <button type="button">Cancel</button>
-    </div>
+    <LogOutBody>
+      <LogOutText>Do you really want to leave?</LogOutText>
+      <ButtonGroup>
+        <LogOutBtn type="button" onClick={handleLogout}>
+          Log out
+        </LogOutBtn>
+        <CancelBtn type="button" onClick={handleCansel}>
+          Cancel
+        </CancelBtn>
+      </ButtonGroup>
+    </LogOutBody>
   );
 };

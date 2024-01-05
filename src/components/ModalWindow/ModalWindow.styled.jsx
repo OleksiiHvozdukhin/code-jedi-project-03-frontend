@@ -5,6 +5,7 @@ height: 32px
 width: auto;
 display: flex;
 justify-content: space-between;
+margin -bottom:24px;
 `;
 
 export const ModalTitle = styled.h2`

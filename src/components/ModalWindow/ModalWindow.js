@@ -16,6 +16,9 @@ const mediaQuery = '@media screen and (maxWidth: 320px)';
 
 const customStyles = {
   content: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '24px',
     top: '50%',
     left: '50%',
     right: 'auto',
