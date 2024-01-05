@@ -14,9 +14,6 @@ import {
 import { useEffect, useState } from 'react';
 import { DaysGeneralStats } from '../DaysGeneralStats/DaysGeneralStats';
 import SpriteIcons from '../../../images/sprite.svg';
-
-export const getDateInfo = date => {
-import SpriteIcons from '../../../images/sprite.svg';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { selectUserToken } from 'redux/auth/authSelectors';
@@ -37,60 +34,20 @@ const getMonthName = monthIndex => {
     'November',
     'December',
   ];
-
-  const dateObject = new Date(date);
-  const monthName = months[dateObject.getMonth()];
-  const dayOfMonth = dateObject.getDate();
-  const year = dateObject.getFullYear();
-
-  return {
-    month: monthName,
-    day: dayOfMonth,
-    year: year,
-  };
-};
-
-const daysArray = () => {
-  return Array.from({ length: 31 }, (_, index) => {
-    const dayNumber = index + 1;
-    const date = `2023-12-${dayNumber < 10 ? '0' : ''}${dayNumber}`;
-    const norm = 1.8;
-    const shouldHave100Percent = Math.random() < 0.32;
-    const percentage = shouldHave100Percent
-      ? 100
-      : Math.floor(Math.random() * 51) + 50;
-    const servings = Math.floor(Math.random() * 4) + 5;
-    return {
-      date,
-      norm,
-      percentage,
-      servings,
-    };
-  });
-};
-const initialDaysArray = daysArray();
   return months[monthIndex];
 };
 
 export const MonthStatsTable = () => {
   const [isStatsOpen, setIsStatsOpen] = useState(false);
   const [selectedDay, setSelectedDay] = useState(null);
-  const [daysArray] = useState(initialDaysArray);
-
-  const handleOpenModal = selectedDay => {
-    setIsModalOpen(true);
-    setSelectedDay(selectedDay);
-  };
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    setSelectedDay(null);
   const [daysArray, setDaysArray] = useState([]);
   const userToken = useSelector(selectUserToken);
   const [isLoading, setIsLoading] = useState(false);
   const [statsPosition, setStatsPosition] = useState({ top: 0, right: 0 });
   const [currentMonthIndex] = useState(new Date().getMonth());
   const [currentYear] = useState(new Date().getFullYear());
-  const [selectedMonthIndex, setSelectedMonthIndex] = useState(currentMonthIndex);
+  const [selectedMonthIndex, setSelectedMonthIndex] =
+    useState(currentMonthIndex);
   const [selectedYear, setSelectedYear] = useState(currentYear);
 
   const initialDaysArray = (month, year) => {
@@ -114,10 +71,11 @@ export const MonthStatsTable = () => {
         Authorization: `Bearer ${userToken}`,
       },
     };
+    console.log(userToken);
     try {
       setIsLoading(true);
       const response = await axios.get(
-        `http://localhost:8000/consumedWater/month/${monthName}`,
+        `http://localhost:8000/consumed-water/month/${monthName}`,
         config
       );
       const data = response.data;
@@ -218,8 +176,6 @@ export const MonthStatsTable = () => {
       <PaginationWrap>
         <MonthsHead>Month</MonthsHead>
         <MonthSelector>
-          <MonthBackButton>
-            <svg width="14px" height="14px">
           <MonthBackButton
             onClick={() => {
               handleMonthChange(-1);
@@ -232,8 +188,6 @@ export const MonthStatsTable = () => {
           <MonthAndYear>
             {getMonthName(selectedMonthIndex)}, {selectedYear}
           </MonthAndYear>
-          <MonthNextButton>
-            <svg width="14px" height="14px">
           <MonthNextButton
             onClick={() => {
               handleMonthChange(1);

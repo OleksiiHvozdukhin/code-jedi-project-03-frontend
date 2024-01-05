@@ -13,6 +13,7 @@ import bottle from '../../../images/Desktop/Desktop-Botle-Home-screen-1x.png';
 
 export const DailyNorma = ({ openModal }) => {
   const dailyNormaValue = useSelector(selectWaterRate);
+  console.log(dailyNormaValue);
   return (
     <Section>
       <NormaWrapper>
