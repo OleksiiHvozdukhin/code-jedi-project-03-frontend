@@ -4,7 +4,7 @@ import SpriteIcons from '../../../images/sprite.svg';
 export const Logo = () => {
   return (
     <>
-      <StyledNavLink to="/">
+      <StyledNavLink to="/homepage">
         {/*
          */}
         <IconBox>
