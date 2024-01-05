@@ -40,17 +40,8 @@ export const SettingModal = ({ isOpen, onRequestClose }) => {
     confirmPassword: false,
   });
 
-  const handleFileChange = event => {
-    const file = event.target.files[0];
-    setSelectedFile(file);
-  };
-
   const handleUploadPhoto = () => {
-    // Ваша логика для загрузки фотографии.
-    // Тут можно использовать выбранный файл (selectedFile)
     console.log('File to upload:', selectedFile);
-
-    // Здесь можно вызвать соответствующий action для загрузки фотографии
     dispatch(updateAvatarThunk(selectedFile));
   };
 
@@ -63,6 +54,11 @@ export const SettingModal = ({ isOpen, onRequestClose }) => {
     confirmPassword: '',
   };
 
+  const handleFileChange = event => {
+    const file = event.target.files[0];
+    setSelectedFile(file);
+  };
+
   const handleTogglePassword = passwordKey => {
     setIsPassword(prev => ({
       ...prev,
@@ -70,7 +66,7 @@ export const SettingModal = ({ isOpen, onRequestClose }) => {
     }));
   };
 
-  const handleSubmit = async values => {
+  const handleSubmit = async () => {
     console.log('data has been saved');
     onRequestClose();
   };
