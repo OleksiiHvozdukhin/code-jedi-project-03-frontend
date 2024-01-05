@@ -64,16 +64,17 @@ export const MonthStatsTable = () => {
     return fullDaysArray;
   };
 
-  const fetchDaysArray = async (monthName, initialArray) => {
+  const fetchDaysArray = async (monthName, initialArray, controller) => {
     const config = {
       headers: {
         Authorization: `Bearer ${userToken}`,
       },
+      signal: controller.signal,
     };
     try {
       setIsLoading(true);
       const response = await axios.get(
-        `http://localhost:8000/consumedWater/month/${monthName}`,
+        `http://localhost:8000/consumed-water/month/${monthName}`,
         config
       );
       const data = response.data;
@@ -115,12 +116,13 @@ export const MonthStatsTable = () => {
   };
 
   useEffect(() => {
+    const controller = new AbortController();
     const selectedMonthName = getMonthName(selectedMonthIndex);
     const initialArray = initialDaysArray(selectedMonthIndex, currentYear);
-    const fetchData = async () => {
-      await fetchDaysArray(selectedMonthName, initialArray);
-    };
-    fetchData();
+fetchDaysArray(selectedMonthName, initialArray, controller);
+return () => {
+  controller.abort();
+};
   }, [selectedMonthIndex]);
 
   useEffect(() => {
