@@ -35,7 +35,7 @@ export const App = () => {
           <Route path="signup" element={<SignupPage />} />
           <Route path="signin" element={<SigninPage />} />
           <Route path="/homepage" element={<HomePage />} />
-          <Route path="/forgotpassword" element={<ForgotPasswordPage />} />
+          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
           {/* //! Это временное решение, пока не сделана проверка на аутентификацию пользователя */}
           <Route path="*" element={<HomePage />} />
         </Route>

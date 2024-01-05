@@ -5,9 +5,6 @@ export const HomeContainer = styled.section`
   @media screen and (min-width: 1440px) {
     display: flex;
     justify-content: space-between;
+    margin-top: 20px;
   }
 `;
-
-// export const TodayContainer = styled.div`
-//   margin-bottom: ${theme.spacing(12)};
-// `;

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // !Вставить сюда ссылку на онрендер
-axios.defaults.baseURL = '';
+axios.defaults.baseURL = 'http://localhost:8000';
 
 const token = {
   set(token) {
@@ -29,21 +29,31 @@ export const logout = async () => {
   token.unset();
 };
 
+///////////////////////////////////////////////////////////////////////////////////////////
+
+//! ???
 export const refreshUser = async token => {
   token.set(token);
-  const { data } = await axios.get('/user/current');
+  const { data } = await axios.get('/users/current');
   return data;
 };
 
-export const updateAvatar = async newPhotoFile => {
+export const updateAvatar = async newPhoto => {
   const {
     data: { avatarURL },
-  } = await axios.post('/user/avatar', newPhotoFile, {
+  } = await axios.post('/users/avatar', newPhoto, {
     headers: {
       'Content-Type': 'multipart/form-data',
     },
   });
   return avatarURL;
+};
+
+export const updateWaterNorm = async newWaterRate => {
+  const { data } = await axios.patch('/users/water-rate', {
+    waterRate: newWaterRate,
+  });
+  return data;
 };
 
 export const editUserInfo = async body => {
@@ -52,5 +62,32 @@ export const editUserInfo = async body => {
       'Content-Type': 'application/json',
     },
   });
+  return data;
+};
+
+export const editWater = async ({ newWaterUser, id }) => {
+  const { data } = await axios.patch(
+    `/consumedWater/today/${id}`,
+    newWaterUser,
+    {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+  );
+  return data;
+};
+
+export const deleteWater = async id => {
+  await axios.delete(`/consumedWater/today/${id}`);
+};
+
+export const getAllConsumedWaterMonth = async month => {
+  const { data } = await axios.get(`/consumedWater/month/${month}`);
+  return data;
+};
+
+export const getAllConsumedWaterToday = async (date, month) => {
+  const { data } = await axios.get(`/consumedWater/today/${date}/${month}`);
   return data;
 };
