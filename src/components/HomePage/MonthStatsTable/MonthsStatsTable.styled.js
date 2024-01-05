@@ -1,22 +1,35 @@
-import styled from "styled-components";
-import {theme} from "../../theme.jsx";
+import styled from 'styled-components';
+import { theme } from '../../theme.jsx';
 
 export const MonthTableWrap = styled.div`
   border-radius: 10px;
   box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.3);
   background-color: ${theme.colors.light};
   padding: 24px 8px;
-  max-width: 264px;
+  max-width: 280px;
 
   @media screen and (min-width: 768px) {
-    padding: 24px 32px;
-    max-width: 656px;
+    padding: 32px 24px;
+    max-width: 704px;
   }
   @media screen and (min-width: 1440px) {
-    max-width: 544px;
+    max-width: 592px;
   }
 `;
-
+export const PaginationWrap = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  max-width: 264px;
+  @media screen and (min-width: 768px) {
+    max-width: none;
+    width: 656px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 544px;
+  }
+`;
 export const DaysList = styled.ul`
   padding: 0;
   margin: 0;
@@ -27,7 +40,7 @@ export const DaysList = styled.ul`
 
   @media screen and (min-width: 768px) {
     gap: ${theme.spacing(10)} ${theme.spacing(17)};
-    max-width: 656px;
+    max-width: 646px;
   }
   @media screen and (min-width: 1440px) {
     gap: ${theme.spacing(10)} ${theme.spacing(11)};
@@ -36,17 +49,17 @@ export const DaysList = styled.ul`
 `;
 
 export const DayItem = styled.li`
-  width: 20px;
-  padding: 7px 6px;
+  flex-basis: calc((100% - 4 * 26px) / 5);
   margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: ${theme.spacing(2)};
   @media screen and (min-width: 768px) {
-    padding: 7px;
+    flex-basis: calc((100% - 9 * 34px) / 10);
   }
   @media screen and (min-width: 1440px) {
+    flex-basis: calc((100% - 9 * 22px) / 10);
   }
 `;
 
@@ -67,6 +80,7 @@ export const DayNumber = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: box-shadow ${theme.transition};
   &:hover,
   &:focus {
     box-shadow: 0px 2px 4px 0px rgba(64, 123, 255, 0.3);
@@ -113,7 +127,6 @@ export const MonthsHead = styled.p`
     line-height: 1.23;
   }
   @media screen and (min-width: 1440px) {
-
   }
 `;
 
@@ -124,7 +137,6 @@ export const MonthSelector = styled.div`
   gap: ${theme.spacing(6)};
 
   @media screen and (min-width: 768px) {
-
   }
   @media screen and (min-width: 1440px) {
   }
@@ -152,9 +164,10 @@ export const MonthBackButton = styled.button`
   color: ${theme.colors.blue};
   transform: rotate(90deg);
   cursor: pointer;
-&:hover,
+  transition: color ${theme.transition};
+  &:hover,
   &:focus {
-    color: ${theme.colors.orange}
+    color: ${theme.colors.orange};
   }
   @media screen and (min-width: 768px) {
   }
@@ -166,6 +179,7 @@ export const MonthNextButton = styled.button`
   background: transparent;
   border: none;
   cursor: pointer;
+  transition: color ${theme.transition};
   color: ${theme.colors.blue};
   transform: rotate(-90deg);
   &:hover,
@@ -177,4 +191,3 @@ export const MonthNextButton = styled.button`
   @media screen and (min-width: 1440px) {
   }
 `;
-

@@ -6,6 +6,7 @@ import {
   refreshUser,
   updateAvatar,
   editUserInfo,
+  updateWaterNorm,
 } from '../Api';
 
 export const registerThunk = createAsyncThunk(
@@ -88,6 +89,18 @@ export const editUserInfoThunk = createAsyncThunk(
     try {
       const data = await editUserInfo(body);
       return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updateWaterNormThunk = createAsyncThunk(
+  'auth/waterRate',
+  async (newWaterRate, { rejectWithValue }) => {
+    try {
+      await updateWaterNorm(Number(newWaterRate) * 1000);
+      return newWaterRate;
     } catch (error) {
       return rejectWithValue(error.message);
     }
