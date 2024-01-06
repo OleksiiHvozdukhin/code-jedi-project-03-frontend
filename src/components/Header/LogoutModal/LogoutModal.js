@@ -25,7 +25,7 @@ export const LogoutModal = ({ onRequestClose }) => {
     <LogOutBody>
       <LogOutText>Do you really want to leave?</LogOutText>
       <ButtonGroup>
-        <LogOutBtn type="button" onClick={() => handleLogout()}>
+        <LogOutBtn type="button" onClick={handleLogout}>
           Log out
         </LogOutBtn>
         <CancelBtn type="button" onClick={() => handleCansel()}>

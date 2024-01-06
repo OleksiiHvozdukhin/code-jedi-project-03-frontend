@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import sprite from '../../../images/sprite.svg';
 import {
   UserBtn,
@@ -9,7 +9,6 @@ import {
 import { UserLogoModal } from '../UserLogoModal/UserLogoModal.js';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'redux/auth/authSelectors';
-import { useEffect } from 'react';
 
 export const UserLogo = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,15 +24,12 @@ export const UserLogo = () => {
         console.log('Это внутри сеттинг-модала');
       }
 
-      // console.log(`Setting: ${settingModal}`);
-
       if (
         dropdown &&
         modal &&
         !dropdown.contains(event.target) &&
         !modal.contains(event.target)
       ) {
-        // console.log('Modal close');
         setIsOpen(false);
       }
     };
