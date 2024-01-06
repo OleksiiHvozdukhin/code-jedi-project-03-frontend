@@ -1,4 +1,4 @@
-import { validateUserInfoSchema } from 'schemas/validateUserInfoSchema.js';
+import { SettingModalSchema } from 'schemas/SettingModalSchema.js';
 import { useState } from 'react';
 import sprite from '../../../images/sprite.svg';
 import {
@@ -74,7 +74,7 @@ export const SettingModal = ({ isOpen, onRequestClose }) => {
   return (
     <Formik
       initialValues={initialValues}
-      validationSchema={validateUserInfoSchema}
+      validationSchema={SettingModalSchema}
       onSubmit={handleSubmit}
     >
       {({ errors, touched, values, handleChange }) => (

@@ -10,7 +10,7 @@ import {
 import { SettingModal } from '../SettingModal/SettingModal';
 import { ModalWindow } from 'components/ModalWindow/ModalWindow.js';
 
-import SpriteIcons from '../../../images/sprite.svg';
+import sprite from '../../../images/sprite.svg';
 import { logoutThunk } from 'redux/auth/authOperations';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -35,7 +35,7 @@ export const UserLogoModal = () => {
             <MenuBtn type="button" onClick={() => setIsSettingOpen(true)}>
               <IconBox>
                 <Icon width="16" height="16">
-                  <use href={SpriteIcons + '#icon-cog-6-tooth'}></use>
+                  <use href={`${sprite} #icon-cog-6-tooth`}></use>
                 </Icon>
               </IconBox>
               Setting
@@ -46,9 +46,7 @@ export const UserLogoModal = () => {
             <MenuBtn type="button" onClick={() => setIsLogoutOpen(true)}>
               <IconBox>
                 <Icon width="16" height="16">
-                  <use
-                    href={SpriteIcons + '#icon-arrow-right-on-rectangle'}
-                  ></use>
+                  <use href={`${sprite}#icon-arrow-right-on-rectangle`}></use>
                 </Icon>
               </IconBox>
               Log out

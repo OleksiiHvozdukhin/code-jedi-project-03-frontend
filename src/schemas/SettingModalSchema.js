@@ -1,6 +1,9 @@
 import * as yup from 'yup';
 
-export const validateUserInfoSchema = yup.object({
+export const SettingModalSchema = yup.object().shape({
+  name: yup
+    .string('Enter your name')
+    .max(32, 'name should be maximum 32 characters length'),
   email: yup
     .string('Enter your email')
     .email('Enter a valid email')
@@ -16,8 +19,4 @@ export const validateUserInfoSchema = yup.object({
     .max(64, 'Password should be of maximum 64 characters length')
     .required('Password is required'),
   gender: yup.string().required('Choose one of two values'),
-  name: yup
-    .string('Enter your name')
-    .max(32, 'name should be maximum 32 characters length')
-    .required('Name is required'),
 });
