@@ -1,5 +1,6 @@
 import { IconBox, LogoText, StyledNavLink, TextBox } from './Logo.styled';
 import sprite from '../../../images/sprite.svg';
+
 export const Logo = () => {
   return (
     <>

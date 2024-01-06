@@ -3,11 +3,12 @@ import styled from 'styled-components';
 
 export const SignInBtn = styled(NavLink)`
   display: flex;
+
   align-items: center;
   gap: 8px;
 
   & span {
-    display: block;
+    display: flex;
     font-family: 'Roboto-regular';
     font-size: 16px;
     color: '#407BFF';

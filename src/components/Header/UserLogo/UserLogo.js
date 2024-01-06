@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import SpriteIcons from '../../../images/sprite.svg';
-
+import sprite from '../../../images/sprite.svg';
 import {
   UserBtn,
   MenuAvatarWrapper,
@@ -15,18 +14,7 @@ import { useEffect } from 'react';
 export const UserLogo = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { avatarUrl, name } = useSelector(selectUser);
-  // useEffect(() => {
-  //   const handleFocus = () => {
-  //     setIsOpen(true);
-  //   };
 
-  //   const handleBlur = () => {
-  //     setIsOpen(false);
-  //   };
-
-  //   document.getElementById('dropdown').addEventListener('focus', handleFocus);
-  //   document.getElementById('dropdown').addEventListener('blur', handleBlur);
-  // }, []);
   useEffect(() => {
     const handleClickOutside = event => {
       const dropdown = document.getElementById('dropdown');
@@ -68,7 +56,7 @@ export const UserLogo = () => {
           </UserIconBox>
 
           <svg width="24" height="24">
-            <use xlinkHref={SpriteIcons + '#icon-chevron-double-up'} />
+            <use xlinkHref={`${sprite}#icon-chevron-double-up`} />
           </svg>
         </MenuAvatarWrapper>
       </UserBtn>
