@@ -11,9 +11,7 @@ import { SettingModal } from '../SettingModal/SettingModal';
 import { ModalWindow } from 'components/ModalWindow/ModalWindow.js';
 
 import sprite from '../../../images/sprite.svg';
-import { logoutThunk } from 'redux/auth/authOperations';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+
 import { LogoutModal } from '../LogoutModal/LogoutModal';
 
 export const UserLogoModal = () => {
