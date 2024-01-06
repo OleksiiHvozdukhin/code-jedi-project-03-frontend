@@ -2,9 +2,14 @@ import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { AuthFormLabel, AuthFormButton, AuthFormInput } from './SignUp.styled';
+import { useDispatch } from 'react-redux';
+import { registerThunk } from 'redux/auth/authOperations';
+import { useNavigate } from 'react-router-dom';
 
 const validationSchema = Yup.object({
-  email: Yup.string().email('Invalid email format').required('Email is required'),
+  email: Yup.string()
+    .email('Invalid email format')
+    .required('Email is required'),
   password: Yup.string()
     .min(8, 'Password must be at least 8 characters')
     .max(64, 'Password must not exceed 64 characters')
@@ -14,15 +19,27 @@ const validationSchema = Yup.object({
     .required('Repeat password is required'),
 });
 
-export const AuthForm = ({ emailLabel, passwordLabel, buttonLabel, onSuccess, repeatPasswordLabel }) => {
+export const AuthForm = ({
+  emailLabel,
+  passwordLabel,
+  buttonLabel,
+  onSuccess,
+  repeatPasswordLabel,
+}) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleTogglePassword = () => {
-    setShowPassword((prevState) => !prevState);
+    setShowPassword(prevState => !prevState);
   };
 
   const eyeIcon = (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -32,12 +49,15 @@ export const AuthForm = ({ emailLabel, passwordLabel, buttonLabel, onSuccess, re
     </svg>
   );
 
-  const handleSubmit = (values, { resetForm }) => {
-    // Logic for sending data to the server and handling registration result
-    if (onSuccess) {
-      onSuccess();
-    }
-    resetForm();
+  const dispatch = useDispatch();
+
+  const [emailUsed, setEmailUsed] = useState(false);
+  const navigate = useNavigate();
+
+  const handleSubmit = async ({ email, password }, { resetForm }) => {
+    const data = await dispatch(registerThunk({ name: 'V', email, password }));
+    if (data.payload === 'Email in use') setEmailUsed(true);
+    if (!!data.payload.user) navigate('/home');
   };
 
   return (
@@ -76,7 +96,9 @@ export const AuthForm = ({ emailLabel, passwordLabel, buttonLabel, onSuccess, re
         </div>
         {repeatPasswordLabel && (
           <div>
-            <AuthFormLabel htmlFor="repeatPassword">{repeatPasswordLabel}</AuthFormLabel>
+            <AuthFormLabel htmlFor="repeatPassword">
+              {repeatPasswordLabel}
+            </AuthFormLabel>
             <div>
               <Field
                 as={AuthFormInput}
@@ -89,6 +111,7 @@ export const AuthForm = ({ emailLabel, passwordLabel, buttonLabel, onSuccess, re
               <span onClick={handleTogglePassword}>{eyeIcon}</span>
             </div>
             <ErrorMessage name="repeatPassword" component="div" />
+            {emailUsed && <p>Email is already in use</p>}
           </div>
         )}
         <div>
@@ -98,6 +121,3 @@ export const AuthForm = ({ emailLabel, passwordLabel, buttonLabel, onSuccess, re
     </Formik>
   );
 };
-
-
-

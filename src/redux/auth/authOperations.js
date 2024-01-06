@@ -11,27 +11,24 @@ import {
 
 export const registerThunk = createAsyncThunk(
   'auth/register',
-  async (credentials, { rejectWithValue }) => {
+  async credentials => {
     try {
       const data = await signup(credentials);
       return data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return error.response.data.message;
     }
   }
 );
 
-export const loginThunk = createAsyncThunk(
-  'auth/login',
-  async (credentials, { rejectWithValue }) => {
-    try {
-      const data = await signin(credentials);
-      return data;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
+export const loginThunk = createAsyncThunk('auth/login', async credentials => {
+  try {
+    const data = await signin(credentials);
+    return data;
+  } catch (error) {
+    return error;
   }
-);
+});
 
 export const logoutThunk = createAsyncThunk(
   'auth/logout',

@@ -8,7 +8,9 @@ export const handleLogin = (state, { payload }) => {
 };
 
 export const handleRegister = (state, { payload }) => {
-  state.user = payload;
+  state.token = payload.token;
+  state.user = payload.user;
+  state.isLoggedIn = true;
 };
 
 export const handleLogout = state => {
