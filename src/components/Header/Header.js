@@ -1,22 +1,11 @@
 import { HeaderContainer, LogoBox } from './Header.styled.jsx';
 import { Logo } from './Logo/Logo.js';
 import { UserLogo } from './UserLogo/UserLogo.js';
-// import { UserAuth } from './UserAuth/UserAuth.js';
-// import { useSelector } from 'react-redux';
-// import { selectIsLoggedIn } from 'redux/auth/authSelectors.js';
-// import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../hooks/useAuth.jsx';
+import { UserAuth } from './UserAuth/UserAuth.js';
 
 export const Header = () => {
-  // const { isLoggedIn } = useSelector(selectIsLoggedIn);
-  // const navigate = useNavigate();
-
-  // const handleClickUserLogo = e => {
-  //   if (e.currentTarget.classList.contains('open')) {
-  //     setIsOpen(false);
-  //     return;
-  //   }
-  //   setIsOpen(true);
-  // };
+  const { isLoggedIn } = useAuth();
 
   return (
     <HeaderContainer>
@@ -24,9 +13,7 @@ export const Header = () => {
         <Logo />
       </LogoBox>
 
-      {/* {isLoggedIn ? <UserLogo /> : <UserAuth />} */}
-
-      <UserLogo />
+      {isLoggedIn ? <UserLogo /> : <UserAuth />}
     </HeaderContainer>
   );
 };
