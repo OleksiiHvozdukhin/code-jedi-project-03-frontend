@@ -33,7 +33,7 @@ export const UserLogo = () => {
         console.log('Это внутри сеттинг-модала');
       }
 
-      console.log(`Setting: ${settingModal}`);
+      // console.log(`Setting: ${settingModal}`);
 
       if (
         dropdown &&
@@ -41,7 +41,7 @@ export const UserLogo = () => {
         !dropdown.contains(event.target) &&
         !modal.contains(event.target)
       ) {
-        console.log('Modal close');
+        // console.log('Modal close');
         setIsOpen(false);
       }
     };

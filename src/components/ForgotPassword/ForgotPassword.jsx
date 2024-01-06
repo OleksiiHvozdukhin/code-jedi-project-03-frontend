@@ -32,7 +32,9 @@ export const ForgotPassword = () => {
     try {
       setIsLoading(true);
       setIsError(false);
-      await axios.post('http://localhost:8000/users/forgot-password', { email });
+      await axios.post('http://localhost:8000/users/forgot-password', {
+        email,
+      });
       toast.success('Password has been sent');
       navigate('/signin');
     } catch (error) {
