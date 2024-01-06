@@ -18,6 +18,7 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { selectUserToken } from 'redux/auth/authSelectors';
 import { Loader } from 'components/Loader';
+import toast from 'react-hot-toast';
 
 const getMonthName = monthIndex => {
   const months = [
@@ -64,35 +65,7 @@ export const MonthStatsTable = () => {
     return fullDaysArray;
   };
 
-  const fetchDaysArray = async (monthName, initialArray, controller) => {
-    const config = {
-      headers: {
-        Authorization: `Bearer ${userToken}`,
-      },
-      signal: controller.signal,
-    };
-    try {
-      setIsLoading(true);
-      const response = await axios.get(
-        `http://localhost:8000/consumed-water/month/${monthName}`,
-        config
-      );
-      const data = response.data;
-      const fetchedArray = initialArray.map((day, i) => {
-        const fetchedDay = data.find(item => item.date === day.date);
-        return fetchedDay || day;
-      });
-
-      setDaysArray(fetchedArray);
-      setIsLoading(false);
-    } catch (error) {
-      setIsLoading(false);
-      console.log(error.message);
-      setDaysArray(initialArray);
-    }
-  };
-
-  const handleMonthChange = direction => {
+    const handleMonthChange = direction => {
     const totalMonths = 12;
     const newMonthIndex =
       (selectedMonthIndex + direction + totalMonths) % totalMonths;
@@ -111,18 +84,47 @@ export const MonthStatsTable = () => {
       setSelectedMonthIndex(currentMonthIndex);
       return;
     }
-    const newMonthName = getMonthName(newMonthIndex);
-    fetchDaysArray(newMonthName);
+    // const newMonthName = getMonthName(newMonthIndex);
+    // // fetchDaysArray(newMonthName);
   };
 
   useEffect(() => {
     const controller = new AbortController();
     const selectedMonthName = getMonthName(selectedMonthIndex);
     const initialArray = initialDaysArray(selectedMonthIndex, currentYear);
-fetchDaysArray(selectedMonthName, initialArray, controller);
-return () => {
-  controller.abort();
-};
+    const fetchDaysArray = async (monthName, initialArray, controller) => {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${userToken}`,
+        },
+        signal: controller.signal,
+      };
+      try {
+        setIsLoading(true);
+        const response = await axios.get(
+          `http://localhost:8000/consumed-water/month/${monthName}`,
+          config
+        );
+        const data = response.data;
+        const fetchedArray = initialArray.map((day, i) => {
+          const fetchedDay = data.find(item => item.date === day.date);
+          return fetchedDay || day;
+        });
+
+        setDaysArray(fetchedArray);
+        setIsLoading(false);
+      } catch (error) {
+        setIsLoading(false);
+        toast.error('Oops! Something went wrong! Please try again!', {
+          duration: 1000,
+        });
+        setDaysArray(initialArray);
+      }
+    };
+    fetchDaysArray(selectedMonthName, initialArray, controller);
+    return () => {
+      controller.abort();
+    };
   }, [selectedMonthIndex]);
 
   useEffect(() => {
