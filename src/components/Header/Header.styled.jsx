@@ -1,15 +1,16 @@
 import styled from 'styled-components';
 
-export const header = styled.header`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const Container = styled.div`
+export const HeaderContainer = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 0 auto;
-  position: relative;
+  margin: 16px 32px 24px;
+  height: 48px;
+  width: 100%;
+`;
+
+export const LogoBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

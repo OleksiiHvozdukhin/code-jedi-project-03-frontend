@@ -5,7 +5,7 @@ import {
   LogOutBody,
   LogOutBtn,
   LogOutText,
-} from './LogOutModal.styled';
+} from './LogoutModal.styled';
 import { logoutThunk } from 'redux/auth/authOperations';
 
 export const LogoutModal = ({ onRequestClose }) => {
