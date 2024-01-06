@@ -35,3 +35,215 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+/* *********************************OUR TEAM***************************************** */
+.user-tree {
+  position: fixed;
+  width: 80px;
+  left: 50%;
+  bottom: 15px;
+  margin-left: -28px;
+}
+
+.user-tree:hover .user-tree-buttons {
+  opacity: 1;
+  visibility: visible;
+}
+
+.user-tree:hover .user-name {
+  transform: scaleY(1) scaleX(1) translateY(-16px) translateX(-48px);
+}
+
+.start-button:hover + .user-tree-buttons .user-name:before {
+  visibility: visible;
+  opacity: 1;
+  transform: scale(1);
+  transform-origin: right center 0;
+  transition-delay: 0.3s;
+}
+
+.start-button:hover + .user-tree-buttons .user-name-r:before {
+  transform-origin: left center 0;
+}
+
+.start-button {
+  position: absolute;
+  bottom: 0;
+  display: block;
+  width: 80px;
+  height: 80px;
+  background-color: #407bff;
+  border-radius: 50%;
+  border: 4px double #fff;
+  overflow: hidden;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12),
+    0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  animation: shadow 2s ease infinite;
+}
+
+.start-button:hover{
+  animation: none;
+}
+
+@keyframes shadow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(55, 141, 250, 0.8);
+  }
+  100% {
+    box-shadow: 0 0 0 12px rgba(55, 141, 250, 0);
+  }
+}
+
+.user-tree-buttons {
+  position: absolute;
+  left: 0;
+  bottom: 65px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.2s;
+  column-count: 2;
+}
+
+.start-button__icon {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  background: url('./images/we/teamIcon.svg') center no-repeat;
+  background-size: 65px 65px;
+}
+
+.user-item {
+  display: block;
+  text-align: center;
+}
+
+.user-item:hover .users{
+  box-shadow: 0 0 30px 5px rgba(55, 141, 250, 1);
+}
+
+.user-name {
+  display: inline-block;
+  height: 40px;
+  transform: scaleY(0.5) scaleX(0.5) translateY(0px) translateX(-48px);
+  -moz-transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+
+[data-tooltip]:before {
+  top: 90%;
+  margin-top: -11px;
+  font-weight: 600;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border: 4px double #fff;
+  background: #407bff;
+  color: #fff;
+  content: attr(data-tooltip);
+  font-size: 12px;
+  visibility: hidden;
+  opacity: 0;
+  padding: 8px 14px;
+  margin-right: 12px;
+  position: absolute;
+  transform: scale(0);
+  right: 100%;
+  white-space: nowrap;
+  transform-origin: top right;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+[data-tooltip-r]:before {
+  top: 90%;
+  margin-top: -11px;
+  font-weight: 600;
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border: 4px double #fff;
+  background: #407bff;
+  color: #fff;
+  content: attr(data-tooltip-r);
+  font-size: 12px;
+  visibility: hidden;
+  opacity: 0;
+  padding: 8px 14px;
+  margin-left: 12px;
+  position: absolute;
+  transform: scale(0);
+  left: 100%;
+  white-space: nowrap;
+  transform-origin: top left;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+[data-tooltip]:hover:before {
+  visibility: visible;
+  opacity: 1;
+  transform: scale(1);
+  transform-origin: right center 0;
+}
+
+[data-tooltip-r]:hover:before {
+  visibility: visible;
+  opacity: 1;
+  transform: scale(1);
+  transform-origin: right center 0;
+}
+
+.users {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.users_alex {
+  background: url('./images/we/alex.jpg') center no-repeat;
+}
+
+.users_yulia {
+  background: url('./images/we/yulia.jpg') -10px 0px/90px 90px no-repeat;
+}
+
+.users_pasha {
+  background: url('./images/we/pasha.jpg') -2px 0px/90px 90px no-repeat;
+}
+
+.users_nata {
+  background: url('./images/we/nata.jpg') center/80px 80px no-repeat;
+}
+
+.users_pavlo {
+  background: url('./images/we/pavel.jpg') -6px 1px/105px 105px no-repeat;
+}
+
+.users_ihor {
+  background: url('./images/we/ihor.jpg') -20px -2px/118px 118px no-repeat;
+}
+
+.users_andrii {
+  background: url('./images/we/andrey.jpg') center no-repeat;
+}
+
+.users_gena {
+  background: url('./images/we/gena.jpg') -2px -1px/86px 86px no-repeat;
+}
+
+.users_eugen {
+  background: url('./images/we/eugen.jpg') -12px 0px/110px 110px no-repeat;
+}
+
+.users_julia {
+  background: url('./images/we/yulia_s.jpg') -26px 0px/118px 118px no-repeat;
+}
+
+.users_bogdan {
+  background: url('./images/we/bogdan.jpg') -15px -7px/115px 115px no-repeat;
+}
+
+.users_misha {
+  background: url('./images/we/michail.jpg') center no-repeat;
+}
