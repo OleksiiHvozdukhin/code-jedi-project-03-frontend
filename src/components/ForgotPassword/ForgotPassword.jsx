@@ -2,13 +2,11 @@ import React, { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { SignInLink } from 'components/ForgotPassword/ForgotPassword.styled';
 import { Loader } from 'components/Loader';
-import bottle from '../../images/Desktop/Desktop Bottle for Sign in-1x.png';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 
 import * as Yup from 'yup';
 import {
-  BottleImage,
   Container,
   Input,
   Label,
@@ -34,7 +32,9 @@ export const ForgotPassword = () => {
     try {
       setIsLoading(true);
       setIsError(false);
-      await axios.post('http://localhost:8000/users/forgot-password', { email });
+      await axios.post('http://localhost:8000/users/forgot-password', {
+        email,
+      });
       toast.success('Password has been sent');
       navigate('/signin');
     } catch (error) {
@@ -47,7 +47,6 @@ export const ForgotPassword = () => {
   return (
     <>
       <Subcontainer>
-        <BottleImage width="600" src={bottle} />
         <Container>
           <Formik
             initialValues={{ email: '' }}

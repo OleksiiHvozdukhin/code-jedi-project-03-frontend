@@ -11,10 +11,20 @@ import { SettingModal } from '../SettingModal/SettingModal';
 import { ModalWindow } from 'components/ModalWindow/ModalWindow.js';
 import { LogoutModal } from '../LogOutModal/LogoutModal';
 import SpriteIcons from '../../../images/sprite.svg';
+import { logoutThunk } from 'redux/auth/authOperations';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 export const UserLogoModal = () => {
   const [isSettingOpen, setIsSettingOpen] = useState(false);
   const [isLogoutOpen, setIsLogoutOpen] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const userLogoModalLogout = async () => {
+    await dispatch(logoutThunk());
+    navigate('/signin');
+  };
 
   return (
     <>
@@ -78,5 +88,6 @@ export const UserLogoModal = () => {
         />
       </ModalWindow>
     </>
+
   );
 };
