@@ -2,24 +2,42 @@ import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { AuthFormLabel, AuthFormButton, AuthFormInput } from './SignIn.styled';
+import { useDispatch } from 'react-redux';
+import { loginThunk } from 'redux/auth/authOperations';
+import { useNavigate } from 'react-router-dom';
 
 const validationSchema = Yup.object({
-  email: Yup.string().email('Invalid email format').required('Email is required'),
+  email: Yup.string()
+    .email('Invalid email format')
+    .required('Email is required'),
   password: Yup.string()
     .min(8, 'Password must be at least 8 characters')
     .max(64, 'Password must not exceed 64 characters')
     .required('Password is required'),
 });
 
-export const AuthForm = ({ emailLabel, passwordLabel, buttonLabel, onSuccess }) => {
+export const AuthForm = ({
+  emailLabel,
+  passwordLabel,
+  buttonLabel,
+  onSuccess,
+}) => {
   const [showPassword, setShowPassword] = useState(false);
+  const dispatch = useDispatch();
+  const [emailWrong, setEmailWrong] = useState(false);
 
   const handleTogglePassword = () => {
     setShowPassword(prevState => !prevState);
   };
 
   const eyeIcon = (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -28,13 +46,16 @@ export const AuthForm = ({ emailLabel, passwordLabel, buttonLabel, onSuccess }) 
       />
     </svg>
   );
+  const navigate = useNavigate();
 
-  const handleSubmit = (values, { resetForm }) => {
-    // Логика для обработки входа
-    if (onSuccess) {
-      onSuccess();
+  const handleSubmit = async ({ email, password }, { resetForm }) => {
+    const data = await dispatch(loginThunk({ email, password }));
+    if (!!data.payload.token) {
+      navigate('/home');
     }
-    resetForm();
+    if (data.payload.response.data.message === 'Email or password is wrong') {
+      setEmailWrong(true);
+    }
   };
 
   return (
@@ -53,7 +74,11 @@ export const AuthForm = ({ emailLabel, passwordLabel, buttonLabel, onSuccess }) 
             name="email"
             placeholder="E-mail"
           />
-          <ErrorMessage name="email" component="div" className="error-message" />
+          <ErrorMessage
+            name="email"
+            component="div"
+            className="error-message"
+          />
         </div>
         <div>
           <AuthFormLabel htmlFor="password">{passwordLabel}</AuthFormLabel>
@@ -67,8 +92,13 @@ export const AuthForm = ({ emailLabel, passwordLabel, buttonLabel, onSuccess }) 
             />
             <span onClick={handleTogglePassword}>{eyeIcon}</span>
           </div>
-          <ErrorMessage name="password" component="div" className="error-message" />
+          <ErrorMessage
+            name="password"
+            component="div"
+            className="error-message"
+          />
         </div>
+        {emailWrong && <p>Email of password is wrong</p>}
         <AuthFormButton type="submit">{buttonLabel}</AuthFormButton>
       </Form>
     </Formik>

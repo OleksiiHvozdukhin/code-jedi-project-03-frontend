@@ -8,6 +8,9 @@ import {
   MenuItem,
   MenuList,
 } from './UserLogoModal.styled';
+import { logoutThunk } from 'redux/auth/authOperations';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 export const UserLogoModal = () => {
   const [settingModalIsOpen, setSettingModalIsOpen] = useState(false);
@@ -16,6 +19,13 @@ export const UserLogoModal = () => {
     setSettingModalIsOpen(true);
   };
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const userLogoModalLogout = async () => {
+    await dispatch(logoutThunk());
+    navigate('/signin');
+  };
   // const closeSettingModal = () => {
   //   setSettingModalIsOpen(false);
   // };
@@ -51,7 +61,7 @@ export const UserLogoModal = () => {
           </MenuBtn>
         </MenuItem>
         <MenuItem>
-          <MenuBtn type="button">
+          <MenuBtn type="button" onClick={userLogoModalLogout}>
             <IconBox>
               <Icon
                 xmlns="http://www.w3.org/2000/svg"

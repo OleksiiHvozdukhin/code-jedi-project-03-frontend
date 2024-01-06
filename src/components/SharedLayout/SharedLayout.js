@@ -5,7 +5,7 @@ import { Suspense } from 'react';
 // import { Navigation } from 'components/TemporaryNavigation/TemporaryNavigation';
 import { Loader } from 'components/Loader';
 import { BgImage, Wrapper } from './SharedLayout.styled';
-import bg from '../../images/Desktop/Desktop Background element Main Page-1x.png';
+import bg from '../../images/Desktop/Desktop-Background-element-Main-Page-1x.png';
 
 export const SharedLayout = () => {
   return (
@@ -15,7 +15,7 @@ export const SharedLayout = () => {
         {/* <Navigation /> */}
         <Header />
         <main>
-          <Suspense fallback={Loader}>
+          <Suspense fallback={<Loader />}>
             <Outlet />
           </Suspense>
         </main>

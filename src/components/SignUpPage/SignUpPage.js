@@ -42,7 +42,7 @@ export const SignUpPage = () => {
         }}
       />
       <p>
-      <SignInLink to="/signin">Sign In</SignInLink>
+        <SignInLink to="/signin">Sign In</SignInLink>
       </p>
     </SignUpContainer>
   );

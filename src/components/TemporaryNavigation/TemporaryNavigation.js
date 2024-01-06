@@ -17,7 +17,7 @@ export const Navigation = () => {
       <NavLink to="/homepage">Home Page</NavLink>
       <NavLink to="/signin">Signin Page</NavLink>
       <NavLink to="/signup">Signup Page</NavLink>
-      <NavLink to="/forgotpassword">Forgot Password Page</NavLink>
+      <NavLink to="/forgot-password">Forgot Password Page</NavLink>
     </nav>
   );
 };
