@@ -7,12 +7,15 @@ import {
   LogOutText,
 } from './LogoutModal.styled';
 import { logoutThunk } from 'redux/auth/authOperations';
+import { useNavigate } from 'react-router-dom';
 
 export const LogoutModal = ({ onRequestClose }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const handleLogout = () => {
-    dispatch(logoutThunk());
+  const handleLogout = async () => {
+    await dispatch(logoutThunk());
+    navigate('/signin');
     onRequestClose();
   };
 

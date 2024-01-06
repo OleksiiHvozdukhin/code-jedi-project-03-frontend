@@ -19,13 +19,6 @@ import { LogoutModal } from '../LogoutModal/LogoutModal';
 export const UserLogoModal = () => {
   const [isSettingOpen, setIsSettingOpen] = useState(false);
   const [isLogoutOpen, setIsLogoutOpen] = useState(false);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const userLogoModalLogout = async () => {
-    await dispatch(logoutThunk());
-    navigate('/signin');
-  };
 
   return (
     <>
