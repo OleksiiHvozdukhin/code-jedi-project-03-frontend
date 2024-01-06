@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import { AuthFormLabel, AuthFormButton, AuthFormInput } from './SignIn.styled';
 import { useDispatch } from 'react-redux';
 import { loginThunk } from 'redux/auth/authOperations';
+import { useNavigate } from 'react-router-dom';
 
 const validationSchema = Yup.object({
   email: Yup.string()
@@ -23,6 +24,8 @@ export const AuthForm = ({
 }) => {
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
+  const [emailWrong, setEmailWrong] = useState(false);
+
   const handleTogglePassword = () => {
     setShowPassword(prevState => !prevState);
   };
@@ -43,14 +46,16 @@ export const AuthForm = ({
       />
     </svg>
   );
+  const navigate = useNavigate();
 
-  const handleSubmit = (values, { resetForm }) => {
-    console.log(values);
-    dispatch(loginThunk(values));
-    if (onSuccess) {
-      onSuccess();
+  const handleSubmit = async ({ email, password }, { resetForm }) => {
+    const data = await dispatch(loginThunk({ email, password }));
+    if (!!data.payload.token) {
+      navigate('/home');
     }
-    resetForm();
+    if (data.payload.response.data.message === 'Email or password is wrong') {
+      setEmailWrong(true);
+    }
   };
 
   return (
@@ -93,6 +98,7 @@ export const AuthForm = ({
             className="error-message"
           />
         </div>
+        {emailWrong && <p>Email of password is wrong</p>}
         <AuthFormButton type="submit">{buttonLabel}</AuthFormButton>
       </Form>
     </Formik>
