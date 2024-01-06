@@ -13,7 +13,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter basename="/code-jedi-project-03-frontend">
+        <BrowserRouter basename="/OleksiiHvozdukhin/code-jedi-project-03-frontend">
           <ThemeProvider theme={theme}>
             <App />
           </ThemeProvider>
