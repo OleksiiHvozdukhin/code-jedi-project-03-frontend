@@ -1,24 +1,32 @@
-// import { useAuth } from 'hooks/useAuth.jsx';
-import { Container } from './Header.styled.jsx';
+import { HeaderContainer, LogoBox } from './Header.styled.jsx';
 import { Logo } from './Logo/Logo.js';
-// import { SettingModal } from './SettingModal/SettingModal.js';
 import { UserLogo } from './UserLogo/UserLogo.js';
-// import { UserLogoutModal } from './UserLogoutModal/UserLogoutModal.js';
 // import { UserAuth } from './UserAuth/UserAuth.js';
+// import { useSelector } from 'react-redux';
+// import { selectIsLoggedIn } from 'redux/auth/authSelectors.js';
+// import { useNavigate } from 'react-router-dom';
 
 export const Header = () => {
-  // const { isLoggedIn } = useAuth();
-  return (
-    <header>
-      <Container>
-        <Logo />
-        <UserLogo />
-        {/* <UserAuth /> */}
-        {/* {isLoggedIn ? <UserLogo /> : <UserAuth />} */}
+  // const { isLoggedIn } = useSelector(selectIsLoggedIn);
+  // const navigate = useNavigate();
 
-        {/* <SettingModal /> */}
-        {/* <UserLogoutModal /> */}
-      </Container>
-    </header>
+  // const handleClickUserLogo = e => {
+  //   if (e.currentTarget.classList.contains('open')) {
+  //     setIsOpen(false);
+  //     return;
+  //   }
+  //   setIsOpen(true);
+  // };
+
+  return (
+    <HeaderContainer>
+      <LogoBox>
+        <Logo />
+      </LogoBox>
+
+      {/* {isLoggedIn ? <UserLogo /> : <UserAuth />} */}
+
+      <UserLogo />
+    </HeaderContainer>
   );
 };
