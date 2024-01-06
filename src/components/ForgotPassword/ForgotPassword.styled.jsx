@@ -113,39 +113,3 @@ export const SignInLink = styled(Link)`
   line-height: 1.25;
   color: ${theme.colors.blue};
 `;
-
-export const BottleImage = styled.img`
-  position: absolute;
-  top: 60%;
-  z-index: -1;
-
-  @media screen and (max-width: 767px) {
-    background-image: url('../../images/Mobile/Mobile Bottle Sign In-1x.png');
-    @media screen and (min-device-pixel-ratio: 2),
-      screen and (min-resolution: 192dpi),
-      screen and (min-resolution: 2dppx) {
-      background-image: url('../../images/Mobile/Mobile Bottle Sign In-2x.png');
-    }
-  }
-
-  @media screen and (min-width: 768px) {
-    top: 20%;
-    margin-left: ${theme.spacing(60)};
-    background-image: url('../../images/Tablet/Tablet Bottle for Sign in-1x.png');
-    @media screen and (min-device-pixel-ratio: 2),
-      screen and (min-resolution: 192dpi),
-      screen and (min-resolution: 2dppx) {
-      background-image: url('../../images/Tablet/Tablet Bottle for Sign in-2x.png');
-    }
-  }
-
-  @media screen and (min-width: 1440px) {
-    margin-left: ${theme.spacing(-25)};
-    background-image: url('../../images/Desktop/Desktop Bottle for Sign in-1x.png');
-    @media screen and (min-device-pixel-ratio: 2),
-      screen and (min-resolution: 192dpi),
-      screen and (min-resolution: 2dppx) {
-      background-image: url('../../images/Desktop/Desktop Bottle for Sign in-2x.png');
-    }
-  }
-`;
