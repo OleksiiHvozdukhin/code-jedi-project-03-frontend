@@ -15,6 +15,7 @@ import { useEffect } from 'react';
 export const UserLogo = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { avatarUrl, name } = useSelector(selectUser);
+
   // useEffect(() => {
   //   const handleFocus = () => {
   //     setIsOpen(true);

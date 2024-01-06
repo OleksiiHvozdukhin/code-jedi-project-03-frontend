@@ -2,19 +2,24 @@
 import { initialState } from './authSlice';
 
 export const handleLogin = (state, { payload }) => {
-  state.user = payload.user;
-  state.token = payload.token;
-  state.isLoggedIn = true;
+  if (payload.user && payload.token) {
+    state.user = payload.user;
+    state.token = payload.token;
+    state.isLoggedIn = true;
+  }
 };
 
 export const handleRegister = (state, { payload }) => {
-  state.token = payload.token;
-  state.user = payload.user;
-  state.isLoggedIn = true;
+  // state.token = payload.token;
+  // state.user = payload.user;
+  // state.isLoggedIn = true;
 };
 
 export const handleLogout = state => {
   state = initialState;
+  // state.isLoggedIn = false;
+  const stateCopy = { ...state, isLoggedIn: false };
+  return stateCopy;
 };
 
 export const handleRefreshFulfield = (state, { payload }) => {
