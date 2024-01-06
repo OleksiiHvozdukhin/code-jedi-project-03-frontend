@@ -1,15 +1,12 @@
 import { IconBox, LogoText, StyledNavLink, TextBox } from './Logo.styled';
-import SpriteIcons from '../../../images/sprite.svg';
-
+import sprite from '../../../images/sprite.svg';
 export const Logo = () => {
   return (
     <>
-      <StyledNavLink to="/homepage">
-        {/*
-         */}
+      <StyledNavLink to="/">
         <IconBox>
           <svg width="40px" heigt="48px">
-            <use xlinkHref={SpriteIcons + '#icon-Logo'} />
+            <use xlinkHref={`${sprite} #icon-Logo`} />
           </svg>
         </IconBox>
         <TextBox>
