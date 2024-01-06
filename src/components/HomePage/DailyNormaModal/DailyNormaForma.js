@@ -50,7 +50,7 @@ export const DailyNormaForma = ({ onRequestClose }) => {
     }
   };
 
-  const handleSubmit = async (values, { resetForm }) => {
+  const handleSubmit = async (values) => {
     const dailyNormaValue = values.dailyNorma;
     dispatch(saveWaterRate(dailyNormaValue));
     try {

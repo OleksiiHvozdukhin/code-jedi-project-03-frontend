@@ -68,7 +68,7 @@ export const ForgotPassword = () => {
               <SignInLink to="/signin">Sign In</SignInLink>
             </Form>
           </Formik>
-        </Container>
+          </Container>
       </Subcontainer>
       <Toaster />
       {isLoading && <Loader />}

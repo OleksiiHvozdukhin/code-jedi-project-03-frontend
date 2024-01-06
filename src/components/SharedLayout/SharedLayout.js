@@ -4,13 +4,11 @@ import { Suspense } from 'react';
 
 // import { Navigation } from 'components/TemporaryNavigation/TemporaryNavigation';
 import { Loader } from 'components/Loader';
-import { BgImage, Wrapper } from './SharedLayout.styled';
-import bg from '../../images/Desktop/Desktop-Background-element-Main-Page-1x.png';
+import { Wrapper } from './SharedLayout.styled';
 
 export const SharedLayout = () => {
   return (
     <>
-      <BgImage src={bg} />
       <Wrapper>
         {/* <Navigation /> */}
         <Header />

@@ -23,7 +23,6 @@ export const NormaWrapper = styled.div`
   @media screen and (min-width: 768px) {
     margin-bottom: 0;
     position: absolute;
-    z-index: 50;
   }
 `;
 
@@ -64,34 +63,5 @@ export const EditBtn = styled.button`
   &:focus {
     color: ${theme.colors.orange};
     outline: none;
-  }
-`;
-
-export const BottleImage = styled.img`
-  @media screen and (max-width: 767px) {
-    background-image: url('../../../images/Mobile/Mobile-Bottle-home-screen-1x.png');
-    @media screen and (min-device-pixel-ratio: 2),
-      screen and (min-resolution: 192dpi),
-      screen and (min-resolution: 2dppx) {
-      background-image: url('../../../images/Mobile/Mobile-Bottle-home-screen-2x.png');
-    }
-  }
-
-  @media screen and (min-width: 768px) {
-    background-image: url('../../../images/Tablet/Tablet-Bottle-Home-Screen-1x.png');
-    @media screen and (min-device-pixel-ratio: 2),
-      screen and (min-resolution: 192dpi),
-      screen and (min-resolution: 2dppx) {
-      background-image: url('../../../images/Tablet/Tablet-Bottle-Home-Screen-2x.png');
-    }
-  }
-
-  @media screen and (min-width: 1440px) {
-    background-image: url('../../../images/Desktop/Desktop Botle Home screen-1x.png');
-    @media screen and (min-device-pixel-ratio: 2),
-      screen and (min-resolution: 192dpi),
-      screen and (min-resolution: 2dppx) {
-      background-image: url('../../../images/Desktop/Desktop Botle Home screen-2x.png');
-    }
   }
 `;
