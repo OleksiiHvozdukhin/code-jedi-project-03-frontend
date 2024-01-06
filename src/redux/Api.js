@@ -31,9 +31,8 @@ export const logout = async () => {
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-//! ???
-export const refreshUser = async token => {
-  token.set(token);
+export const refreshUser = async currentToken => {
+  token.set(currentToken);
   const { data } = await axios.get('/users/current');
   return data;
 };

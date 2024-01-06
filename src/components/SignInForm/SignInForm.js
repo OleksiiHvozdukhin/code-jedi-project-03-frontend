@@ -48,8 +48,8 @@ export const SignInForm = () => {
         passwordLabel="Enter your password"
         buttonLabel="Sign In"
         onSuccess={() => {
-          navigate('/homepage');
-          console.log('Login successful.');
+          // navigate('/signin');
+          // console.log('Login successful.');
         }}
       />
       <p>
