@@ -1,45 +1,60 @@
+import { theme } from 'components/theme';
 import styled from 'styled-components';
 
 export const LogOutBody = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: ${theme.spacing(12)};
+  @media screen and (min-width: 768px) {
+    width: 544px;
+  }
 `;
 
 export const LogOutText = styled.p`
-  display: block;
-  color: #2f2f2f;
-  font-family: Roboto;
+  /* display: block; */
+  color: ${theme.colors.dark};
   font-size: 18px;
-  font-style: normal;
   font-weight: 500;
-  line-height: 111.111%;
+  line-height: 1.11;
 `;
 
 export const ButtonGroup = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
+  @media screen and (min-width: 768px) {
+    flex-direction: row-reverse;
+  }
+  @media screen and (min-width: 1440px) {
+    justify-content: flex-end;
+  }
 `;
 
 export const LogOutBtn = styled.button`
   display: flex;
   padding: 8px 30px;
   justify-content: center;
-  align-items: center;
-
   border-radius: 10px;
-  background: var(--Secondary-color-3, #ef5050);
+  border: none;
+  background: ${theme.colors.red};
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
-
-  color: #fff;
-
+  color: ${theme.colors.white};
   text-align: center;
-  font-family: Roboto;
   font-size: 16px;
-  font-style: normal;
   font-weight: 500;
-  line-height: 125%;
+  line-height: 1.25;
+  &:hover {
+    box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
+  }
+  &:active {
+    box-shadow: none;
+  }
+  @media screen and (min-width: 768px) {
+    width: 160px;
+    font-size: 18px;
+    line-height: 1.33;
+    padding: 10px 30px;
+  }
 `;
 
 export const CancelBtn = styled.button`
@@ -47,26 +62,25 @@ export const CancelBtn = styled.button`
   padding: 8px 30px;
   justify-content: center;
   align-items: center;
-
   border-radius: 10px;
-  background: var(--Secondary-color-5, #d7e3ff);
-
+  border: none;
+  background: ${theme.colors.skyblue};
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
-
- color: var(--Primery-Color-Blue, #407BFF);
-text-align: center;
-font-family: Roboto;
-font-size: 16px;
-font-style: normal;
-font-weight: 500;
-line-height: 20px; /* 125% */
-Cancel
-
-
+  color: ${theme.colors.blue};
   text-align: center;
-  font-family: Roboto;
   font-size: 16px;
-  font-style: normal;
   font-weight: 500;
-  line-height: 125%;
+  line-height: 1.25;
+  &:hover {
+    box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
+  }
+  &:active {
+    box-shadow: none;
+  }
+  @media screen and (min-width: 768px) {
+    width: 160px;
+    font-size: 18px;
+    line-height: 1.33;
+    padding: 10px 30px;
+  }
 `;
