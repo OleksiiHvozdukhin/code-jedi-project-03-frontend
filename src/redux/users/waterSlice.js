@@ -4,7 +4,7 @@ import {
   addWater,
   deleteWater,
   changeWater,
-} from './waterOperations';
+} from './usersOperations';
 
 const handlePending = state => {
   state.isLoading = true;

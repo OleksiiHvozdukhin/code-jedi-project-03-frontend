@@ -12,10 +12,11 @@ import {
   StyledForm,
 } from './DailyNormaForma.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { saveWaterRateAsync } from 'redux/waterRate/waterRateOperations';
+// import { saveWaterRateAsync } from 'redux/waterRate/waterRateOperations';
 import { selectError, selectIsLoading } from 'redux/waterRate/selectors';
 import { Loader } from 'components/Loader';
-import { saveWaterRate } from 'redux/waterRate/waterRateSlice';
+// import { saveWaterRate } from 'redux/waterRate/waterRateSlice';
+import { updateWaterNormThunk } from 'redux/auth/authOperations';
 
 export const DailyNormaForma = ({ onRequestClose }) => {
   const dispatch = useDispatch();
@@ -50,11 +51,12 @@ export const DailyNormaForma = ({ onRequestClose }) => {
     }
   };
 
-  const handleSubmit = async (values) => {
+  const handleSubmit = async values => {
     const dailyNormaValue = values.dailyNorma;
-    dispatch(saveWaterRate(dailyNormaValue));
+    // dispatch(saveWaterRate(dailyNormaValue));
     try {
-      await dispatch(saveWaterRateAsync(dailyNormaValue));
+      await dispatch(updateWaterNormThunk(dailyNormaValue));
+
       toast.success('Daily norma saved');
       onRequestClose();
     } catch (error) {

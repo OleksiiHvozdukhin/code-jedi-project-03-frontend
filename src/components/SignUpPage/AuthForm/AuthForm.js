@@ -56,7 +56,7 @@ export const AuthForm = ({
 
   const handleSubmit = async ({ email, password }, { resetForm }) => {
     const data = await dispatch(registerThunk({ name: 'V', email, password }));
-    if (data.payload === 'Email in use') setEmailUsed(true);
+    if (data.payload === 'Email already in use') setEmailUsed(true);
     if (!!data.payload.user) navigate('/signin');
   };
 

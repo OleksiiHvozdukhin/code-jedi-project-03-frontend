@@ -7,17 +7,26 @@ import {
   NormaWrapper,
   Section,
 } from './DailyNorma.styled';
-import { selectWaterRate } from 'redux/waterRate/selectors';
+import { selectWaterRate } from 'redux/auth/authSelectors';
+// import { selectUser } from 'redux/auth/authSelectors';
+import { useEffect, useState } from 'react';
 
 export const DailyNorma = ({ openModal }) => {
-  const dailyNormaValue = useSelector(selectWaterRate);
-  console.log(dailyNormaValue);
+  // const { waterRate } = useSelector(selectUser);
+  // console.log(waterRate);
+  const waterRate = useSelector(selectWaterRate);
+  const [waterRateValue, setWaterRateValue] = useState(0);
+
+  useEffect(() => {
+    setWaterRateValue(waterRate);
+  }, [waterRate]);
+
   return (
     <Section>
       <NormaWrapper>
         <NormaTitle>My daily norma</NormaTitle>
         <InfoBox>
-          <NormaValue>{dailyNormaValue} L</NormaValue>
+          <NormaValue>{waterRateValue} L</NormaValue>
           <EditBtn type="button" onClick={openModal}>
             Edit
           </EditBtn>

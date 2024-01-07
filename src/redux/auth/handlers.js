@@ -43,3 +43,7 @@ export const handlerUpdateAvatar = (state, { payload }) => {
 export const handlerEditUserInfo = (state, { payload }) => {
   state.user = payload;
 };
+
+export const handlerSaveWaterRate = (state, { payload }) => {
+  state.user.waterRate = payload;
+};

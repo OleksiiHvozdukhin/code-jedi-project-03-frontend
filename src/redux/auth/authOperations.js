@@ -94,12 +94,12 @@ export const editUserInfoThunk = createAsyncThunk(
 
 export const updateWaterNormThunk = createAsyncThunk(
   'auth/waterRate',
-  async (newWaterRate, { rejectWithValue }) => {
+  async (dailyNorma, thunkAPI) => {
     try {
-      await updateWaterNorm(Number(newWaterRate) * 1000);
-      return newWaterRate;
+      const { waterRate } = await updateWaterNorm(dailyNorma);
+      return waterRate;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
