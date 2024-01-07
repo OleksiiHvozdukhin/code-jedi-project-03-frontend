@@ -28,7 +28,10 @@ import {
 } from './SettingModal.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from 'redux/auth/authSelectors';
-import { updateAvatarThunk } from '../../../redux/auth/authOperations';
+import {
+  editUserInfoThunk,
+  updateAvatarThunk,
+} from '../../../redux/auth/authOperations';
 import { Formik } from 'formik';
 
 export const SettingModal = ({ isOpen, onRequestClose }) => {
@@ -96,17 +99,27 @@ export const SettingModal = ({ isOpen, onRequestClose }) => {
       confirmPassword,
     } = formValues;
 
-    if (email !== emailValue) setemailNotCorrect(true);
-    else setemailNotCorrect(false);
+    const [emailNotCorrectValue, passwordMismatchValue, newPasswordIsOldValue] =
+      await Promise.all([
+        email !== emailValue,
+        newPassword !== confirmPassword,
+        oldPassword === newPassword,
+      ]);
 
-    if (newPassword !== confirmPassword) setaPasswordMismatch(true);
-    else setaPasswordMismatch(false);
+    setemailNotCorrect(emailNotCorrectValue);
+    setaPasswordMismatch(passwordMismatchValue);
+    setNewPasswordIsOld(newPasswordIsOldValue);
 
-    if (oldPassword === newPassword) setNewPasswordIsOld(true);
-    else setNewPasswordIsOld(false);
-
-    if (!emailNotCorrect && !newPasswordIsOld && !passwordMismatch)
-      console.log('Отправляем данные на сервер');
+    if (
+      !emailNotCorrectValue &&
+      !passwordMismatchValue &&
+      !newPasswordIsOldValue
+    ) {
+      const data = await dispatch(
+        editUserInfoThunk({ name, email, gender, oldPassword, newPassword })
+      );
+      console.log('Data: ', data);
+    }
 
     // onRequestClose()
   };

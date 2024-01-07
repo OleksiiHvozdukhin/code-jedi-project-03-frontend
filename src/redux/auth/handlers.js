@@ -41,6 +41,7 @@ export const handlerUpdateAvatar = (state, { payload }) => {
 };
 
 export const handlerEditUserInfo = (state, { payload }) => {
+  // console.log(payload);
   state.user = payload;
 };
 
