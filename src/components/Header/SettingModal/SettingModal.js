@@ -10,24 +10,26 @@ import {
   EyeBtn,
   FieldWrapper,
   FileInput,
-  IconEye,
+  FlexBox,
   Input,
   InputWrapper,
   LabelRadio,
+  LabelRadioGender,
   PasswordBox,
   PasswordBoxTitle,
   PasswordLabel,
   RadioBox,
-  RadioGroup,
+  StyledErrorMessage,
   StyledForm,
   SubmitBtn,
   Text,
+  UserBox,
   UserLabel,
 } from './SettingModal.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from 'redux/auth/authSelectors';
 import { updateAvatarThunk } from '../../../redux/auth/authOperations';
-import { ErrorMessage, Formik } from 'formik';
+import { Formik } from 'formik';
 
 export const SettingModal = ({ isOpen, onRequestClose }) => {
   const { avatarUrl } = useSelector(selectUser);
@@ -99,140 +101,147 @@ export const SettingModal = ({ isOpen, onRequestClose }) => {
               <AvatarBtnText>Upload a photo</AvatarBtnText>
             </AvatarBtn>
           </AvatarWrapper>
-
-          <RadioGroup>
-            <LabelRadio>Your gender identity</LabelRadio>
-            <RadioBox>
-              <Input
-                type="radio"
-                id="woman"
-                name="gender"
-                checked={values.gender === 'woman'}
-                onChange={handleChange}
-                className={errors.gender && touched.gender ? 'error' : ''}
-              />
-              <LabelRadio htmlFor="woman">Girl</LabelRadio>
-              <Input
-                type="radio"
-                id="man"
-                name="gender"
-                checked={values.gender === 'man'}
-                onChange={handleChange}
-              />
-              <LabelRadio htmlFor="man">Man</LabelRadio>
-            </RadioBox>
-          </RadioGroup>
-
-          <FieldWrapper>
-            <UserLabel htmlFor="name">Your name</UserLabel>
-            <InputWrapper>
-              <Input id="name" name="name" />
-              <ErrorMessage component="div" name="name" />
-            </InputWrapper>
-          </FieldWrapper>
-
-          <FieldWrapper>
-            <UserLabel htmlFor="email">Your email</UserLabel>
-            <InputWrapper>
-              <Input id="email" name="email" />
-              <ErrorMessage component="div" name="email" />
-            </InputWrapper>
-          </FieldWrapper>
-
-          <PasswordBox>
-            <PasswordBoxTitle>Password</PasswordBoxTitle>
-
-            <FieldWrapper>
-              <PasswordLabel htmlFor="oldPassword">
-                Outdated password:
-              </PasswordLabel>
-              <InputWrapper>
+          <FlexBox>
+            <UserBox>
+              <LabelRadioGender>Your gender identity</LabelRadioGender>
+              <RadioBox>
                 <Input
-                  id="oldPassword"
-                  name="oldPassword"
-                  placeholder="Password"
-                  type={isPassword.oldPassword ? 'text' : 'password'}
+                  type="radio"
+                  id="woman"
+                  value="woman"
+                  name="gender"
+                  checked={values.gender === 'woman'}
+                  onChange={handleChange}
+                  className={errors.gender && touched.gender ? 'error' : ''}
                 />
-
-                <EyeBtn
-                  onClick={() => handleTogglePassword('oldPassword')}
-                  type="button"
-                >
-                  <IconEye width="16" height="16" stroke="#407BFF" fill="none">
-                    <use
-                      xlinkHref={
-                        isPassword.oldPassword
-                          ? `${sprite}#icon-eye-slash`
-                          : `${sprite}#icon-eye`
-                      }
-                    />
-                  </IconEye>
-                </EyeBtn>
-                <ErrorMessage component="div" name="oldPassword" />
-              </InputWrapper>
-            </FieldWrapper>
-
-            <FieldWrapper>
-              <PasswordLabel htmlFor="newPassword">New password:</PasswordLabel>
-
-              <InputWrapper>
+                <LabelRadio htmlFor="woman">Woman</LabelRadio>
                 <Input
-                  id="newPassword"
-                  name="newPassword"
-                  placeholder="Password"
-                  type={isPassword.newPassword ? 'text' : 'password'}
+                  type="radio"
+                  id="man"
+                  value="man"
+                  name="gender"
+                  checked={values.gender === 'man'}
+                  onChange={handleChange}
                 />
+                <LabelRadio htmlFor="man">Man</LabelRadio>
+              </RadioBox>
 
-                <EyeBtn
-                  onClick={() => handleTogglePassword('newPassword')}
-                  type="button"
-                >
-                  <IconEye width="16" height="16" stroke="#407BFF" fill="none">
-                    <use
-                      xlinkHref={
-                        isPassword.newPassword
-                          ? `${sprite}#icon-eye-slash`
-                          : `${sprite}#icon-eye`
-                      }
-                    />
-                  </IconEye>
-                </EyeBtn>
-                <ErrorMessage component="div" name="newPassword" />
-              </InputWrapper>
-            </FieldWrapper>
+              <FieldWrapper>
+                <UserLabel htmlFor="name">Your name</UserLabel>
+                <InputWrapper>
+                  <Input id="name" name="name" />
+                  <StyledErrorMessage component="div" name="name" />
+                </InputWrapper>
+              </FieldWrapper>
 
-            <FieldWrapper>
-              <PasswordLabel htmlFor="confirmPassword">
-                Repeat new password:
-              </PasswordLabel>
-              <InputWrapper>
-                <Input
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  placeholder="Password"
-                  type={isPassword.confirmPassword ? 'text' : 'password'}
-                />
+              <FieldWrapper>
+                <UserLabel htmlFor="email">Your email</UserLabel>
+                <InputWrapper>
+                  <Input id="email" name="email" />
+                  <StyledErrorMessage component="div" name="email" />
+                </InputWrapper>
+              </FieldWrapper>
+            </UserBox>
 
-                <EyeBtn
-                  onClick={() => handleTogglePassword('confirmPassword')}
-                  type="button"
-                >
-                  <IconEye width="16" height="16" stroke="#407BFF" fill="none">
-                    <use
-                      xlinkHref={
-                        isPassword.confirmPassword
-                          ? `${sprite}#icon-eye-slash`
-                          : `${sprite}#icon-eye`
-                      }
-                    />
-                  </IconEye>
-                </EyeBtn>
-                <ErrorMessage component="div" name="confirmPassword" />
-              </InputWrapper>
-            </FieldWrapper>
-          </PasswordBox>
+            <PasswordBox>
+              <PasswordBoxTitle>Password</PasswordBoxTitle>
 
-          <SubmitBtn type="submit" onClick={handleSubmit}>
+              <FieldWrapper>
+                <PasswordLabel htmlFor="oldPassword">
+                  Outdated password:
+                </PasswordLabel>
+                <InputWrapper>
+                  <Input
+                    id="oldPassword"
+                    name="oldPassword"
+                    placeholder="Password"
+                    type={isPassword.oldPassword ? 'text' : 'password'}
+                    pattern="[0-9a-fA-F]{8,64}"
+                  />
+
+                  <EyeBtn
+                    onClick={() => handleTogglePassword('oldPassword')}
+                    type="button"
+                  >
+                    <svg width="16" height="16" stroke="#407BFF" fill="none">
+                      <use
+                        xlinkHref={
+                          isPassword.oldPassword
+                            ? `${sprite}#icon-eye`
+                            : `${sprite}#icon-eye-slash`
+                        }
+                      />
+                    </svg>
+                  </EyeBtn>
+                  <StyledErrorMessage component="div" name="oldPassword" />
+                </InputWrapper>
+              </FieldWrapper>
+
+              <FieldWrapper>
+                <PasswordLabel htmlFor="newPassword">
+                  New password:
+                </PasswordLabel>
+
+                <InputWrapper>
+                  <Input
+                    id="newPassword"
+                    name="newPassword"
+                    placeholder="Password"
+                    type={isPassword.newPassword ? 'text' : 'password'}
+                    pattern="[0-9a-fA-F]{8,64}"
+                  />
+
+                  <EyeBtn
+                    onClick={() => handleTogglePassword('newPassword')}
+                    type="button"
+                  >
+                    <svg width="16" height="16" stroke="#407BFF" fill="none">
+                      <use
+                        xlinkHref={
+                          isPassword.newPassword
+                            ? `${sprite}#icon-eye`
+                            : `${sprite}#icon-eye-slash`
+                        }
+                      />
+                    </svg>
+                  </EyeBtn>
+                  <StyledErrorMessage component="div" name="newPassword" />
+                </InputWrapper>
+              </FieldWrapper>
+
+              <FieldWrapper>
+                <PasswordLabel htmlFor="confirmPassword">
+                  Repeat new password:
+                </PasswordLabel>
+                <InputWrapper>
+                  <Input
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    placeholder="Password"
+                    type={isPassword.confirmPassword ? 'text' : 'password'}
+                  />
+
+                  <EyeBtn
+                    onClick={() => handleTogglePassword('confirmPassword')}
+                    type="button"
+                  >
+                    <svg width="16" height="16" stroke="#407BFF" fill="none">
+                      <use
+                        xlinkHref={
+                          isPassword.confirmPassword
+                            ? `${sprite}#icon-eye`
+                            : `${sprite}#icon-eye-slash`
+                        }
+                      />
+                    </svg>
+                  </EyeBtn>
+                  <StyledErrorMessage component="div" name="confirmPassword" />
+                </InputWrapper>
+              </FieldWrapper>
+            </PasswordBox>
+          </FlexBox>
+
+          <SubmitBtn type="submit">
             Save
           </SubmitBtn>
         </StyledForm>
