@@ -13,13 +13,12 @@ import {
 } from './DailyNormaForma.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveWaterRateAsync } from 'redux/waterRate/waterRateOperations';
-import { selectError, selectIsLoading } from 'redux/waterRate/selectors';
+import { selectIsLoading } from 'redux/waterRate/selectors';
 import { Loader } from 'components/Loader';
 import { saveWaterRate } from 'redux/waterRate/waterRateSlice';
 
 export const DailyNormaForma = ({ onRequestClose }) => {
   const dispatch = useDispatch();
-  const isError = useSelector(selectError);
   const isLoading = useSelector(selectIsLoading);
 
   const formValidationSchema = Yup.object().shape({
@@ -50,7 +49,7 @@ export const DailyNormaForma = ({ onRequestClose }) => {
     }
   };
 
-  const handleSubmit = async (values, { resetForm }) => {
+  const handleSubmit = async values => {
     const dailyNormaValue = values.dailyNorma;
     dispatch(saveWaterRate(dailyNormaValue));
     try {
@@ -58,7 +57,7 @@ export const DailyNormaForma = ({ onRequestClose }) => {
       toast.success('Daily norma saved');
       onRequestClose();
     } catch (error) {
-      toast.error(isError.message || 'An error occurred');
+      toast.error('Failed to save daily norma. Please try again later');
     }
   };
 

@@ -15,21 +15,21 @@ const waterRateSlice = createSlice({
     },
   },
 
-  // extraReducers: builder => {
-  //   builder
-  //     .addCase(saveWaterRateAsync.pending, state => {
-  //       state.isLoading = true;
-  //     })
-  //     .addCase(saveWaterRateAsync.fulfilled, (state, { payload }) => {
-  //       state.dailyNorma = payload;
-  //       state.isLoading = false;
-  //       state.error = null;
-  //     })
-  //     .addCase(saveWaterRateAsync.rejected, (state, { payload }) => {
-  //       state.isLoading = false;
-  //       state.error = payload.message;
-  //     });
-  // },
+  extraReducers: builder => {
+    builder
+      .addCase(saveWaterRateAsync.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(saveWaterRateAsync.fulfilled, state => {
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(saveWaterRateAsync.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+        console.error(payload);
+      });
+  },
 });
 
 export const { saveWaterRate } = waterRateSlice.actions;
