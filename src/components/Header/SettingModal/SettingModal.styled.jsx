@@ -174,10 +174,18 @@ export const SubmitBtn = styled.button`
   background: ${theme.colors.blue};
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
   color: ${theme.colors.white};
+  cursor: pointer;
 
   @media screen and (min-width: 768px) {
     width: 160px;
     margin-left: auto;
+  }
+
+  &:hover {
+    box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
+  }
+  &:active {
+    box-shadow: none;
   }
 `;
 
