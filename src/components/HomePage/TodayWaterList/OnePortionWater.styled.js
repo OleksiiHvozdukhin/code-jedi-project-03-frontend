@@ -1,34 +1,115 @@
 import styled from 'styled-components';
 import { theme } from 'components/theme';
 
-export const OnePortionWrapper = styled.div`
+export const OnePortionItem = styled.li`
   display: flex;
-  justify-content: space-between;
-  padding: 12px 8px;
-`;
-export const PortionData = styled.div`
-  display: flex;
+  height: 50px;
+  width: 100%;
+  padding: 12px 0;
   align-items: center;
-  gap: 12px;
-`;
-export const PortionText = styled.span`
-  &:nth-child(2) {
-    font-size: 18px;
-    line-height: 24px;
-    color: ${theme.colors.blue};
+  border-bottom: 1px solid ${theme.colors.light};
+  @media screen and (min-width: 320px) {
+    width: 254px;
   }
-  &:last-child {
-    font-size: 12px;
-    line-height: 24px;
-    color: ${theme.colors.dark};
+  @media screen and (min-width: 768px) {
+    width: 646px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 534px;
   }
 `;
-export const BtnList = styled.ul`
+export const GlassIcon = styled.svg`
+  width: 24px;
+  height: 24px;
+  fill: ${theme.colors.lightblue};
+  @media screen and (min-width: 768px) {
+    width: 36px;
+    height: 36px;
+  }
+`;
+export const PortionText = styled.p`
+  font-size: 18px;
+  line-height: 1.33;
+  font-weight: 400;
+  color: ${theme.colors.blue};
+  margin-left: 12px;
+`;
+export const TimeText = styled.p`
+  font-size: 12px;
+  line-height: 2;
+  font-weight: 400;
+  color: ${theme.colors.dark};
+  margin-left: 12px;
+  @media screen and (min-width: 768px) {
+    margin-left: 16px;
+  }
+`;
+export const SvgEdit = styled.svg`
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+`;
+
+export const SvgDelete = styled.svg`
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+`;
+export const WrapperIcons = styled.div`
   display: flex;
-  align-items: center;
+  width: 50px;
+  margin-left: auto;
   gap: 18px;
 `;
-export const TodoBtn = styled.button`
+export const EditButton = styled.button`
   border: none;
-  background-color: transparent;
+  background-color: inherit;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  color: ${theme.colors.blue};
+  width: 16px;
+  height: 16px;
+  &::before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 1px;
+    background-color: ${theme.colors.blue};
+    bottom: -3px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  &:hover {
+    &::before {
+      opacity: 1;
+    }
+  }
+`;
+export const DeleteButton = styled.button`
+  border: none;
+  background-color: inherit;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  color: ${theme.colors.red};
+  width: 16px;
+  height: 16px;
+  &::before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 1px;
+    background-color: ${theme.colors.red};
+    bottom: -3px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  &:hover {
+    &::before {
+      opacity: 1;
+    }
+  }
 `;

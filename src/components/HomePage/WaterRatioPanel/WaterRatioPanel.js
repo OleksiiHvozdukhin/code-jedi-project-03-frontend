@@ -9,14 +9,16 @@ import {
   WaterWrapper,
 } from './WaterRatioPanelstyled';
 // import SpriteIcons from '../../../images/sprite.svg';
-import { ModalWindow } from 'components/ModalWindow/ModalWindow';
-import { OnePortionForma } from '../TodayListModal/OnePortionForma';
+// import { ModalWindow } from 'components/ModalWindow/ModalWindow';
+// import { OnePortionForma } from '../TodayListModal/OnePortionForma';
+import { TodayListModal } from '../TodayListModal/TodayListModal';
 
 export const WaterRatioPanel = () => {
-  const [isAddWaterOpen, setIsAddWaterOpen] = useState(false);
-  // const openM = () => setIsAddWaterOpen(true);
-  // const closeModal = () => setIsAddWaterOpen(false);
-
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const OpenModal = () => {
+    setIsOpen(true);
+  };
+  const closeModal = () => setIsOpen(false);
   return (
     <WaterWrapper>
       <WaterPanel>
@@ -39,23 +41,10 @@ export const WaterRatioPanel = () => {
           </PercentageValue>
         </PercentageWrapper>
       </WaterPanel>
-      <BtnAddWater type="button" onClick={() => setIsAddWaterOpen(true)}>
+      <BtnAddWater type="button" onClick={OpenModal}>
         Add water
       </BtnAddWater>
-      <ModalWindow
-        title="Add water"
-        onShow={isAddWaterOpen}
-        isOpen={isAddWaterOpen}
-        onRequestClose={() => {
-          setIsAddWaterOpen(false);
-        }}
-      >
-        <p>Amount of water:</p>
-        <button onClick="decrement">-</button>
-        <span>50ml</span>
-        <button onClick="increment">+</button>
-        <OnePortionForma />
-      </ModalWindow>
+      <TodayListModal modalIsOpen={modalIsOpen} closeModal={closeModal} />
     </WaterWrapper>
   );
 };
