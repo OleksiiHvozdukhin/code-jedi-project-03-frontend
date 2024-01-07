@@ -34,6 +34,12 @@ import { Formik } from 'formik';
 export const SettingModal = ({ isOpen, onRequestClose }) => {
   const { avatarUrl } = useSelector(selectUser);
   const [selectedFile, setSelectedFile] = useState(null);
+
+  // Напишите сюда сообщения об ошибках, если таковые есть
+  const [emailNotCorrect, setemailNotCorrect] = useState(false);
+  const [newPasswordIsOld, setNewPasswordIsOld] = useState(false);
+  const [passwordMismatch, setaPasswordMismatch] = useState(false);
+
   const dispatch = useDispatch();
 
   const [isPassword, setIsPassword] = useState({
@@ -67,10 +73,42 @@ export const SettingModal = ({ isOpen, onRequestClose }) => {
       [passwordKey]: !prev[passwordKey],
     }));
   };
+  const { email } = useSelector(selectUser);
 
-  const handleSubmit = async () => {
-    console.log('data has been saved');
-    onRequestClose();
+  const handleSubmit = async e => {
+    e.preventDefault();
+    const formElements = e.target.elements;
+
+    const formValues = {
+      name: formElements.name.value,
+      emailValue: formElements.email.value,
+      gender: formElements.gender.value,
+      oldPassword: formElements.oldPassword.value,
+      newPassword: formElements.newPassword.value,
+      confirmPassword: formElements.confirmPassword.value,
+    };
+    const {
+      name,
+      emailValue,
+      gender,
+      oldPassword,
+      newPassword,
+      confirmPassword,
+    } = formValues;
+
+    if (email !== emailValue) setemailNotCorrect(true);
+    else setemailNotCorrect(false);
+
+    if (newPassword !== confirmPassword) setaPasswordMismatch(true);
+    else setaPasswordMismatch(false);
+
+    if (oldPassword === newPassword) setNewPasswordIsOld(true);
+    else setNewPasswordIsOld(false);
+
+    if (!emailNotCorrect && !newPasswordIsOld && !passwordMismatch)
+      console.log('Отправляем данные на сервер');
+
+    // onRequestClose()
   };
 
   return (
@@ -80,7 +118,7 @@ export const SettingModal = ({ isOpen, onRequestClose }) => {
       onSubmit={handleSubmit}
     >
       {({ errors, touched, values, handleChange }) => (
-        <StyledForm>
+        <StyledForm onSubmit={handleSubmit}>
           <Text>Your photo</Text>
           <AvatarWrapper>
             <AvatarBox>
@@ -141,6 +179,7 @@ export const SettingModal = ({ isOpen, onRequestClose }) => {
                   <StyledErrorMessage component="div" name="email" />
                 </InputWrapper>
               </FieldWrapper>
+              {emailNotCorrect === true && <p>!!!Email is not correct!!!</p>}
             </UserBox>
 
             <PasswordBox>
@@ -156,7 +195,7 @@ export const SettingModal = ({ isOpen, onRequestClose }) => {
                     name="oldPassword"
                     placeholder="Password"
                     type={isPassword.oldPassword ? 'text' : 'password'}
-                    pattern="[0-9a-fA-F]{8,64}"
+                    // pattern="[0-9a-fA-F]{8,64}"
                   />
 
                   <EyeBtn
@@ -188,7 +227,7 @@ export const SettingModal = ({ isOpen, onRequestClose }) => {
                     name="newPassword"
                     placeholder="Password"
                     type={isPassword.newPassword ? 'text' : 'password'}
-                    pattern="[0-9a-fA-F]{8,64}"
+                    // pattern="[0-9a-fA-F]{8,64}"
                   />
 
                   <EyeBtn
@@ -207,6 +246,7 @@ export const SettingModal = ({ isOpen, onRequestClose }) => {
                   </EyeBtn>
                   <StyledErrorMessage component="div" name="newPassword" />
                 </InputWrapper>
+                {newPasswordIsOld === true && <p>!!!New password is old!!!</p>}
               </FieldWrapper>
 
               <FieldWrapper>
@@ -237,13 +277,12 @@ export const SettingModal = ({ isOpen, onRequestClose }) => {
                   </EyeBtn>
                   <StyledErrorMessage component="div" name="confirmPassword" />
                 </InputWrapper>
+                {passwordMismatch === true && <p>!!!Password mismatch!!!</p>}
               </FieldWrapper>
             </PasswordBox>
           </FlexBox>
 
-          <SubmitBtn type="submit">
-            Save
-          </SubmitBtn>
+          <SubmitBtn type="submit">Save</SubmitBtn>
         </StyledForm>
       )}
     </Formik>

@@ -34,7 +34,15 @@ export const DailyNormaForma = ({ onRequestClose }) => {
     dailyNorma: Yup.number()
       .required('Enter water rate')
       .min(0, 'Daily norma must be greater than 0')
-      .max(15000, 'Daily norma must be less than 15000'),
+      .max(15, 'Daily norma must be less than 15')
+      .test(
+        'maxDigitsAfterDecimal',
+        'Daily norma must have 2 digits after decimal or less',
+        number => {
+          const decimalPart = (number.toString().split('.')[1] || '').length;
+          return decimalPart <= 2;
+        }
+      ),
   });
 
   const calculateWaterRate = ({ weight, activityTime, gender }) => {

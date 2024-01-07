@@ -26,7 +26,7 @@ export const DailyNorma = ({ openModal }) => {
       <NormaWrapper>
         <NormaTitle>My daily norma</NormaTitle>
         <InfoBox>
-          <NormaValue>{waterRateValue} L</NormaValue>
+          <NormaValue>{waterRateValue / 1000} L</NormaValue>
           <EditBtn type="button" onClick={openModal}>
             Edit
           </EditBtn>
