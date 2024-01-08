@@ -141,7 +141,7 @@ export const AuthPagesWrapper = styled.div`
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height:100vh;
+    height: 100vh;
     /* height: calc(100vh - 64px); */
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),

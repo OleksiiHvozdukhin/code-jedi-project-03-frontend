@@ -8,16 +8,14 @@ import { Wrapper } from './SharedLayout.styled';
 
 export const SharedLayout = () => {
   return (
-    <>
-      <Wrapper>
-        {/* <Navigation /> */}
-        <Header />
-        <main>
-          <Suspense fallback={<Loader />}>
-            <Outlet />
-          </Suspense>
-        </main>
-      </Wrapper>
-    </>
+    <Wrapper>
+      {/* <Navigation /> */}
+      <Header />
+      <main>
+        <Suspense fallback={<Loader />}>
+          <Outlet />
+        </Suspense>
+      </main>
+    </Wrapper>
   );
 };
