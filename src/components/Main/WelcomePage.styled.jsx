@@ -8,25 +8,7 @@ import t2 from '../../images/Tablet/Tablet-Background-Main-Page-2x.png';
 import m1 from '../../images/Mobile/Mobile-Background-Main-Page-1x.png';
 import m2 from '../../images/Mobile/Mobile-Background-Main-Page-2x.png';
 
-export const Tracker = styled.div`
-  @media screen and (max-width: 767px) {
-    padding-bottom: 40px;
-  }
-
-  @media screen and (min-width: 768px) and (max-width: 1439px) {
-    padding-bottom: 50px;
-  }
-
-  @media only screen and (min-width: 1440px) {
-    display: flex;
-    justify-content: center;
-  }
-`;
-
 export const MainWrapper = styled.div`
-  /* width: 320px; */
-  /* margin: 24px auto 0;
-  padding: 0px 20px 40px; */
   background-image: url(${m1});
   /* background-size: cover, 280px 208px;
   background-position: top left, top 80px center; */
@@ -53,9 +35,9 @@ export const MainWrapper = styled.div`
   }
 
   @media screen and (min-width: 1440px) {
-    /* width: 100%;
-    height: 100%; */
-    background-image: url(${d1}), url(${de1});
+    /* width: 100%; */
+    height: 100vh;
+    background-image: bottom no-repeat url(${d1}), url(${de1});
     background-repeat: no-repeat;
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
