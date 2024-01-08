@@ -2,8 +2,8 @@
 import React, { useState } from 'react';
 import SpriteIcons from '../../../images/sprite.svg';
 import { ModalWindow } from 'components/ModalWindow/ModalWindow';
-import { addWater } from 'redux/user/waterOperations';
-import { useDispatch } from 'react-redux';
+// import { addWater } from 'redux/user/waterOperations';
+// import { useDispatch } from 'react-redux';
 import {
   AmountWater,
   AmountWrap,
@@ -23,7 +23,7 @@ import {
 export const TodayListModal = ({ modalIsOpen, closeModal }) => {
   const [waterVolume, setWaterVolume] = useState(0);
   const [startDate, setStartDate] = useState(new Date());
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const hours = startDate.getHours().toString().padStart(2, '0');
   const minutes = startDate.getMinutes().toString().padStart(2, '0');
@@ -62,7 +62,8 @@ export const TodayListModal = ({ modalIsOpen, closeModal }) => {
     //   return toast.error('You can enter value from 0 to 1500');
     // }
     if (waterVolume > 0) {
-      dispatch(addWater({ waterVolume, date: startDate }));
+      console.log('Запрос');
+      // dispatch(addWater({ waterVolume, date: startDate }));
     }
     handleCloseModal();
   };
