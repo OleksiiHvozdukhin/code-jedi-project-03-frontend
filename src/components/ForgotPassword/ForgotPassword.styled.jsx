@@ -125,11 +125,9 @@ export const SignInLink = styled(Link)`
 `;
 
 export const AuthPagesWrapper = styled.div`
-  background-image: url(${m1}), url(${mb1});
-  background-repeat: no-repeat;
-  background-size: cover, 280px 210px;
-  background-position: top, bottom 20px center;
-  /* height: calc(100vh - 56px); */
+  height: 115vh;
+  background: top center no-repeat url(${m1}),
+    top 400px center no-repeat url(${mb1});
   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
@@ -137,12 +135,7 @@ export const AuthPagesWrapper = styled.div`
   }
 
   @media screen and (min-width: 768px) {
-    background-image: url(${t1});
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100vh;
-    /* height: calc(100vh - 64px); */
+    background: top -70px center / cover no-repeat url(${t1});
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
@@ -151,11 +144,7 @@ export const AuthPagesWrapper = styled.div`
   }
 
   @media screen and (min-width: 1440px) {
-    height: calc(100vh - 200px);
-    background-image: url(${d1}), url(${db1});
-    background-size: contain, 916px 680px;
-    background-position: bottom 60px left, left -40px bottom 60px;
-    background-repeat: no-repeat;
+    background: top right -80px no-repeat url(${d1}), left -160px top no-repeat url(${db1});
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
