@@ -20,6 +20,7 @@ export const PaginationWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   margin-bottom: 16px;
   max-width: 264px;
   @media screen and (min-width: 768px) {
