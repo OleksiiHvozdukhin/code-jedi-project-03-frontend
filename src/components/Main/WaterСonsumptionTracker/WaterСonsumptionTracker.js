@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Calendar, Desk, Tools } from '../../../images/icons/icons';
+import SpriteIcons from '../../../images/sprite.svg';
 import {
   ElementText,
   SecondTitle,
@@ -26,15 +26,15 @@ export const WaterConsumptionTracker = () => {
       <TrackerHeading>Tracker Benefits</TrackerHeading>
       <TrackerList>
         <TrackerListElement>
-          <Calendar />
+          <svg><use xlinkHref={`${SpriteIcons}#icon-calendar-days`} /></svg>
           <ElementText>Habit drive</ElementText>
         </TrackerListElement>
         <TrackerListElement>
-          <Desk />
+          <svg><use xlinkHref={`${SpriteIcons}#icon-presentation-chart-bar`} /></svg>
           <ElementText>View statistics</ElementText>
         </TrackerListElement>
         <TrackerListElement>
-          <Tools />
+          <svg><use xlinkHref={`${SpriteIcons}#icon-wrench-screwdriver`} /></svg>
           <ElementText>Personal rate setting</ElementText>
         </TrackerListElement>
       </TrackerList>
