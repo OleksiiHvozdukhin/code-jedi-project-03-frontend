@@ -11,12 +11,13 @@ import m1 from '../../images/Mobile/Mobile-Background-element-Home-screen-1x.png
 import m2 from '../../images/Mobile/Mobile-Background-element-Home-screen-2x.png'
 import mb1 from '../../images/Mobile/Mobile-Bottle-home-screen-1x.png'
 import mb2 from '../../images/Mobile/Mobile-Bottle-home-screen-2x.png'
+import { theme } from 'components/theme';
 
 export const HomeContainer = styled.section`
   @media screen and (min-width: 1440px) {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
+    margin-top: ${theme.spacing(10)};
   }
 `;
 

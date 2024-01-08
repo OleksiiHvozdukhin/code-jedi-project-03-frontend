@@ -6,7 +6,6 @@ import { theme } from 'components/theme';
 
 export const SignInContainer = styled.div`
   display: inline-flex;
-  padding: 8px 20px;
   flex-direction: column;
   align-items: flex-start;
   min-width: 280px;

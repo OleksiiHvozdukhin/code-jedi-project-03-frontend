@@ -1,16 +1,11 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import { theme } from 'components/theme';
 
 export const StyledNavLink = styled(NavLink)`
   display: flex;
   align-items: center;
   gap: 4px;
-`;
-
-export const IconBox = styled.div`
-  display: block;
-  width: 40px;
-  heigt: 48px;
 `;
 
 export const TextBox = styled.div`
@@ -19,10 +14,8 @@ export const TextBox = styled.div`
 `;
 export const LogoText = styled.span`
   display: inline-block;
-  color: var(--Primery-Color-Blue, #407bff);
-  font-family: Roboto;
+  color: ${theme.colors.blue};
   font-size: 12px;
-  font-style: normal;
   font-weight: 700;
   line-height: normal;
   text-transform: uppercase;

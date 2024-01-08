@@ -3,7 +3,6 @@ import { theme } from 'components/theme';
 
 export const SignInContainer = styled.div`
   display: flex;
-  padding: 8px 20px;
   flex-direction: column;
   align-items: flex-start;
   min-width: 280px;
@@ -19,7 +18,7 @@ export const SignInContainer = styled.div`
 
 export const AuthFormLabel = styled.label`
 display: flex;
-   line-height: 1.25;
+  line-height: 1.25;
   color: ${theme.colors.dark};
   margin-bottom: ${theme.spacing(4)};
   &.special {

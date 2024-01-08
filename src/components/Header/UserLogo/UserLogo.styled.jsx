@@ -1,3 +1,4 @@
+import { theme } from 'components/theme';
 import styled from 'styled-components';
 
 export const UserLogoWrapper = styled.div`
@@ -12,7 +13,7 @@ export const UserLogoWrapper = styled.div`
 export const UserBtn = styled.button`
   border: none;
   display: flex;
-  gap: 8px;
+  gap: ${theme.spacing(4)};
   text-transform: capitalize;
   text-align: center;
   width: 100%;
@@ -24,10 +25,9 @@ export const UserBtn = styled.button`
 
   & span {
     flex-shrink: 2;
-    margin-right: 8px;
-    font-family: 'Roboto-regular';
+    margin-right: ${theme.spacing(4)};
     font-size: 16px;
-    color: var(--primaryBlack);
+    color: ${theme.colors.dark};
     text-overflow: ellipsis;
     overflow: hidden;
     width: auto;
@@ -36,7 +36,7 @@ export const UserBtn = styled.button`
   & img {
     flex-shrink: 0;
     border-radius: 50%;
-    margin-right: 4px;
+    margin-right: ${theme.spacing(2)};
   }
 
   & svg {
@@ -52,11 +52,8 @@ export const UserBtn = styled.button`
 
 export const UserName = styled.span`
   /* width: 66px;
-  color: var(--Primery-Color-Blue, #407bff)
-  font-family: Roboto;
+  color: ${theme.colors.blue};)
   font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
   line-height: 24px; 
   text-align: right; */
 `;
@@ -64,7 +61,7 @@ export const UserName = styled.span`
 export const MenuAvatarWrapper = styled.div`
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: ${theme.spacing(2)};
 `;
 
 export const UserIconBox = styled.div`
@@ -73,7 +70,7 @@ export const UserIconBox = styled.div`
 `;
 
 export const IconBox = styled.div`
-  width: 24pxpx;
+  width: 24px;
   height: 24px;
   display: flex;
   align-items: center;
@@ -82,5 +79,5 @@ export const IconBox = styled.div`
 
 export const ArrowDownIcon = styled.svg`
   display: block;
-  color: #000;
+  color: ${theme.colors.dark};
 `;
