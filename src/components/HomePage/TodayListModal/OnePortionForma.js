@@ -6,11 +6,12 @@ import {
   BtnSave,
   StyledErrorMessage,
 } from './OnePortionForma.styled';
-import { useDispatch } from 'react-redux';
-import { addWater } from 'redux/user/waterOperations';
+// import { useDispatch } from 'react-redux';
+// import { addWater } from 'redux/user/waterOperations';
+
 // import { selectError, selectIsLoading } from 'redux/waterRate/selectors';
 export const OnePortionForma = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   // const error = useSelector(selectError);
   // const isLoading = useSelector(selectIsLoading);
   const formValidationSchema = Yup.object().shape({
@@ -19,7 +20,8 @@ export const OnePortionForma = () => {
   });
   const handleSubmit = async (values, { resetForm }) => {
     try {
-      dispatch(addWater(values));
+      console.log('Запрос');
+      // dispatch(addWater(values));
       resetForm();
     } catch (error) {
       console.log(error.message);
