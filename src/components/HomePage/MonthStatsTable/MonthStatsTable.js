@@ -84,8 +84,6 @@ export const MonthStatsTable = () => {
       setSelectedMonthIndex(currentMonthIndex);
       return;
     }
-    // const newMonthName = getMonthName(newMonthIndex);
-    // // fetchDaysArray(newMonthName);
   };
 
   useEffect(() => {
@@ -110,15 +108,18 @@ export const MonthStatsTable = () => {
           const fetchedDay = data.find(item => item.date === day.date);
           return fetchedDay || day;
         });
-
         setDaysArray(fetchedArray);
         setIsLoading(false);
       } catch (error) {
-        setIsLoading(false);
-        toast.error('Oops! Something went wrong! Please try again!', {
-          duration: 1000,
-        });
-        setDaysArray(initialArray);
+        if (error.code === 'ERR_CANCELED') {
+          return;
+        } else {
+          setIsLoading(false);
+          toast.error('Oops! Something went wrong! Please try again!', {
+            duration: 1000,
+          });
+          setDaysArray(initialArray);
+        }
       }
     };
     fetchDaysArray(selectedMonthName, initialArray, controller);
