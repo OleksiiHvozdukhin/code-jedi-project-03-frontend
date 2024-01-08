@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 
 export const ModalHeader = styled.div`
-height: 32px
-width: auto;
-display: flex;
-justify-content: space-between;
-margin -bottom:24px;
+  height: 32px;
+  width: auto;
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const ModalTitle = styled.h2`

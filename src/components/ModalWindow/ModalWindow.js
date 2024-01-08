@@ -16,9 +16,6 @@ const mediaQuery = '@media screen and (maxWidth: 320px)';
 
 const customStyles = {
   content: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '24px',
     top: '50%',
     left: '50%',
     right: 'auto',
@@ -58,7 +55,7 @@ export const ModalWindow = ({ isOpen, onRequestClose, title, children }) => {
       <ModalHeader>
         <ModalTitle>{title}</ModalTitle>
         <CloseBtn onClick={onRequestClose}>
-          <CloseIcon width="24px" height="24px">
+          <CloseIcon width="16px" height="16px">
             <use href={`${sprite}#icon-close`}></use>
           </CloseIcon>
         </CloseBtn>
