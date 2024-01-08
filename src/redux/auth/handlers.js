@@ -2,17 +2,24 @@
 import { initialState } from './authSlice';
 
 export const handleLogin = (state, { payload }) => {
-  state.user = payload.user;
-  state.token = payload.token;
-  state.isLoggedIn = true;
+  if (payload.user && payload.token) {
+    state.user = payload.user;
+    state.token = payload.token;
+    state.isLoggedIn = true;
+  }
 };
 
 export const handleRegister = (state, { payload }) => {
-  state.user = payload;
+  // state.token = payload.token;
+  // state.user = payload.user;
+  // state.isLoggedIn = true;
 };
 
 export const handleLogout = state => {
   state = initialState;
+  // state.isLoggedIn = false;
+  const stateCopy = { ...state, isLoggedIn: false };
+  return stateCopy;
 };
 
 export const handleRefreshFulfield = (state, { payload }) => {
@@ -34,5 +41,10 @@ export const handlerUpdateAvatar = (state, { payload }) => {
 };
 
 export const handlerEditUserInfo = (state, { payload }) => {
+  // console.log(payload);
   state.user = payload;
+};
+
+export const handlerSaveWaterRate = (state, { payload }) => {
+  state.user.waterRate = payload;
 };

@@ -31,9 +31,8 @@ export const logout = async () => {
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-//! ???
-export const refreshUser = async token => {
-  token.set(token);
+export const refreshUser = async currentToken => {
+  token.set(currentToken);
   const { data } = await axios.get('/users/current');
   return data;
 };
@@ -50,14 +49,14 @@ export const updateAvatar = async newPhoto => {
 };
 
 export const updateWaterNorm = async newWaterRate => {
-  const { data } = await axios.patch('users/waterRate', {
+  const { data } = await axios.patch('/users/water-rate', {
     waterRate: newWaterRate,
   });
   return data;
 };
 
 export const editUserInfo = async body => {
-  const data = await axios.patch('/users', body, {
+  const data = await axios.patch('/users/current', body, {
     headers: {
       'Content-Type': 'application/json',
     },

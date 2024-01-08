@@ -9,9 +9,12 @@ import SpriteIcons from '../../../images/sprite.svg';
 import { useSelector } from 'react-redux';
 import { selectWaterRate } from 'redux/waterRate/selectors';
 
-export const DaysGeneralStats = (
-  { isStatsOpen, closeStats, selectedDay, statsPosition }
-) => {
+export const DaysGeneralStats = ({
+  isStatsOpen,
+  closeStats,
+  selectedDay,
+  statsPosition,
+}) => {
   const dailyNormaValue = useSelector(selectWaterRate);
   if (!selectedDay) {
     return null;
@@ -67,7 +70,7 @@ export const DaysGeneralStats = (
         }}
       >
         <DayStatsHead id="day-stats">Daily Norma:</DayStatsHead>
-        <DayStats id="day-stats">{dailyNormaValue} L</DayStats>
+        <DayStats id="day-stats">{dailyNormaValue / 1000} L</DayStats>
       </div>
       <div
         id="day-stats"
@@ -97,4 +100,3 @@ export const DaysGeneralStats = (
     </DayStatsWrap>
   );
 };
-

@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { updateWaterNorm } from 'redux/Api';
 
 axios.defaults.baseURL = 'http://localhost:8000';
 
@@ -7,8 +8,7 @@ export const saveWaterRateAsync = createAsyncThunk(
   'waterRate/saveWaterRate',
   async (dailyNorma, thunkAPI) => {
     try {
-      const { data } = await axios.patch('/user/waterNorm', { dailyNorma });
-      return data;
+      updateWaterNorm(dailyNorma);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

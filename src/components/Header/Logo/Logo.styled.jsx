@@ -1,16 +1,16 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-export const LogoBox = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
 export const StyledNavLink = styled(NavLink)`
   display: flex;
   align-items: center;
   gap: 4px;
+`;
+
+export const IconBox = styled.div`
+  display: block;
+  width: 40px;
+  heigt: 48px;
 `;
 
 export const TextBox = styled.div`

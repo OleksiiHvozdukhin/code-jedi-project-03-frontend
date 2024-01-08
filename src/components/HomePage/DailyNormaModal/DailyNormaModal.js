@@ -61,7 +61,7 @@ export const DailyNormaModal = ({ isOpen, onRequestClose }) => {
           </SmallText>
         </SmallTextWrapper>
         <CalculateTitle>Calculate your rate:</CalculateTitle>
-        <DailyNormaForma />
+        <DailyNormaForma onRequestClose={onRequestClose} />
       </ModalContainer>
     </Modal>
   );

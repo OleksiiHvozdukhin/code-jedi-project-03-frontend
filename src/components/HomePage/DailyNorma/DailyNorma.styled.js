@@ -6,6 +6,7 @@ export const Section = styled.section`
 
   @media screen and (min-width: 1440px) {
     margin-bottom: ${theme.spacing(12)};
+    margin-top: 20px;
   }
 `;
 
@@ -14,7 +15,6 @@ export const NormaWrapper = styled.div`
   padding: 8px 20px;
   margin-bottom: ${theme.spacing(4)};
   flex-direction: column;
-  align-items: flex-start;
   gap: ${theme.spacing(6)};
   border-radius: 10px;
   border: 1px solid ${theme.colors.light};
@@ -63,34 +63,5 @@ export const EditBtn = styled.button`
   &:focus {
     color: ${theme.colors.orange};
     outline: none;
-  }
-`;
-
-export const BottleImage = styled.img`
-  @media screen and (max-width: 767px) {
-    background-image: url('../../../images/Mobile/Mobile Bottle home screen-1x.png');
-    @media screen and (min-device-pixel-ratio: 2),
-      screen and (min-resolution: 192dpi),
-      screen and (min-resolution: 2dppx) {
-      background-image: url('../../../images/Mobile/Mobile Bottle home screen-2x.png');
-    }
-  }
-
-  @media screen and (min-width: 768px) {
-    background-image: url('../../../images/Tablet/Tablet Bottle Home Screen-1x.png');
-    @media screen and (min-device-pixel-ratio: 2),
-      screen and (min-resolution: 192dpi),
-      screen and (min-resolution: 2dppx) {
-      background-image: url('../../../images/Tablet/Tablet Bottle Home Screen-2x.png');
-    }
-  }
-
-  @media screen and (min-width: 1440px) {
-    background-image: url('../../../images/Desktop/Desktop Botle Home screen-1x.png');
-    @media screen and (min-device-pixel-ratio: 2),
-      screen and (min-resolution: 192dpi),
-      screen and (min-resolution: 2dppx) {
-      background-image: url('../../../images/Desktop/Desktop Botle Home screen-2x.png');
-    }
   }
 `;

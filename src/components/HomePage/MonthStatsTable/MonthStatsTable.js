@@ -46,7 +46,8 @@ export const MonthStatsTable = () => {
   const [statsPosition, setStatsPosition] = useState({ top: 0, right: 0 });
   const [currentMonthIndex] = useState(new Date().getMonth());
   const [currentYear] = useState(new Date().getFullYear());
-  const [selectedMonthIndex, setSelectedMonthIndex] = useState(currentMonthIndex);
+  const [selectedMonthIndex, setSelectedMonthIndex] =
+    useState(currentMonthIndex);
   const [selectedYear, setSelectedYear] = useState(currentYear);
 
   const initialDaysArray = (month, year) => {
@@ -70,10 +71,11 @@ export const MonthStatsTable = () => {
         Authorization: `Bearer ${userToken}`,
       },
     };
+    console.log(userToken);
     try {
       setIsLoading(true);
       const response = await axios.get(
-        `http://localhost:8000/consumedWater/month/${monthName}`,
+        `http://localhost:8000/consumed-water/month/${monthName}`,
         config
       );
       const data = response.data;
