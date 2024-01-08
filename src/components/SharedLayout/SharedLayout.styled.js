@@ -6,15 +6,15 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  max-width: 280px;
+  max-width: 320px;
 
   @media screen and (min-width: 768px) {
     padding: 16px 32px 44px;
-    max-width: 704px;
+    max-width: 786px;
   }
 
   @media screen and (min-width: 1440px) {
     padding: 12px 112px 40px;
-    max-width: 1216px;
+    max-width: 1440px;
   }
 `;

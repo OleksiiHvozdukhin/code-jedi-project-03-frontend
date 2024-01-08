@@ -155,7 +155,7 @@ export const InputWrapper = styled.div`
       border-color: ${theme.colors.red};
     }
   }
-  @media screen and (min-width: 756px) {
+  @media screen and (min-width: 768px) {
     width: 392px;
     & input {
       width: 346px;
