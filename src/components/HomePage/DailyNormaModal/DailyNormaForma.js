@@ -12,10 +12,11 @@ import {
   StyledForm,
 } from './DailyNormaForma.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { saveWaterRateAsync } from 'redux/waterRate/waterRateOperations';
+// import { saveWaterRateAsync } from 'redux/waterRate/waterRateOperations';
 import { selectError, selectIsLoading } from 'redux/waterRate/selectors';
 import { Loader } from 'components/Loader';
-import { saveWaterRate } from 'redux/waterRate/waterRateSlice';
+// import { saveWaterRate } from 'redux/waterRate/waterRateSlice';
+import { updateWaterNormThunk } from 'redux/auth/authOperations';
 
 export const DailyNormaForma = ({ onRequestClose }) => {
   const dispatch = useDispatch();
@@ -33,7 +34,15 @@ export const DailyNormaForma = ({ onRequestClose }) => {
     dailyNorma: Yup.number()
       .required('Enter water rate')
       .min(0, 'Daily norma must be greater than 0')
-      .max(15000, 'Daily norma must be less than 15000'),
+      .max(15, 'Daily norma must be less than 15')
+      .test(
+        'maxDigitsAfterDecimal',
+        'Daily norma must have 2 digits after decimal or less',
+        number => {
+          const decimalPart = (number.toString().split('.')[1] || '').length;
+          return decimalPart <= 2;
+        }
+      ),
   });
 
   const calculateWaterRate = ({ weight, activityTime, gender }) => {
@@ -50,11 +59,12 @@ export const DailyNormaForma = ({ onRequestClose }) => {
     }
   };
 
-  const handleSubmit = async (values, { resetForm }) => {
+  const handleSubmit = async values => {
     const dailyNormaValue = values.dailyNorma;
-    dispatch(saveWaterRate(dailyNormaValue));
+    // dispatch(saveWaterRate(dailyNormaValue));
     try {
-      await dispatch(saveWaterRateAsync(dailyNormaValue));
+      await dispatch(updateWaterNormThunk(dailyNormaValue));
+
       toast.success('Daily norma saved');
       onRequestClose();
     } catch (error) {

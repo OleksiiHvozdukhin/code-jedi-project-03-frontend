@@ -2,6 +2,16 @@ import styled from 'styled-components';
 import { theme } from 'components/theme';
 import { ErrorMessage } from 'formik';
 import { Link } from 'react-router-dom';
+import m1 from '../../images/Mobile/Mobile-Background-element-Sign-In-1x.png';
+import m2 from '../../images/Mobile/Mobile-Background-element-Sign-In-2x.png';
+import mb1 from '../../images/Mobile/Mobile-Bottle-Sign-In-1x.png';
+import mb2 from '../../images/Mobile/Mobile-Bottle-Sign-In-2x.png';
+import t1 from '../../images/Tablet/Tablet-Bottle-for-Sign-in-1x.png';
+import t2 from '../../images/Tablet/Tablet-Bottle-for-Sign-in-2x.png';
+import d1 from '../../images/Desktop/Desktop-Background-element-Main-Page-1x.png';
+import d2 from '../../images/Desktop/Desktop-Background-element-Main-Page-1x.png';
+import db1 from '../../images/Desktop/Desktop-Bottle-for-Sign-in-1x.png';
+import db2 from '../../images/Desktop/Desktop-Bottle-for-Sign-in-2x.png';
 
 export const Subcontainer = styled.div`
   max-width: 1440px;
@@ -112,4 +122,44 @@ export const StyledErrorMessage = styled(ErrorMessage)`
 export const SignInLink = styled(Link)`
   line-height: 1.25;
   color: ${theme.colors.blue};
+`;
+
+export const AuthPagesWrapper = styled.div`
+  background-image: url(${m1}), url(${mb1});
+  background-repeat: no-repeat;
+  background-size: cover, 280px 210px;
+  background-position: top, bottom 20px center;
+  /* height: calc(100vh - 56px); */
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    background-image: url(${m2}), url(${mb2});
+  }
+
+  @media screen and (min-width: 768px) {
+    background-image: url(${t1});
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    /* height: calc(100vh - 64px); */
+    @media (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: url(${t2});
+    }
+  }
+
+  @media screen and (min-width: 1440px) {
+    height: calc(100vh - 200px);
+    background-image: url(${d1}), url(${db1});
+    background-size: contain, 916px 680px;
+    background-position: bottom 60px left, left -40px bottom 60px;
+    background-repeat: no-repeat;
+    @media (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: url(${d2}), url(${db2});
+    }
+  }
 `;

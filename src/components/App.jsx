@@ -21,6 +21,15 @@ export const App = () => {
   const dispatch = useDispatch();
   const { isRefreshing } = useAuth();
 
+  // const { isRefreshing, isLoggedIn, user } = useAuth();
+
+  // console.log('Is refreshing: ', isRefreshing);
+  // console.log('Is logged in: ', isLoggedIn);
+  // console.log('User: ', user);
+  // console.log(
+  //   '________________________________________________________________'
+  // );
+
   useEffect(() => {
     dispatch(refreshUserThunk());
   }, [dispatch]);

@@ -1,34 +1,67 @@
+import { theme } from 'components/theme';
 import styled from 'styled-components';
 
-export const UserBtn = styled.button`
+export const UserLogoWrapper = styled.div`
   position: relative;
-  margin-left: auto;
-  width: 122px;
+  display: flex;
+  max-width: calc(100% - 102px);
   height: 28px;
-  padding: 0;
+  width: auto;
+  flex-shrink: 2;
+`;
+
+export const UserBtn = styled.button`
   border: none;
   display: flex;
-  gap: 8px;
+  gap: ${theme.spacing(4)};
   text-transform: capitalize;
   text-align: center;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  padding: 10px 0;
+
+  & span {
+    flex-shrink: 2;
+    margin-right: ${theme.spacing(4)};
+    font-size: 16px;
+    color: ${theme.colors.dark};
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: auto;
+  }
+
+  & img {
+    flex-shrink: 0;
+    border-radius: 50%;
+    margin-right: ${theme.spacing(2)};
+  }
+
+  & svg {
+    flex-shrink: 0;
+  }
+
+  &.open {
+    & svg {
+      transform: rotateX(180deg);
+    }
+  }
 `;
 
 export const UserName = styled.span`
-  width: 66px;
-  color: var(--Primery-Color-Blue, #407bff)
-  font-family: Roboto;
+  /* width: 66px;
+  color: ${theme.colors.blue};)
   font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 24px; /* 133.333% */
-  text-align: right;
-  
+  line-height: 24px; 
+  text-align: right; */
 `;
 
 export const MenuAvatarWrapper = styled.div`
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: ${theme.spacing(2)};
 `;
 
 export const UserIconBox = styled.div`
@@ -37,7 +70,7 @@ export const UserIconBox = styled.div`
 `;
 
 export const IconBox = styled.div`
-  width: 24pxpx;
+  width: 24px;
   height: 24px;
   display: flex;
   align-items: center;
@@ -46,5 +79,5 @@ export const IconBox = styled.div`
 
 export const ArrowDownIcon = styled.svg`
   display: block;
-  color: #000;
+  color: ${theme.colors.dark};
 `;

@@ -50,10 +50,11 @@ export const AuthForm = ({
 
   const handleSubmit = async ({ email, password }, { resetForm }) => {
     const data = await dispatch(loginThunk({ email, password }));
+    // console.log(data);
     if (!!data.payload.token) {
       navigate('/home');
     }
-    if (data.payload.response.data.message === 'Email or password is wrong') {
+    if (data.payload.message === 'Request failed with status code 401') {
       setEmailWrong(true);
     }
   };

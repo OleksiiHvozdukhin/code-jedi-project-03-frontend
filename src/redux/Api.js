@@ -56,7 +56,7 @@ export const updateWaterNorm = async newWaterRate => {
 };
 
 export const editUserInfo = async body => {
-  const data = await axios.patch('/users', body, {
+  const data = await axios.patch('/users/current', body, {
     headers: {
       'Content-Type': 'application/json',
     },

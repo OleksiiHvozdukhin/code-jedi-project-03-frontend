@@ -1,6 +1,5 @@
 import { useSelector } from 'react-redux';
 import {
-  BottleImage,
   EditBtn,
   InfoBox,
   NormaTitle,
@@ -8,24 +7,31 @@ import {
   NormaWrapper,
   Section,
 } from './DailyNorma.styled';
-import { selectWaterRate } from 'redux/waterRate/selectors';
-import bottle from '../../../images/Desktop/Desktop-Botle-Home-screen-1x.png';
+import { selectWaterRate } from 'redux/auth/authSelectors';
+// import { selectUser } from 'redux/auth/authSelectors';
+import { useEffect, useState } from 'react';
 
 export const DailyNorma = ({ openModal }) => {
-  const dailyNormaValue = useSelector(selectWaterRate);
-  console.log(dailyNormaValue);
+  // const { waterRate } = useSelector(selectUser);
+  // console.log(waterRate);
+  const waterRate = useSelector(selectWaterRate);
+  const [waterRateValue, setWaterRateValue] = useState(0);
+
+  useEffect(() => {
+    setWaterRateValue(waterRate);
+  }, [waterRate]);
+
   return (
     <Section>
       <NormaWrapper>
         <NormaTitle>My daily norma</NormaTitle>
         <InfoBox>
-          <NormaValue>{dailyNormaValue} L</NormaValue>
+          <NormaValue>{waterRateValue / 1000} L</NormaValue>
           <EditBtn type="button" onClick={openModal}>
             Edit
           </EditBtn>
         </InfoBox>
       </NormaWrapper>
-      <BottleImage src={bottle} />
     </Section>
   );
 };
