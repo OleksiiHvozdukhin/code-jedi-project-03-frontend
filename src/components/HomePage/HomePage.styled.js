@@ -1,16 +1,16 @@
 import styled from 'styled-components';
-import d1 from '../../images/Desktop/Desktop-Background-element-Main-Page-1x.png'
-import d2 from '../../images/Desktop/Desktop-Background-element-Main-Page-2x.png'
-import db1 from '../../images/Desktop/Desktop-Botle-Home-screen-1x.png'
-import db2 from '../../images/Desktop/Desktop-Botle-Home-screen-1x.png'
-import t1 from '../../images/Tablet/Tablet-Background-element-Home-Screen-1x.png'
-import t2 from '../../images/Tablet/Tablet-Background-element-Home-Screen-2x.png'
-import tb1 from '../../images/Tablet/Tablet-Bottle-Home-Screen-1x.png'
-import tb2 from '../../images/Tablet/Tablet-Bottle-Home-Screen-2x.png'
-import m1 from '../../images/Mobile/Mobile-Background-element-Home-screen-1x.png'
-import m2 from '../../images/Mobile/Mobile-Background-element-Home-screen-2x.png'
-import mb1 from '../../images/Mobile/Mobile-Bottle-home-screen-1x.png'
-import mb2 from '../../images/Mobile/Mobile-Bottle-home-screen-2x.png'
+import d1 from '../../images/Desktop/Desktop-Background-element-Main-Page-1x.png';
+import d2 from '../../images/Desktop/Desktop-Background-element-Main-Page-2x.png';
+import db1 from '../../images/Desktop/Desktop-Botle-Home-screen-1x.png';
+import db2 from '../../images/Desktop/Desktop-Botle-Home-screen-1x.png';
+import t1 from '../../images/Tablet/Tablet-Background-element-Home-Screen-1x.png';
+import t2 from '../../images/Tablet/Tablet-Background-element-Home-Screen-2x.png';
+import tb1 from '../../images/Tablet/Tablet-Bottle-Home-Screen-1x.png';
+import tb2 from '../../images/Tablet/Tablet-Bottle-Home-Screen-2x.png';
+import m1 from '../../images/Mobile/Mobile-Background-element-Home-screen-1x.png';
+import m2 from '../../images/Mobile/Mobile-Background-element-Home-screen-2x.png';
+import mb1 from '../../images/Mobile/Mobile-Bottle-home-screen-1x.png';
+import mb2 from '../../images/Mobile/Mobile-Bottle-home-screen-2x.png';
 import { theme } from 'components/theme';
 
 export const HomeContainer = styled.section`
@@ -22,11 +22,9 @@ export const HomeContainer = styled.section`
 `;
 
 export const HomePageWrapper = styled.div`
-  background-image: url(${m1}), url(${mb1});
-  background-size: cover, 280px 208px;
-  background-position: top left, top 80px center;
-  background-repeat: no-repeat;
-
+  height: 100vh;
+  background: top left, top 40px center no-repeat url(${m1}),
+    top 80px center no-repeat url(${mb1});
   @media screen and (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
@@ -34,10 +32,8 @@ export const HomePageWrapper = styled.div`
   }
 
   @media screen and (min-width: 768px) {
-    background-image: url(${t1}), url(${tb1});
-    background-size: cover, 518px 386px;
-    background-position: top left, top 16px center;
-    background-repeat: no-repeat;
+    background: top -10px right -60px no-repeat url(${t1}),
+      top center no-repeat url(${tb1});
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
@@ -46,11 +42,8 @@ export const HomePageWrapper = styled.div`
   }
 
   @media screen and (min-width: 1440px) {
-
-    background-image: url(${d1}), url(${db1});
-    /* background-size: cover, 738px 548px; */
-    background-position: top left, top left 36px;
-    background-repeat: no-repeat;
+    background: center top 40px no-repeat url(${d1}),
+      top left -95px no-repeat url(${db1});
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
