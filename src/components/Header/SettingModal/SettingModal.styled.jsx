@@ -41,7 +41,7 @@ export const AvatarImg = styled.img`
   background-color: lightgray;
 `;
 
-export const AvatarBtn = styled.button`
+export const AvatarBtn = styled.label`
   display: flex;
   flex-wrap: nowrap;
   align-items: center;

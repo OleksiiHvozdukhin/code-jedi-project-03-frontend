@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import { updateAvatarThunk } from 'redux/auth/authOperations';
 import React, { useState } from 'react';
 
-export const Main = () => {
+export const HomePageComponent = () => {
   const mainStyle = {
     display: 'flex',
     justifyContent: 'center',

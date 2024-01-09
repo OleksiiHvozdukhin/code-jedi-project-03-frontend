@@ -1,29 +1,50 @@
-import { useState } from 'react';
-import { DailyNorma } from './DailyNorma/DailyNorma';
-import { DailyNormaModal } from './DailyNormaModal/DailyNormaModal';
-import { MonthStatsTable } from './MonthStatsTable/MonthStatsTable';
-import { TodayListModal } from './TodayListModal/TodayListModal';
-import { TodayWaterList } from './TodayWaterList/TodayWaterList';
-import { WaterRatioPanel } from './WaterRatioPanel/WaterRatioPanel';
-import { HomeContainer } from './HomePage.styled';
-import { MonthTableWrap } from './MonthStatsTable/MonthsStatsTable.styled';
+import { useDispatch } from 'react-redux';
+import { updateAvatarThunk } from 'redux/auth/authOperations';
+import React, { useState } from 'react';
 
 export const HomePageComponent = () => {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const openModal = () => setModalIsOpen(true);
-  const closeModal = () => setModalIsOpen(false);
+  const mainStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 0,
+  };
+  const dispatch = useDispatch();
+
+  const [selectedFile, setSelectedFile] = useState(null);
+
+  const handleFileChange = event => {
+    const file = event.target.files[0];
+    setSelectedFile(file);
+  };
+
+  const handleUpload = async () => {
+    try {
+      if (!selectedFile) {
+        console.error('Выберите файл!');
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('file', selectedFile);
+
+      const data = await dispatch(updateAvatarThunk(formData));
+      console.log(data);
+    } catch (error) {
+      console.error('Ошибка:', error.message);
+    }
+  };
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+  };
+
   return (
-    <HomeContainer>
-      <div>
-        <DailyNorma openModal={openModal} />
-        <DailyNormaModal isOpen={modalIsOpen} onRequestClose={closeModal} />
-        <WaterRatioPanel />
-      </div>
-      <MonthTableWrap>
-        <TodayWaterList />
-        <TodayListModal />
-        <MonthStatsTable />
-      </MonthTableWrap>
-    </HomeContainer>
+    <div style={mainStyle}>
+      <form onSubmit={handleSubmit}>
+        <input type="file" accept="image/*" onChange={handleFileChange} />
+        <button onClick={handleUpload}>updateAvatar</button>
+      </form>
+    </div>
   );
 };
