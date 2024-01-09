@@ -8,38 +8,42 @@ export const OnePortionItem = styled.li`
   padding: 12px 0;
   align-items: center;
   border-bottom: 1px solid ${theme.colors.light};
-  @media screen and (min-width: 320px) {
-    width: 254px;
-  }
+  width: 254px;
+
   @media screen and (min-width: 768px) {
     width: 646px;
   }
+
   @media screen and (min-width: 1440px) {
     width: 534px;
   }
 `;
+
 export const GlassIcon = styled.svg`
   width: 24px;
   height: 24px;
   fill: ${theme.colors.lightblue};
+
   @media screen and (min-width: 768px) {
     width: 36px;
     height: 36px;
   }
 `;
+
 export const PortionText = styled.p`
   font-size: 18px;
   line-height: 1.33;
-  font-weight: 400;
   color: ${theme.colors.blue};
   margin-left: 12px;
 `;
+
 export const TimeText = styled.p`
   font-size: 12px;
   line-height: 2;
   font-weight: 400;
   color: ${theme.colors.dark};
   margin-left: 12px;
+
   @media screen and (min-width: 768px) {
     margin-left: 16px;
   }
