@@ -10,7 +10,7 @@ export const StyledDatePicker = styled(TimePicker)`
   padding: 10px;
   outline: none;
 `;
-export const ModalWrapper = styled.div`
+export const FormWrapper = styled.div`
   @media (min-width: 1440px) {
     width: 592px;
     padding: 32px 24px;

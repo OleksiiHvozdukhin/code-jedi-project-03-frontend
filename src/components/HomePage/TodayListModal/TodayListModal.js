@@ -13,7 +13,7 @@ import {
   ButtonSvg,
   CounterContent,
   CounterWrap,
-  ModalWrapper,
+  FormWrapper,
   StyledDatePicker,
   StyledInput,
   SvgIcon,
@@ -98,7 +98,7 @@ export const TodayListModal = ({ modalIsOpen, closeModal }) => {
         isOpen={modalIsOpen}
         onRequestClose={handleCloseModal}
       >
-        <ModalWrapper onSubmit={handleSubmit}>
+        <FormWrapper onSubmit={handleSubmit}>
           <TitleForm>Choose a value:</TitleForm>
           <TextForm>Amount of water:</TextForm>
           <CounterWrap>
@@ -142,7 +142,7 @@ export const TodayListModal = ({ modalIsOpen, closeModal }) => {
             <AmountWater>{waterVolume} ml</AmountWater>
             <ButtonSubmit type="submit">Save</ButtonSubmit>
           </AmountWrap>
-        </ModalWrapper>
+        </FormWrapper>
       </ModalWindow>
     </div>
   );
