@@ -33,7 +33,7 @@ import {
   updateAvatarThunk,
 } from '../../../redux/auth/authOperations';
 import { Formik } from 'formik';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 export const SettingModal = ({ isOpen, onRequestClose }) => {
   const { avatarUrl } = useSelector(selectUser);
@@ -194,7 +194,8 @@ export const SettingModal = ({ isOpen, onRequestClose }) => {
                     <StyledErrorMessage component="div" name="email" />
                   </InputWrapper>
                 </FieldWrapper>
-                {emailNotCorrect === true && toast.error('!!!Email is not correct!!!')}
+                {emailNotCorrect === true &&
+                  toast.error('!!!Email is not correct!!!')}
               </UserBox>
 
               <PasswordBox>
@@ -259,7 +260,8 @@ export const SettingModal = ({ isOpen, onRequestClose }) => {
                     </EyeBtn>
                     <StyledErrorMessage component="div" name="newPassword" />
                   </InputWrapper>
-                  {newPasswordIsOld === true && toast.error('!!!New password is old!!!')}
+                  {newPasswordIsOld === true &&
+                    toast.error('!!!New password is old!!!')}
                 </FieldWrapper>
 
                 <FieldWrapper>
@@ -293,7 +295,8 @@ export const SettingModal = ({ isOpen, onRequestClose }) => {
                       name="confirmPassword"
                     />
                   </InputWrapper>
-                  {passwordMismatch === true && toast.error('!!!Password mismatch!!!')}
+                  {passwordMismatch === true &&
+                    toast.error('!!!Password mismatch!!!')}
                 </FieldWrapper>
               </PasswordBox>
             </FlexBox>
@@ -302,7 +305,6 @@ export const SettingModal = ({ isOpen, onRequestClose }) => {
           </StyledForm>
         )}
       </Formik>
-      <Toaster />
     </>
   );
 };

@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import SpriteIcons from '../../../images/sprite.svg';
 import { ModalWindow } from 'components/ModalWindow/ModalWindow';
-import { addWater } from 'redux/user/waterOperations';
+// import { addWater } from 'redux/user/waterOperations';
 import { useDispatch } from 'react-redux';
 import {
   AmountWater,
@@ -19,6 +19,7 @@ import {
   TitleInputText,
   TitleInputTime,
 } from './TodayListModal_1.styled';
+import { addWaters } from 'redux/Api';
 // import { toast } from 'react-hot-toast';
 export const TodayListModal = ({ modalIsOpen, closeModal }) => {
   const [waterVolume, setWaterVolume] = useState(0);
@@ -62,7 +63,7 @@ export const TodayListModal = ({ modalIsOpen, closeModal }) => {
     //   return toast.error('You can enter value from 0 to 1500');
     // }
     if (waterVolume > 0) {
-      dispatch(addWater({ waterVolume, date: startDate }));
+      dispatch(addWaters({ waterVolume, date: startDate }));
     }
     handleCloseModal();
   };

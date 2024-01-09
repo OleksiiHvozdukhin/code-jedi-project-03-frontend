@@ -1,10 +1,20 @@
-import React, { useState } from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import React, { useEffect, useState } from 'react';
+import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import { AuthFormLabel, AuthFormButton, AuthFormInput } from './SignIn.styled';
+import {
+  AuthFormLabel,
+  AuthFormButton,
+  AuthFormInput,
+  StyledErrorMessage,
+  EyeBtn,
+  InputWrapper,
+} from './SignIn.styled';
 import { useDispatch } from 'react-redux';
 import { loginThunk } from 'redux/auth/authOperations';
 import { useNavigate } from 'react-router-dom';
+import sprite from '../../../images/sprite.svg';
+import toast from 'react-hot-toast';
+import { Loader } from 'components/Loader';
 
 const validationSchema = Yup.object({
   email: Yup.string()
@@ -16,46 +26,39 @@ const validationSchema = Yup.object({
     .required('Password is required'),
 });
 
-export const AuthForm = ({
-  emailLabel,
-  passwordLabel,
-  buttonLabel,
-  onSuccess,
-}) => {
-  const [showPassword, setShowPassword] = useState(false);
+export const AuthForm = ({ emailLabel, passwordLabel, buttonLabel }) => {
   const dispatch = useDispatch();
+  const [showPassword, setShowPassword] = useState(false);
   const [emailWrong, setEmailWrong] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (emailWrong) {
+      toast.error('Email or password is wrong');
+      setEmailWrong(false);
+    }
+  }, [emailWrong]);
 
   const handleTogglePassword = () => {
     setShowPassword(prevState => !prevState);
   };
 
-  const eyeIcon = (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 16 16"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M8 1.5C4 1.5 1 8 1 8s3 6.5 7 6.5 7-6.5 7-6.5-3-6.5-7-6.5zM8 12C9.6 12 11 10.7 11 9s-1.4-3-3-3-3 1.3-3 3 1.4 3 3 3z"
-        fill="#666666"
-      />
-    </svg>
-  );
   const navigate = useNavigate();
 
-  const handleSubmit = async ({ email, password }, { resetForm }) => {
-    const data = await dispatch(loginThunk({ email, password }));
-    // console.log(data);
-    if (!!data.payload.token) {
-      navigate('/home');
-    }
-    if (data.payload.message === 'Request failed with status code 401') {
-      setEmailWrong(true);
+  const handleSubmit = async ({ email, password }) => {
+    try {
+      setIsLoading(true);
+      const data = await dispatch(loginThunk({ email, password }));
+
+      if (!!data.payload.token) {
+        navigate('/home');
+      }
+
+      if (data.payload.message === 'Request failed with status code 401') {
+        setEmailWrong(true);
+      }
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -65,43 +68,57 @@ export const AuthForm = ({
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
-      <Form>
-        <div>
-          <AuthFormLabel htmlFor="email">{emailLabel}</AuthFormLabel>
-          <Field
-            as={AuthFormInput}
-            type="email"
-            id="email"
-            name="email"
-            placeholder="E-mail"
-          />
-          <ErrorMessage
-            name="email"
-            component="div"
-            className="error-message"
-          />
-        </div>
-        <div>
-          <AuthFormLabel htmlFor="password">{passwordLabel}</AuthFormLabel>
-          <div>
-            <Field
-              as={AuthFormInput}
-              type={showPassword ? 'text' : 'password'}
-              id="password"
-              name="password"
-              placeholder="Password"
-            />
-            <span onClick={handleTogglePassword}>{eyeIcon}</span>
-          </div>
-          <ErrorMessage
-            name="password"
-            component="div"
-            className="error-message"
-          />
-        </div>
-        {emailWrong && <p>Email of password is wrong</p>}
-        <AuthFormButton type="submit">{buttonLabel}</AuthFormButton>
-      </Form>
+      {({ errors, touched }) => {
+        return (
+          <Form>
+            <div>
+              <AuthFormLabel htmlFor="email">{emailLabel}</AuthFormLabel>
+              <AuthFormInput
+                type="email"
+                id="email"
+                name="email"
+                placeholder="E-mail"
+                className={`special ${
+                  errors.email && touched.email ? 'error' : ''
+                }`}
+              />
+              <StyledErrorMessage name="email" component="div" />
+            </div>
+            <div>
+              <AuthFormLabel htmlFor="password">{passwordLabel}</AuthFormLabel>
+              <InputWrapper>
+                <AuthFormInput
+                  type={showPassword ? 'text' : 'password'}
+                  id="password"
+                  name="password"
+                  placeholder="Password"
+                  className={`special ${
+                    errors.password && touched.password ? 'error' : ''
+                  }`}
+                />
+                <EyeBtn onClick={() => handleTogglePassword()} type="button">
+                  <svg width="16" height="16" stroke="#407BFF" fill="none">
+                    <use
+                      xlinkHref={
+                        showPassword
+                          ? `${sprite}#icon-eye`
+                          : `${sprite}#icon-eye-slash`
+                      }
+                    />
+                  </svg>
+                </EyeBtn>
+              </InputWrapper>
+              <StyledErrorMessage
+                name="password"
+                component="div"
+                className="error-message"
+              />
+            </div>
+            <AuthFormButton type="submit">{buttonLabel}</AuthFormButton>
+            {isLoading && <Loader />}
+          </Form>
+        );
+      }}
     </Formik>
   );
 };
