@@ -13,6 +13,7 @@ import {
 } from './OnePortionWater.styled';
 import { useState } from 'react';
 import { DeleteModal } from './DeleteModal';
+import { EditModal } from './EditModal';
 // import {
 //   BtnList,
 //   OnePortionWrapper,
@@ -22,6 +23,7 @@ import { DeleteModal } from './DeleteModal';
 // } from './OnePortionWater.styled';
 export const OnePortionWater = () => {
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+  const [isEditOpen, setIsEditOpen] = useState(false);
 
   return (
     <>
@@ -32,7 +34,7 @@ export const OnePortionWater = () => {
         <PortionText>250 ml</PortionText>
         <TimeText>7:00 AM</TimeText>
         <WrapperIcons>
-          <EditButton type="button">
+          <EditButton type="button" onClick={() => setIsEditOpen(true)}>
             <SvgEdit>
               <use xlinkHref={`${SpriteIcons}#icon-pencil-square`} />
             </SvgEdit>
@@ -56,6 +58,21 @@ export const OnePortionWater = () => {
           isOpen={isDeleteOpen}
           onRequestClose={() => {
             setIsDeleteOpen(false);
+          }}
+        />
+      </ModalWindow>
+      <ModalWindow
+        title="Edit the entered amount of water"
+        isOpen={isEditOpen}
+        onRequestClose={() => {
+          setIsEditOpen(false);
+        }}
+      >
+        <EditModal
+          title="Edit the entered amount of water"
+          isOpen={isEditOpen}
+          onRequestClose={() => {
+            setIsEditOpen(false);
           }}
         />
       </ModalWindow>
