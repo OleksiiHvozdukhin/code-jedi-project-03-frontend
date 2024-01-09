@@ -22,6 +22,10 @@ export const UserBtn = styled.button`
   background-color: transparent;
   border: none;
   padding: 10px 0;
+  transition: color ${theme.transition};
+  &:hover {
+    color: ${theme.colors.orange};
+  }
 
   & span {
     flex-shrink: 2;

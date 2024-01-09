@@ -71,7 +71,6 @@ export const MonthStatsTable = () => {
         Authorization: `Bearer ${userToken}`,
       },
     };
-    console.log(userToken);
     try {
       setIsLoading(true);
       const response = await axios.get(

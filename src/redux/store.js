@@ -10,7 +10,6 @@ import {
 import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth/authSlice';
-import { waterRateReducer } from './waterRate/waterRateSlice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -29,7 +28,6 @@ const ignoredPersistenceActions = [
 
 export const store = configureStore({
   reducer: {
-    waterRate: waterRateReducer,
     auth: persistReducer(authPersistConfig, authReducer),
   },
   middleware: getDefaultMiddleware =>

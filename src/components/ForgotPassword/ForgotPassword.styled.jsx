@@ -70,9 +70,9 @@ export const Input = styled.input`
     border-color: ${theme.colors.skyblue};
   }
 
-  &:invalid {
-    color: ${theme.colors.red};
+  &.error {
     border-color: ${theme.colors.red};
+    color: ${theme.colors.red};
   }
 `;
 
@@ -122,6 +122,10 @@ export const StyledErrorMessage = styled(ErrorMessage)`
 export const SignInLink = styled(Link)`
   line-height: 1.25;
   color: ${theme.colors.blue};
+  transition: color ${theme.transition};
+  &:hover {
+    color: ${theme.colors.orange};
+  }
 `;
 
 export const AuthPagesWrapper = styled.div`
