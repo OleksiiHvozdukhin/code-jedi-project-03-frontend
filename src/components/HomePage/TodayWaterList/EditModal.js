@@ -1,10 +1,8 @@
-// import { OnePortionForma } from './OnePortionForma';
 import React, { useState } from 'react';
 import SpriteIcons from '../../../images/sprite.svg';
-import { ModalWindow } from 'components/ModalWindow/ModalWindow';
 
-// import { addWater } from 'redux/user/waterOperations';
 // import { useDispatch } from 'react-redux';
+
 import {
   AmountWater,
   AmountWrap,
@@ -20,10 +18,10 @@ import {
   TitleForm,
   TitleInputText,
   TitleInputTime,
-} from './TodayListModal_1.styled';
-// import { addWaters } from 'redux/Api';
-// import { toast } from 'react-hot-toast';
-export const TodayListModal = ({ modalIsOpen, closeModal }) => {
+} from '../TodayListModal/TodayListModal_1.styled';
+import { GlassIcon, PortionText, TimeText } from './OnePortionWater.styled';
+import { EditBody, ItemWrapper } from './EditModal.styled';
+export const EditModal = ({ onRequestClose }) => {
   const [waterVolume, setWaterVolume] = useState(0);
   const [startDate, setStartDate] = useState(new Date());
   // const dispatch = useDispatch();
@@ -54,7 +52,7 @@ export const TodayListModal = ({ modalIsOpen, closeModal }) => {
   };
 
   const handleCloseModal = () => {
-    closeModal();
+    //  closeModal();
     setWaterVolume(0);
     setStartDate(new Date());
   };
@@ -90,59 +88,59 @@ export const TodayListModal = ({ modalIsOpen, closeModal }) => {
     return { disabledHours, disabledMinutes };
   };
   return (
-    <div>
-      <ModalWindow
-        title="Add water"
-        onShow={modalIsOpen}
-        isOpen={modalIsOpen}
-        onRequestClose={handleCloseModal}
-      >
-        <FormWrapper onSubmit={handleSubmit}>
-          <TitleForm>Choose a value:</TitleForm>
-          <TextForm>Amount of water:</TextForm>
-          <CounterWrap>
-            <ButtonSvg
-              onClick={decrement}
-              // disabled={waterVolume <= 49 ? true : false}
-            >
-              <SvgIcon>
-                <use xlinkHref={`${SpriteIcons}#icon-minus-small`} />
-              </SvgIcon>
-            </ButtonSvg>
-            <CounterContent>{waterVolume} ml</CounterContent>
-            <ButtonSvg
-              onClick={increment}
-              // disabled={waterVolume >= 1451 ? true : false}
-            >
-              <SvgIcon>
-                <use xlinkHref={`${SpriteIcons}#icon-plus-small`} />
-              </SvgIcon>
-            </ButtonSvg>
-          </CounterWrap>
-          <label>
-            <TitleInputTime>Recording time:</TitleInputTime>
-            <StyledDatePicker
-              placeholder={`${hours}:${minutes}`}
-              format="HH:mm"
-              onChange={onChange}
-              disabledTime={disabledTime}
-            />
-          </label>
-          <label>
-            <TitleInputText>Enter the value of the water used:</TitleInputText>
-            <StyledInput
-              name="amount"
-              type="text"
-              value={waterVolume}
-              onChange={handleChange}
-            />
-          </label>
-          <AmountWrap>
-            <AmountWater>{waterVolume} ml</AmountWater>
-            <ButtonSubmit type="submit">Save</ButtonSubmit>
-          </AmountWrap>
-        </FormWrapper>
-      </ModalWindow>
-    </div>
+    <EditBody>
+      <ItemWrapper>
+        <GlassIcon>
+          <use xlinkHref={`${SpriteIcons}#icon-glass`} />
+        </GlassIcon>
+        <PortionText>250 ml</PortionText>
+        <TimeText>7:00 AM</TimeText>
+      </ItemWrapper>
+      <FormWrapper onSubmit={handleSubmit}>
+        <TitleForm>Correct entered data:</TitleForm>
+        <TextForm>Amount of water:</TextForm>
+        <CounterWrap>
+          <ButtonSvg
+            onClick={decrement}
+            // disabled={waterVolume <= 49 ? true : false}
+          >
+            <SvgIcon>
+              <use xlinkHref={`${SpriteIcons}#icon-minus-small`} />
+            </SvgIcon>
+          </ButtonSvg>
+          <CounterContent>{waterVolume} ml</CounterContent>
+          <ButtonSvg
+            onClick={increment}
+            // disabled={waterVolume >= 1451 ? true : false}
+          >
+            <SvgIcon>
+              <use xlinkHref={`${SpriteIcons}#icon-plus-small`} />
+            </SvgIcon>
+          </ButtonSvg>
+        </CounterWrap>
+        <label>
+          <TitleInputTime>Recording time:</TitleInputTime>
+          <StyledDatePicker
+            placeholder={`${hours}:${minutes}`}
+            format="HH:mm"
+            onChange={onChange}
+            disabledTime={disabledTime}
+          />
+        </label>
+        <label>
+          <TitleInputText>Enter the value of the water used:</TitleInputText>
+          <StyledInput
+            name="amount"
+            type="text"
+            value={waterVolume}
+            onChange={handleChange}
+          />
+        </label>
+        <AmountWrap>
+          <AmountWater>{waterVolume} ml</AmountWater>
+          <ButtonSubmit type="submit">Save</ButtonSubmit>
+        </AmountWrap>
+      </FormWrapper>
+    </EditBody>
   );
 };

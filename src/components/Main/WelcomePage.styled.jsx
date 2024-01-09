@@ -8,29 +8,9 @@ import t2 from '../../images/Tablet/Tablet-Background-Main-Page-2x.png';
 import m1 from '../../images/Mobile/Mobile-Background-Main-Page-1x.png';
 import m2 from '../../images/Mobile/Mobile-Background-Main-Page-2x.png';
 
-export const Tracker = styled.div`
-  @media screen and (max-width: 767px) {
-    padding-bottom: 40px;
-  }
-
-  @media screen and (min-width: 768px) and (max-width: 1439px) {
-    padding-bottom: 50px;
-  }
-
-  @media only screen and (min-width: 1440px) {
-    display: flex;
-    justify-content: center;
-  }
-`;
-
 export const MainWrapper = styled.div`
-  /* width: 320px; */
-  /* margin: 24px auto 0;
-  padding: 0px 20px 40px; */
-  background-image: url(${m1});
-  /* background-size: cover, 280px 208px;
-  background-position: top left, top 80px center; */
-  background-repeat: no-repeat;
+  height: 100vh;
+  background: top -70px center no-repeat url(${m1});
   @media screen and (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
@@ -38,13 +18,8 @@ export const MainWrapper = styled.div`
   }
 
   @media screen and (min-width: 768px) {
-    /* width: 768px;
-    margin: 40px auto 0;
-    padding: 0px 32px 44px; */
-    background-image: url(${t1});
-    /* background-size: cover, 518px 386px;
-    background-position: top left, top 16px center; */
-    background-repeat: no-repeat;
+    height: 150vh;
+    background: top -91px center no-repeat url(${t1});
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
@@ -53,10 +28,9 @@ export const MainWrapper = styled.div`
   }
 
   @media screen and (min-width: 1440px) {
-    /* width: 100%;
-    height: 100%; */
-    background-image: url(${d1}), url(${de1});
-    background-repeat: no-repeat;
+    height: 95vh;
+    background: bottom no-repeat url(${d1}),
+      left -10% / contain no-repeat url(${de1});
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
