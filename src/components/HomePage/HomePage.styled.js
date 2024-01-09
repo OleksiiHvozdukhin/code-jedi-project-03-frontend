@@ -11,20 +11,23 @@ import m1 from '../../images/Mobile/Mobile-Background-element-Home-screen-1x.png
 import m2 from '../../images/Mobile/Mobile-Background-element-Home-screen-2x.png';
 import mb1 from '../../images/Mobile/Mobile-Bottle-home-screen-1x.png';
 import mb2 from '../../images/Mobile/Mobile-Bottle-home-screen-2x.png';
-import { theme } from 'components/theme';
 
 export const HomeContainer = styled.section`
   @media screen and (min-width: 1440px) {
     display: flex;
     justify-content: space-between;
-    margin-top: ${theme.spacing(10)};
   }
 `;
+
+// export const FlexBoxWrapper = styled.div`
+//   display: flex;
+//   flex-direction: column;
+// `;
 
 export const HomePageWrapper = styled.div`
   height: 100vh;
   background: top left, top 40px center no-repeat url(${m1}),
-    top 80px center no-repeat url(${mb1});
+    top 100px center no-repeat url(${mb1});
   @media screen and (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {

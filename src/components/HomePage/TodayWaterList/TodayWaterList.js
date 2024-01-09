@@ -29,7 +29,7 @@ export const TodayWaterList = () => {
         <svg width="24" height="24" stroke="#407BFF" fill="none">
           <use xlinkHref={`${SpriteIcons}#icon-plus-small`} />
         </svg>
-        <span>Add water</span>
+        Add water
       </ButtonAddWater>
       <TodayListModal modalIsOpen={modalIsOpen} closeModal={closeModal} />
     </List>

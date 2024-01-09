@@ -12,6 +12,7 @@ import {
 // import { ModalWindow } from 'components/ModalWindow/ModalWindow';
 // import { OnePortionForma } from '../TodayListModal/OnePortionForma';
 import { TodayListModal } from '../TodayListModal/TodayListModal';
+import SpriteIcons from '../../../images/sprite.svg';
 
 export const WaterRatioPanel = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -42,6 +43,9 @@ export const WaterRatioPanel = () => {
         </PercentageWrapper>
       </WaterPanel>
       <BtnAddWater type="button" onClick={OpenModal}>
+        <svg width="24" height="24" stroke='#fff' fill='none'>
+          <use xlinkHref={`${SpriteIcons}#icon-plus-circle`} />
+        </svg>
         Add water
       </BtnAddWater>
       <TodayListModal modalIsOpen={modalIsOpen} closeModal={closeModal} />

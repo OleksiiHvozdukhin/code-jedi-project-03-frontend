@@ -5,7 +5,6 @@ import {
   NormaTitle,
   NormaValue,
   NormaWrapper,
-  Section,
 } from './DailyNorma.styled';
 import { selectWaterRate } from 'redux/auth/authSelectors';
 // import { selectUser } from 'redux/auth/authSelectors';
@@ -22,16 +21,14 @@ export const DailyNorma = ({ openModal }) => {
   }, [waterRate]);
 
   return (
-    <Section>
-      <NormaWrapper>
-        <NormaTitle>My daily norma</NormaTitle>
-        <InfoBox>
-          <NormaValue>{waterRateValue / 1000} L</NormaValue>
-          <EditBtn type="button" onClick={openModal}>
-            Edit
-          </EditBtn>
-        </InfoBox>
-      </NormaWrapper>
-    </Section>
+    <NormaWrapper>
+      <NormaTitle>My daily norma</NormaTitle>
+      <InfoBox>
+        <NormaValue>{waterRateValue / 1000} L</NormaValue>
+        <EditBtn type="button" onClick={openModal}>
+          Edit
+        </EditBtn>
+      </InfoBox>
+    </NormaWrapper>
   );
 };

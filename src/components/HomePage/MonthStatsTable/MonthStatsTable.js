@@ -172,7 +172,7 @@ export const MonthStatsTable = () => {
   };
 
   return (
-    <MonthTableWrap>
+    <>
       <PaginationWrap>
         <MonthsHead>Month</MonthsHead>
         <MonthSelector>
@@ -233,6 +233,6 @@ export const MonthStatsTable = () => {
           statsPosition={statsPosition}
         />
       )}
-    </MonthTableWrap>
+    </>
   );
 };
