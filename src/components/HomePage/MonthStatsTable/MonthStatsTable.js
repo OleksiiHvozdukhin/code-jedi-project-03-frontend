@@ -47,6 +47,7 @@ export const MonthStatsTable = () => {
   const [statsPosition, setStatsPosition] = useState({ top: 0, right: 0 });
   const [currentMonthIndex] = useState(new Date().getMonth());
   const [currentYear] = useState(new Date().getFullYear());
+  const [currentDate] = useState(new Date().getDate())
   const [selectedMonthIndex, setSelectedMonthIndex] = useState(currentMonthIndex);
   const [selectedYear, setSelectedYear] = useState(currentYear);
 
@@ -89,7 +90,7 @@ export const MonthStatsTable = () => {
   useEffect(() => {
     const controller = new AbortController();
     const selectedMonthName = getMonthName(selectedMonthIndex);
-    const initialArray = initialDaysArray(selectedMonthIndex, currentYear);
+    const initialArray = initialDaysArray(selectedMonthIndex, selectedYear);
     const fetchDaysArray = async (monthName, initialArray, controller) => {
       const config = {
         headers: {
@@ -126,7 +127,7 @@ export const MonthStatsTable = () => {
     return () => {
       controller.abort();
     };
-  }, [selectedMonthIndex]);
+  }, [selectedMonthIndex, selectedYear, userToken]);
 
   useEffect(() => {
     const handleClickOutside = event => {
@@ -174,6 +175,16 @@ export const MonthStatsTable = () => {
     setStatsPosition({ top, left });
   };
 
+  const borderColor = (percent) => {
+    if (percent === 100) {
+      return '1px solid #32CD32';
+    } 
+    if (percent > 0 && percent < 100) {
+      return '1px solid #FF9D43';
+    }
+    return;
+  }
+
   return (
     <MonthTableWrap>
       <PaginationWrap>
@@ -215,14 +226,26 @@ export const MonthStatsTable = () => {
                     onClick={event => handleOpenStats(day, event)}
                     style={{
                       border:
-                        day.totalProcent < 100
-                          ? '1px solid #FF9D43'
-                          : 'transparent',
+                        day.date === currentDate &&
+                        currentMonthIndex === selectedMonthIndex && day.totalProcent >0
+                          ? '1px solid #407BFF'
+                          : borderColor(day.totalProcent),
+                      backgroundColor:
+                        day.date === currentDate &&
+                        currentMonthIndex === selectedMonthIndex
+                          ? '#9EBBFF'
+                          : '#FFFFFF',
+                      color:
+                        day.date === currentDate &&
+                        currentMonthIndex === selectedMonthIndex &&
+                        '#ffffff',
                     }}
                   >
                     {day.date}
                   </DayNumber>
-                  <DayPercentage>{day.totalProcent}%</DayPercentage>
+                  <DayPercentage>
+                    {day.totalProcent == 0 ? '-' : `${day.totalProcent}%`}
+                  </DayPercentage>
                 </DayItem>
               );
             })}

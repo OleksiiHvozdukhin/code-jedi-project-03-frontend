@@ -64,7 +64,7 @@ export const DayItem = styled.li`
   }
 `;
 
-export const DayNumber = styled.button`
+export const DayNumber = styled.p`
   width: 32px;
   height: 32px;
   padding: 0;
@@ -81,10 +81,12 @@ export const DayNumber = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: box-shadow ${theme.transition};
+  cursor: pointer;
+  transition: box-shadow ${theme.transition}, transform ${theme.transition};
   &:hover,
   &:focus {
     box-shadow: 0px 2px 4px 0px rgba(64, 123, 255, 0.3);
+    transform: scale(110%);
   }
   @media screen and (min-width: 768px) {
     width: 34px;
