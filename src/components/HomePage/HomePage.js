@@ -6,6 +6,7 @@ import { TodayListModal } from './TodayListModal/TodayListModal';
 import { TodayWaterList } from './TodayWaterList/TodayWaterList';
 import { WaterRatioPanel } from './WaterRatioPanel/WaterRatioPanel';
 import { HomeContainer } from './HomePage.styled';
+import { MonthTableWrap } from './MonthStatsTable/MonthsStatsTable.styled';
 
 export const HomePageComponent = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -18,11 +19,11 @@ export const HomePageComponent = () => {
         <DailyNormaModal isOpen={modalIsOpen} onRequestClose={closeModal} />
         <WaterRatioPanel />
       </div>
-      <div>
+      <MonthTableWrap>
         <TodayWaterList />
         <TodayListModal />
         <MonthStatsTable />
-      </div>
+      </MonthTableWrap>
     </HomeContainer>
   );
 };

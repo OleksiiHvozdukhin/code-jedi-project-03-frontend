@@ -49,7 +49,7 @@ export const updateAvatar = async newPhoto => {
 };
 
 export const updateWaterNorm = async newWaterRate => {
-  const { data } = await axios.patch('/users/water-rate', {
+  const { data } = await axios.patch('/user/water-rate', {
     waterRate: newWaterRate,
   });
   return data;

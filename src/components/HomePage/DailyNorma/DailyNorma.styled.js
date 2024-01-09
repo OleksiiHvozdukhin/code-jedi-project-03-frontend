@@ -1,19 +1,11 @@
 import { theme } from 'components/theme';
 import styled from 'styled-components';
 
-export const Section = styled.section`
-  margin-bottom: ${theme.spacing(8)};
-
-  @media screen and (min-width: 1440px) {
-    margin-bottom: ${theme.spacing(12)};
-    margin-top: 20px;
-  }
-`;
-
 export const NormaWrapper = styled.div`
   display: inline-flex;
   padding: 8px 20px;
-  margin-bottom: ${theme.spacing(4)};
+  margin-top: ${theme.spacing(12)};
+  margin-bottom: ${theme.spacing(116)};
   flex-direction: column;
   gap: ${theme.spacing(6)};
   border-radius: 10px;
@@ -21,8 +13,14 @@ export const NormaWrapper = styled.div`
   box-shadow: 0px 4px 8px 0px rgba(158, 187, 255, 0.12);
 
   @media screen and (min-width: 768px) {
+    margin-top: ${theme.spacing(20)};
+    margin-bottom: ${theme.spacing(150)};
+  }
+
+  @media screen and (min-width: 1440px) {
+    margin-top: ${theme.spacing(26)};
     margin-bottom: 0;
-    position: absolute;
+    position: relative;
   }
 `;
 
@@ -53,12 +51,11 @@ export const EditBtn = styled.button`
   padding: 0;
   background: transparent;
   border: none;
-  color: #8baeff;
-  font-size: 16px;
-  font-weight: 400;
+  color: ${theme.colors.lightblue};
   line-height: 1.25;
   cursor: pointer;
   transition: color ${theme.transition};
+
   &:hover,
   &:focus {
     color: ${theme.colors.orange};

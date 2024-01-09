@@ -9,8 +9,6 @@ import {
 
 // import { useDispatch } from 'react-redux';
 // import { addWater } from 'redux/user/waterOperations';
-
-
 // import { selectError, selectIsLoading } from 'redux/waterRate/selectors';
 export const OnePortionForma = () => {
   // const dispatch = useDispatch();

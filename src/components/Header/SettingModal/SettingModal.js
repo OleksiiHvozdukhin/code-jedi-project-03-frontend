@@ -33,7 +33,7 @@ import {
   updateAvatarThunk,
 } from '../../../redux/auth/authOperations';
 import { Formik } from 'formik';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 export const SettingModal = ({ isOpen, onRequestClose }) => {
   const { avatarUrl } = useSelector(selectUser);
@@ -382,7 +382,6 @@ export const SettingModal = ({ isOpen, onRequestClose }) => {
           </StyledForm>
         )}
       </Formik>
-      <Toaster />
     </>
   );
 };

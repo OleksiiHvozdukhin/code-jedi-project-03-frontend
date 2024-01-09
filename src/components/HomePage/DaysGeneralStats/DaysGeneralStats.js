@@ -7,7 +7,8 @@ import {
 } from './DaysGeneralStats.styled';
 import SpriteIcons from '../../../images/sprite.svg';
 import { useSelector } from 'react-redux';
-import { selectWaterRate } from 'redux/waterRate/selectors';
+// import { selectWaterRate } from 'redux/waterRate/selectors';
+import { selectWaterRate } from 'redux/auth/authSelectors';
 
 export const DaysGeneralStats = ({
   isStatsOpen,

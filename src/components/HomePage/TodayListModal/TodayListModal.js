@@ -5,7 +5,6 @@ import { ModalWindow } from 'components/ModalWindow/ModalWindow';
 
 // import { addWater } from 'redux/user/waterOperations';
 // import { useDispatch } from 'react-redux';
-
 import {
   AmountWater,
   AmountWrap,
