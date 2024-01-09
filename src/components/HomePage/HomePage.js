@@ -25,10 +25,12 @@ export const HomePageComponent = () => {
         return;
       }
 
-      const formData = new FormData();
-      formData.append('file', selectedFile);
+      // const formData = new FormData();
+      // formData.append('file', selectedFile);
 
-      const data = await dispatch(updateAvatarThunk(formData));
+      console.log(selectedFile);
+
+      const data = await dispatch(updateAvatarThunk(selectedFile));
       console.log(data);
     } catch (error) {
       console.error('Ошибка:', error.message);
