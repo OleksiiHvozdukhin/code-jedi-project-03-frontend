@@ -39,7 +39,6 @@ export const SettingModal = ({ isOpen, onRequestClose }) => {
   const { avatarUrl } = useSelector(selectUser);
   const [selectedFile, setSelectedFile] = useState(null);
 
-  // Напишите сюда сообщения об ошибках, если таковые есть
   const [emailNotCorrect, setemailNotCorrect] = useState(false);
   const [newPasswordIsOld, setNewPasswordIsOld] = useState(false);
   const [passwordMismatch, setaPasswordMismatch] = useState(false);
@@ -77,24 +76,24 @@ export const SettingModal = ({ isOpen, onRequestClose }) => {
       [passwordKey]: !prev[passwordKey],
     }));
   };
-  const { email } = useSelector(selectUser);
+  const { email, gender, name } = useSelector(selectUser);
 
   const handleSubmit = async e => {
     e.preventDefault();
     const formElements = e.target.elements;
 
     const formValues = {
-      name: formElements.name.value,
+      nameValue: formElements.name.value,
       emailValue: formElements.email.value,
-      gender: formElements.gender.value,
+      genderValue: formElements.gender.value,
       oldPassword: formElements.oldPassword.value,
       newPassword: formElements.newPassword.value,
       confirmPassword: formElements.confirmPassword.value,
     };
     const {
-      name,
+      nameValue,
       emailValue,
-      gender,
+      genderValue,
       oldPassword,
       newPassword,
       confirmPassword,
@@ -111,17 +110,90 @@ export const SettingModal = ({ isOpen, onRequestClose }) => {
     setaPasswordMismatch(passwordMismatchValue);
     setNewPasswordIsOld(newPasswordIsOldValue);
 
-    if (
-      !emailNotCorrectValue &&
-      !passwordMismatchValue &&
-      !newPasswordIsOldValue
-    ) {
-      const data = await dispatch(
-        editUserInfoThunk({ name, email, gender, oldPassword, newPassword })
-      );
-      console.log('Data: ', data);
+    // Составляем полный объект запроса на изменение данных о юзере. Ничего тут не меняйте, т.к. тут чёрт ногу сломит
+    const userObject = {};
+
+    // toast.error('Email is not correct')
+    // Смена имени, можно без пароля
+    if (!!nameValue && nameValue !== name) userObject.name = nameValue;
+
+    // Смена гендера, можно без пароля
+    if (genderValue !== gender) userObject.gender = genderValue;
+
+    // Смена имеила. Можно, но только с подтверждением пароля
+    if (!!emailValue && emailValue !== email && !!oldPassword) {
+      userObject.email = emailValue;
+      userObject.oldPassword = oldPassword;
     }
 
+    if (!!emailValue && emailValue !== email && !oldPassword)
+      toast.error('You must confirm your password to change your email');
+
+    if (emailValue == email)
+      toast.error('You want to switch to the same e-mail address.');
+
+    // Смена пароля. Можно, но только с подтверждением старого пароля и currentPassword
+    if (
+      !!oldPassword &&
+      !passwordMismatchValue &&
+      !newPasswordIsOldValue &&
+      !!newPassword &&
+      !!confirmPassword &&
+      newPassword === confirmPassword
+    ) {
+      userObject.oldPassword = oldPassword;
+      userObject.newPassword = newPassword;
+    }
+
+    if (
+      !!oldPassword &&
+      !!newPassword &&
+      !!confirmPassword &&
+      oldPassword === confirmPassword
+    )
+      toast.error('The new password must be different from the old password!');
+
+    if (!oldPassword && !!newPassword)
+      toast.error('Old password must be confirmed!');
+
+    if ((!!newPassword && !confirmPassword) || newPassword !== confirmPassword)
+      toast.error('The new password must be repeated!');
+
+    if (!newPassword && !!confirmPassword)
+      toast.error('Did you repeat a non-existent password? Seriously?');
+    // if (!!oldPassword && !newPassword && !passwordMismatch && newPasswordIsOld)
+
+    if (
+      !nameValue &&
+      !emailValue &&
+      !oldPassword &&
+      !newPassword &&
+      !confirmPassword &&
+      genderValue === gender
+    )
+      toast.error('You havent changed anything');
+    //       nameValue: formElements.name.value,
+    //       emailValue: formElements.email.value,
+    //       genderValue: formElements.gender.value,
+    //       oldPassword: formElements.oldPassword.value,
+    //       newPassword: formElements.newPassword.value,
+    //       confirmPassword: formElements.confirmPassword.value,
+    else {
+      const data = await dispatch(editUserInfoThunk(userObject));
+      console.log(data);
+    }
+
+    // if (
+    //   !emailNotCorrectValue &&
+    //   !passwordMismatchValue &&
+    //   !newPasswordIsOldValue
+    //   ) {
+    //     const data = await dispatch();
+    //     // console.log(name, email, gender, oldPassword, newPassword)
+    //     // editUserInfoThunk({ name, email, gender, oldPassword, newPassword })
+    //     console.log('Data: ', data);
+    //   }
+    // if(!!)
     // onRequestClose()
   };
 
@@ -191,10 +263,15 @@ export const SettingModal = ({ isOpen, onRequestClose }) => {
                   <UserLabel htmlFor="email">Your email</UserLabel>
                   <InputWrapper>
                     <Input id="email" name="email" />
-                    <StyledErrorMessage component="div" name="email" />
+                    <StyledErrorMessage
+                      component="div"
+                      name="email"
+                      autocomplete="new-password"
+                    />
                   </InputWrapper>
                 </FieldWrapper>
-                {emailNotCorrect === true && toast.error('!!!Email is not correct!!!')}
+                {/* {emailNotCorrect === true &&
+                  toast.error('Email is not correct')} */}
               </UserBox>
 
               <PasswordBox>
@@ -210,6 +287,7 @@ export const SettingModal = ({ isOpen, onRequestClose }) => {
                       name="oldPassword"
                       placeholder="Password"
                       type={isPassword.oldPassword ? 'text' : 'password'}
+                      autocomplete="new-password"
                     />
 
                     <EyeBtn
@@ -259,7 +337,8 @@ export const SettingModal = ({ isOpen, onRequestClose }) => {
                     </EyeBtn>
                     <StyledErrorMessage component="div" name="newPassword" />
                   </InputWrapper>
-                  {newPasswordIsOld === true && toast.error('!!!New password is old!!!')}
+                  {/* {newPasswordIsOld === true &&
+                    toast.error('!!!New password is old!!!')} */}
                 </FieldWrapper>
 
                 <FieldWrapper>
@@ -293,7 +372,8 @@ export const SettingModal = ({ isOpen, onRequestClose }) => {
                       name="confirmPassword"
                     />
                   </InputWrapper>
-                  {passwordMismatch === true && toast.error('!!!Password mismatch!!!')}
+                  {/* {passwordMismatch === true &&
+                    toast.error('!!!Password mismatch!!!')} */}
                 </FieldWrapper>
               </PasswordBox>
             </FlexBox>
