@@ -13,6 +13,7 @@ import {
   ButtonSvg,
   CounterContent,
   CounterWrap,
+  ModalWrapper,
   StyledDatePicker,
   StyledInput,
   SvgIcon,
@@ -21,7 +22,7 @@ import {
   TitleInputText,
   TitleInputTime,
 } from './TodayListModal_1.styled';
-import { addWaters } from 'redux/Api';
+// import { addWaters } from 'redux/Api';
 // import { toast } from 'react-hot-toast';
 export const TodayListModal = ({ modalIsOpen, closeModal }) => {
   const [waterVolume, setWaterVolume] = useState(0);
@@ -65,10 +66,8 @@ export const TodayListModal = ({ modalIsOpen, closeModal }) => {
     //   return toast.error('You can enter value from 0 to 1500');
     // }
     if (waterVolume > 0) {
-
       console.log('Запрос');
       // dispatch(addWater({ waterVolume, date: startDate }));
-
     }
     handleCloseModal();
   };
@@ -99,7 +98,7 @@ export const TodayListModal = ({ modalIsOpen, closeModal }) => {
         isOpen={modalIsOpen}
         onRequestClose={handleCloseModal}
       >
-        <form onSubmit={handleSubmit}>
+        <ModalWrapper onSubmit={handleSubmit}>
           <TitleForm>Choose a value:</TitleForm>
           <TextForm>Amount of water:</TextForm>
           <CounterWrap>
@@ -143,7 +142,7 @@ export const TodayListModal = ({ modalIsOpen, closeModal }) => {
             <AmountWater>{waterVolume} ml</AmountWater>
             <ButtonSubmit type="submit">Save</ButtonSubmit>
           </AmountWrap>
-        </form>
+        </ModalWrapper>
       </ModalWindow>
     </div>
   );

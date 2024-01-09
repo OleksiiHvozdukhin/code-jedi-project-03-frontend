@@ -10,10 +10,24 @@ export const StyledDatePicker = styled(TimePicker)`
   padding: 10px;
   outline: none;
 `;
+export const ModalWrapper = styled.div`
+  @media (min-width: 1440px) {
+    width: 592px;
+    padding: 32px 24px;
+  }
 
+  @media (min-width: 768px) and (max-width: 1439px) {
+    width: 704px;
+    padding: 32px 24px;
+  }
+  @media (min-width: 320px) and (max-width: 767px) {
+    width: 280px;
+  }
+`;
 export const TitleForm = styled.p`
+  font-weight: 500;
+  font-size: 18px;
   margin-bottom: 16px;
-  font-family: 'Roboto-Medium';
 `;
 
 export const TextForm = styled.p`
@@ -45,7 +59,6 @@ export const AmountWrap = styled.div`
 `;
 
 export const ButtonSvg = styled.button`
-  font-family: 'Roboto-Bold';
   width: 92px;
   display: flex;
   align-items: center;
@@ -74,8 +87,9 @@ export const CounterContent = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  font-weight: 700;
+  font-size: 18px;
   color: ${theme.colors.blue};
-  font-family: 'Roboto-Bold';
   width: 92px;
   height: 36px;
   border-radius: 40px;
@@ -86,8 +100,9 @@ export const TitleInputTime = styled.p`
   margin-bottom: 12px;
 `;
 export const TitleInputText = styled.p`
+  font-size: 18px;
   margin-bottom: 16px;
-  font-family: 'Roboto-Medium';
+  font-weight: 500;
 `;
 export const ButtonSubmit = styled.button`
   background-color: ${theme.colors.blue};
@@ -96,7 +111,6 @@ export const ButtonSubmit = styled.button`
   height: 36px;
   color: ${theme.colors.white};
   font-size: 16px;
-  font-family: 'Roboto-Medium';
   line-height: 1.3;
   border-radius: 10px;
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
@@ -118,6 +132,7 @@ export const ButtonSubmit = styled.button`
 `;
 export const AmountWater = styled.p`
   color: ${theme.colors.blue};
-  border-radius: 40px;
-  font-family: 'Roboto-Bold';
+  font-size: 18px;
+  font-weight: 700;
+  /* border-radius: 40px; */
 `;
