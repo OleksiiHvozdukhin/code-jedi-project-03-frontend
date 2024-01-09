@@ -43,6 +43,9 @@ export const StyledInput = styled.input`
   outline: none;
   color: ${theme.colors.blue};
   font-size: 16px;
+  &:hover {
+    border-color: ${theme.colors.blue};
+  }
 `;
 
 export const AmountWrap = styled.div`
@@ -68,6 +71,10 @@ export const ButtonSvg = styled.button`
   background-color: ${theme.colors.white};
   border-radius: 30px;
   border: 1px solid ${theme.colors.lightblue};
+  box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
+  &:hover {
+    box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
+  }
 `;
 
 export const CounterWrap = styled.div`
@@ -116,11 +123,10 @@ export const ButtonSubmit = styled.button`
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
 
   &:hover {
-    box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
+    box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.74);
   }
   &:focus {
     box-shadow: none;
-    outline: none;
   }
 
   @media (min-width: 768px) {
