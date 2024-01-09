@@ -8,6 +8,7 @@ import {
   editUserInfo,
   updateWaterNorm,
 } from '../Api';
+import toast from 'react-hot-toast';
 
 export const registerThunk = createAsyncThunk(
   'auth/register',
@@ -97,9 +98,11 @@ export const updateWaterNormThunk = createAsyncThunk(
   async (dailyNorma, thunkAPI) => {
     try {
       const { waterRate } = await updateWaterNorm(dailyNorma * 1000);
+      toast.success('Water norm updated successfully');
       return waterRate;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      toast.error('Some error');
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
