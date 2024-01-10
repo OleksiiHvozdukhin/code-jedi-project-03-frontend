@@ -19,7 +19,6 @@ export const Loader = ({isMonthTable}) => {
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
-              filter: 'blur(1px)',
             }
           : {
               position: 'fixed',
@@ -31,7 +30,6 @@ export const Loader = ({isMonthTable}) => {
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
-              filter: 'blur(1px)',
             }
       }
     />
