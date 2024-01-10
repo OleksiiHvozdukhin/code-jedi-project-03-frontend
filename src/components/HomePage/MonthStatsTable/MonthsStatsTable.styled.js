@@ -13,7 +13,6 @@ export const MonthTableWrap = styled.div`
     max-width: 704px;
   }
   @media screen and (min-width: 1440px) {
-    margin-top: ${theme.spacing(15)};
     max-width: 592px;
   }
 `;
@@ -21,7 +20,8 @@ export const PaginationWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: ${theme.spacing(8)};
+  flex-wrap: wrap;
+  margin-bottom: 16px;
   max-width: 264px;
   @media screen and (min-width: 768px) {
     max-width: none;
@@ -64,11 +64,14 @@ export const DayItem = styled.li`
   }
 `;
 
-export const DayNumber = styled.button`
+export const DayNumber = styled.p`
   width: 32px;
   height: 32px;
   padding: 0;
   margin: 0;
+  font-style: normal;
+  font-weight: 400;
+  font-family: Roboto;
   text-align: center;
   border-radius: 50%;
   border: transparent;
@@ -78,14 +81,17 @@ export const DayNumber = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: box-shadow ${theme.transition};
+  cursor: pointer;
+  transition: box-shadow ${theme.transition}, transform ${theme.transition};
   &:hover,
   &:focus {
     box-shadow: 0px 2px 4px 0px rgba(64, 123, 255, 0.3);
+    transform: scale(110%);
   }
   @media screen and (min-width: 768px) {
     width: 34px;
     height: 34px;
+    font-size: 16px;
     line-height: 1.25;
   }
   @media screen and (min-width: 1440px) {
@@ -97,6 +103,8 @@ export const DayPercentage = styled.p`
   line-height: 1.6;
   padding: 0;
   margin: 0;
+  font-style: normal;
+  font-weight: 400;
   color: ${theme.colors.lightblue};
 
   @media screen and (min-width: 768px) {
@@ -140,6 +148,7 @@ export const MonthSelector = styled.div`
 export const MonthAndYear = styled.p`
   padding: 0;
   margin: 0;
+  font-size: 16px;
   text-align: center;
   line-height: 1.25;
   color: ${theme.colors.blue};
@@ -157,6 +166,7 @@ export const MonthBackButton = styled.button`
   cursor: pointer;
   color: ${theme.colors.blue};
   transform: rotate(90deg);
+  cursor: pointer;
   transition: color ${theme.transition};
   &:hover,
   &:focus {

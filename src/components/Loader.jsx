@@ -1,16 +1,38 @@
-import { Puff } from 'react-loader-spinner';
+import { ThreeCircles } from 'react-loader-spinner';
 
-export const Loader = () => {
+export const Loader = ({isMonthTable}) => {
   return (
-    <Puff
-      height="100"
-      width="100"
+    <ThreeCircles
+      height={150}
+      width={150}
       radius={1}
-      color="#293ace"
+      outerCircleColor="#407BFF"
+      middleCircleColor="#9EBBFF"
+      innerCircleColor="#D7E3FF"
       ariaLabel="puff-loading"
-      wrapperStyle={{ position: 'fixed', top: '41%', left: '46%' }}
-      wrapperClass=""
       visible={true}
+      wrapperStyle={
+        isMonthTable
+          ? {
+              top: '50%',
+              left: '50%',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }
+          : {
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              backgroundColor: 'rgba(255, 255, 255, 0.5)',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }
+      }
     />
   );
 };
+
