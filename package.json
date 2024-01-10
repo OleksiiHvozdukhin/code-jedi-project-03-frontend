@@ -1,8 +1,8 @@
 {
-  "name": "code-jedi-project-03-frontend",
+  "name": "WaterTracker",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/OleksiiHvozdukhin/code-jedi-project-03-frontend/",
+  "homepage": "https://github.com/code-jedi-project-03-frontend/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.6",
     "@testing-library/jest-dom": "^5.16.3",
