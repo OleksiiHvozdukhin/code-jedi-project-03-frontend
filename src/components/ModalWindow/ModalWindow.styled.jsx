@@ -1,3 +1,4 @@
+import { theme } from 'components/theme';
 import styled from 'styled-components';
 
 export const ModalHeader = styled.div`
@@ -40,12 +41,14 @@ export const CloseBtn = styled.button`
 `;
 
 export const CloseIcon = styled.svg`
-  stroke: #407bff;
+  stroke: ${theme.colors.blue};
   fill: none;
+  cursor: pointer;
+  transition: stroke ${theme.transition};
 
   &:hover,
   &:focus {
-    stroke: #ff9d43;
+    stroke: ${theme.colors.orange};
   }
 `;
 

@@ -5,7 +5,7 @@ import { theme } from 'components/theme';
 export const StyledNavLink = styled(NavLink)`
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: ${theme.spacing(2)};
 `;
 
 export const TextBox = styled.div`

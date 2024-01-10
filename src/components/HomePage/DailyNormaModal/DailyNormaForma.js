@@ -58,20 +58,11 @@ export const DailyNormaForma = ({ onRequestClose }) => {
 
   const handleSubmit = async values => {
     const dailyNormaValue = values.dailyNorma;
-
-    try {
-      setIsLoading(true);
-      await dispatch(updateWaterNormThunk(dailyNormaValue));
-
-      toast.success('Water norm updated successfully');
-      onRequestClose();
-    } catch (error) {
-      toast.error('Error saving daily norm');
-    } finally {
-      setIsLoading(false);
-    }
+    setIsLoading(true);
+    await dispatch(updateWaterNormThunk(dailyNormaValue));
+    onRequestClose();
+    setIsLoading(false);
   };
-
   return (
     <Formik
       initialValues={{

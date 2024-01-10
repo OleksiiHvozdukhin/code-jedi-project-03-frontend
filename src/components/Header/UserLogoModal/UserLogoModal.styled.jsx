@@ -1,3 +1,4 @@
+import { theme } from 'components/theme';
 import styled from // , { keyframes }
 'styled-components';
 
@@ -63,14 +64,15 @@ export const Dropdown = styled.nav`
   position: absolute;
   top: 40px;
   right: 0;
-  background: var(--Primery-Color-White, #fff);
+  z-index: 1;
+  background: ${theme.colors.white};
   width: 118px;
   height: 88px;
   display: inline-flex;
-  padding: 16px;
+  padding: ${theme.spacing(8)};
   flex-direction: column;
   align-items: flex-start;
-  gap: 16px;
+  gap: ${theme.spacing(8)};
   border-radius: 10px;
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.2);
 `;
@@ -79,25 +81,31 @@ export const MenuList = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 16px;
+  gap: ${theme.spacing(8)};
   margin: 0;
 `;
 
 export const MenuItem = styled.li`
   display: flex;
   align-items: center;
-  font-size: 20px;
-  font-weight: 500;
-  color: #747474;
-  cursor: pointer;
+  line-height: 1.25;
 `;
 
 export const MenuBtn = styled.button`
   border: none;
-  color: blue;
+  color: ${theme.colors.blue};
   display: flex;
   align-items: center;
+  gap: 10px;
   background-color: transparent;
+  cursor: pointer;
+  transition: color ${theme.transition};
+  &:hover {
+    color: ${theme.colors.orange};
+  }
+  &:hover svg {
+    stroke: ${theme.colors.orange};
+  }
 `;
 
 export const IconBox = styled.div`
@@ -109,6 +117,7 @@ export const IconBox = styled.div`
 `;
 
 export const Icon = styled.svg`
-  stroke: #407bff;
+  stroke: ${theme.colors.blue};
   fill: none;
+  transition: stroke ${theme.transition};
 `;

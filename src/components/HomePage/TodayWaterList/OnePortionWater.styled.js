@@ -7,7 +7,7 @@ export const OnePortionItem = styled.li`
   width: 100%;
   padding: 12px 0;
   align-items: center;
-  border-bottom: 1px solid ${theme.colors.light};
+  border-bottom: 1px solid ${theme.colors.skyblue};
   width: 254px;
 
   @media screen and (min-width: 768px) {
@@ -34,18 +34,17 @@ export const PortionText = styled.p`
   font-size: 18px;
   line-height: 1.33;
   color: ${theme.colors.blue};
-  margin-left: 12px;
+  margin-left: ${theme.spacing(6)};
 `;
 
 export const TimeText = styled.p`
   font-size: 12px;
   line-height: 2;
-  font-weight: 400;
   color: ${theme.colors.dark};
-  margin-left: 12px;
+  margin-left: ${theme.spacing(6)};
 
   @media screen and (min-width: 768px) {
-    margin-left: 16px;
+    margin-left: ${theme.spacing(8)};
   }
 `;
 export const SvgEdit = styled.svg`
@@ -65,7 +64,7 @@ export const WrapperIcons = styled.div`
   display: flex;
   width: 50px;
   margin-left: auto;
-  gap: 18px;
+  gap: ${theme.spacing(9)};
 `;
 export const EditButton = styled.button`
   border: none;
@@ -76,6 +75,7 @@ export const EditButton = styled.button`
   color: ${theme.colors.blue};
   width: 16px;
   height: 16px;
+  cursor: pointer;
   &::before {
     content: '';
     position: absolute;
@@ -101,6 +101,7 @@ export const DeleteButton = styled.button`
   color: ${theme.colors.red};
   width: 16px;
   height: 16px;
+  cursor: pointer;
   &::before {
     content: '';
     position: absolute;
