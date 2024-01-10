@@ -1,13 +1,13 @@
 import { AuthForm } from './AuthForm/AuthForm';
 import {
-  SignInContainer,
+  SignUpContainer,
   SignLink,
   TitleForm,
 } from 'components/SignInForm/AuthForm/SignIn.styled';
 
 export const SignUpPage = () => {
   return (
-    <SignInContainer>
+    <SignUpContainer>
       <TitleForm>Sign Up</TitleForm>
       <AuthForm
         emailLabel="Enter your email"
@@ -16,6 +16,6 @@ export const SignUpPage = () => {
         buttonLabel="Sign Up"
       />
       <SignLink to="/signin">Sign In</SignLink>
-    </SignInContainer>
+    </SignUpContainer>
   );
 };

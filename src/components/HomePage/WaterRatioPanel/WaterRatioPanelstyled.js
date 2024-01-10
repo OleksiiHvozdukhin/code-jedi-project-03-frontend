@@ -12,19 +12,17 @@ export const WaterWrapper = styled.div`
   }
   @media screen and (min-width: 1440px) {
     position: absolute;
-    top: 60%;
+    top: 620px;
   }
 `;
 
 export const WaterPanel = styled.div`
   position: relative;
   text-align: center;
-  width: 280px;
-  margin-right: 12px;
+  width: 100%;
   @media screen and (min-width: 768px) {
     width: 356px;
   }
-
   @media screen and (min-width: 1440px) {
     width: 391px;
   }
@@ -35,26 +33,34 @@ export const WaterLabel = styled.label`
   font-size: 18px;
   line-height: 1.33;
   color: ${theme.colors.blue};
-  margin-bottom: 8px;
+  margin-bottom: ${theme.spacing(4)};
   text-align: start;
 `;
 export const WaterRangeField = styled.input`
   appearance: none;
   outline: none;
-  width: 325px;
+  width: 256px;
   height: 8px;
-  margin-bottom: 14px;
+  margin-bottom: ${theme.spacing(6)};
+  margin-right: ${theme.spacing(4)};
   background: ${theme.colors.skyblue};
-  border-radius: 5px;
+  border-radius: 10px;
   overflow: hidden;
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
-    width: 8px;
-    height: 8px;
+    width: 14px;
+    height: 14px;
     background: ${theme.colors.white};
     border-radius: 50%;
+    border: 1px solid ${theme.colors.blue};
     cursor: pointer;
     box-shadow: -410px 0 0 400px ${theme.colors.lightblue};
+  }
+  @media screen and (min-width: 768px) {
+    width: 325px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 360px;
   }
 `;
 export const BtnAddWater = styled.button`
@@ -68,8 +74,10 @@ export const BtnAddWater = styled.button`
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
   border-radius: 10px;
   border: none;
-  margin-top: 16px;
-  margin-bottom: 40px;
+  margin-top: ${theme.spacing(8)};
+  margin-bottom: ${theme.spacing(20)};
+  cursor: pointer;
+  transition: box-shadow ${theme.transition};
 
   &:hover {
     box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
@@ -88,7 +96,7 @@ export const BtnAddWater = styled.button`
     padding: 10px 104px;
     font-size: 18px;
     line-height: 1.33;
-    margin-bottom: 61px;
+    margin-bottom: ${theme.spacing(30.5)};
   }
   @media screen and (min-width: 1440px) {
     width: 178px;
@@ -100,10 +108,10 @@ export const PercentageWrapper = styled.div`
   display: flex;
   justify-content: space-between;
 `;
+
 export const PercentageValue = styled.span`
   color: ${theme.colors.blue};
-  font-size: 16px;
-  margin-top: 4px;
+  margin-top: ${theme.spacing(2)};
   position: relative;
   &:before {
     position: absolute;
@@ -113,5 +121,8 @@ export const PercentageValue = styled.span`
     background-color: ${theme.colors.lightblue};
     left: 50%;
     top: -10px;
+  }
+  &:nth-child(2) {
+    margin-left: ${theme.spacing(3.5)};
   }
 `;

@@ -18,7 +18,7 @@ import {
   TitleForm,
   TitleInputText,
   TitleInputTime,
-} from '../TodayListModal/TodayListModal_1.styled';
+} from '../TodayListModal/TodayListModal.styled';
 import { GlassIcon, PortionText, TimeText } from './OnePortionWater.styled';
 import { EditBody, ItemWrapper } from './EditModal.styled';
 export const EditModal = ({ onRequestClose }) => {
