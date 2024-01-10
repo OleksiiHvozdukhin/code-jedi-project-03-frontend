@@ -39,7 +39,7 @@ export const SettingModal = ({ isOpen, onRequestClose }) => {
   const { avatarURL } = useSelector(selectUser);
   const [selectedFile, setSelectedFile] = useState(null);
 
-  console.log(avatarURL);
+  // console.log(avatarURL);
   const [emailNotCorrect, setemailNotCorrect] = useState(false);
   const [newPasswordIsOld, setNewPasswordIsOld] = useState(false);
   const [passwordMismatch, setaPasswordMismatch] = useState(false);
@@ -56,10 +56,9 @@ export const SettingModal = ({ isOpen, onRequestClose }) => {
   //   console.log('File to upload:', selectedFile);
   // };
 
-  const handleFileChange = event => {
+  const handleFileChange = async event => {
     const file = event.target.files[0];
-    dispatch(updateAvatarThunk({ avatarURL: file }));
-    // console.log(file);
+    await dispatch(updateAvatarThunk({ avatarURL: file }));
     // setSelectedFile(file);
   };
 

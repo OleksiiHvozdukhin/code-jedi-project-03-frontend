@@ -30,7 +30,7 @@ export const WaterRatioPanel = () => {
     0
   );
 
-  Math.round((totalWaterVolume / waterRate) * 100);
+  const handleRangeChange = () => {};
 
   return (
     <WaterWrapper>
@@ -43,6 +43,7 @@ export const WaterRatioPanel = () => {
           value={Math.round((totalWaterVolume / waterRate) * 100)}
           min="0"
           max="100"
+          onChange={handleRangeChange}
         />
         <PercentageWrapper>
           <PercentageValue className="water-range-value-min">

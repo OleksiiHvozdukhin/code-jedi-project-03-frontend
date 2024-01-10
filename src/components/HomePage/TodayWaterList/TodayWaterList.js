@@ -24,7 +24,8 @@ export const TodayWaterList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await dispatch(getTodayWaterThunk());
+        const data = await dispatch(getTodayWaterThunk());
+        console.log(data);
       } catch (error) {
         console.error('Ошибка при получении данных:', error);
       }

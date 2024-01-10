@@ -143,7 +143,7 @@ export const EditModal = ({ onRequestClose, params }) => {
         <label>
           <TitleInputTime>Recording time:</TitleInputTime>
           <StyledDatePicker
-            placeholder={`${hours}:${minutes}`}
+            placeholder={`${params.time}`}
             format="HH:mm"
             onChange={onChange}
             disabledTime={disabledTime}
@@ -154,7 +154,7 @@ export const EditModal = ({ onRequestClose, params }) => {
           <StyledInput
             name="amount"
             type="text"
-            value={waterVolume}
+            value={params.waterVolume}
             onChange={handleChange}
           />
         </label>

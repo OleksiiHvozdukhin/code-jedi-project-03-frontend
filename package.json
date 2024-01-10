@@ -4,7 +4,6 @@
   "private": true,
   "homepage": "https://github.com/OleksiiHvozdukhin/code-jedi-project-03-frontend/",
   "dependencies": {
-    "@mui/material": "^5.15.1",
     "@reduxjs/toolkit": "^1.9.6",
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",

@@ -36,7 +36,6 @@ export const TodayListModal = ({ modalIsOpen, closeModal }) => {
   const hours = startDate.getHours().toString().padStart(2, '0');
   const minutes = startDate.getMinutes().toString().padStart(2, '0');
   const increment = () => {
-    // console.log(setWaterVolume(state => state + 50));
     setWaterVolume(state => state + 50);
   };
 
@@ -119,6 +118,7 @@ export const TodayListModal = ({ modalIsOpen, closeModal }) => {
           <TextForm>Amount of water:</TextForm>
           <CounterWrap>
             <ButtonSvg
+              type="button"
               onClick={decrement}
               disabled={waterVolume <= 49 ? true : false}
             >
@@ -128,6 +128,7 @@ export const TodayListModal = ({ modalIsOpen, closeModal }) => {
             </ButtonSvg>
             <CounterContent>{waterVolume} ml</CounterContent>
             <ButtonSvg
+              type="button"
               onClick={increment}
               disabled={waterVolume >= 1451 ? true : false}
             >
