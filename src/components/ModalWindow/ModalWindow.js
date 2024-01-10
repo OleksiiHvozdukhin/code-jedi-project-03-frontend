@@ -56,8 +56,8 @@ export const ModalWindow = ({ isOpen, onRequestClose, title, children }) => {
       <ModalHeader>
         <ModalTitle>{title}</ModalTitle>
         <CloseBtn onClick={onRequestClose}>
-          <CloseIcon width="16px" height="16px">
-            <use href={`${sprite}#icon-close`}></use>
+          <CloseIcon width="24" height="24">
+            <use href={`${sprite}#icon-close`}/>
           </CloseIcon>
         </CloseBtn>
       </ModalHeader>

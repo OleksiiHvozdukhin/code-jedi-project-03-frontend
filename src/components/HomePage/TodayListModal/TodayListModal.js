@@ -20,7 +20,7 @@ import {
   TitleForm,
   TitleInputText,
   TitleInputTime,
-} from './TodayListModal_1.styled';
+} from './TodayListModal.styled';
 // import { addWaters } from 'redux/Api';
 // import { toast } from 'react-hot-toast';
 export const TodayListModal = ({ modalIsOpen, closeModal }) => {

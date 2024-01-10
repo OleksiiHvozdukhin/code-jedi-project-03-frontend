@@ -98,6 +98,7 @@ export const Span = styled.span`
 `;
 
 export const StyledErrorMessage = styled(ErrorMessage)`
+  font-size: 14px;
   color: ${theme.colors.red};
   margin-bottom: ${theme.spacing(2)};
 `;

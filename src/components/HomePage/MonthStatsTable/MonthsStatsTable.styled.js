@@ -13,6 +13,7 @@ export const MonthTableWrap = styled.div`
     max-width: 704px;
   }
   @media screen and (min-width: 1440px) {
+    margin-top: ${theme.spacing(15)};
     max-width: 592px;
   }
 `;
@@ -20,7 +21,7 @@ export const PaginationWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 16px;
+  margin-bottom: ${theme.spacing(8)};
   max-width: 264px;
   @media screen and (min-width: 768px) {
     max-width: none;
@@ -68,9 +69,6 @@ export const DayNumber = styled.button`
   height: 32px;
   padding: 0;
   margin: 0;
-  font-style: normal;
-  font-weight: 400;
-  font-family: Roboto;
   text-align: center;
   border-radius: 50%;
   border: transparent;
@@ -88,7 +86,6 @@ export const DayNumber = styled.button`
   @media screen and (min-width: 768px) {
     width: 34px;
     height: 34px;
-    font-size: 16px;
     line-height: 1.25;
   }
   @media screen and (min-width: 1440px) {
@@ -100,8 +97,6 @@ export const DayPercentage = styled.p`
   line-height: 1.6;
   padding: 0;
   margin: 0;
-  font-style: normal;
-  font-weight: 400;
   color: ${theme.colors.lightblue};
 
   @media screen and (min-width: 768px) {
@@ -145,7 +140,6 @@ export const MonthSelector = styled.div`
 export const MonthAndYear = styled.p`
   padding: 0;
   margin: 0;
-  font-size: 16px;
   text-align: center;
   line-height: 1.25;
   color: ${theme.colors.blue};
@@ -163,7 +157,6 @@ export const MonthBackButton = styled.button`
   cursor: pointer;
   color: ${theme.colors.blue};
   transform: rotate(90deg);
-  cursor: pointer;
   transition: color ${theme.transition};
   &:hover,
   &:focus {

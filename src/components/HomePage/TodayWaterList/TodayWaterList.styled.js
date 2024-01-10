@@ -16,9 +16,6 @@ export const List = styled.ul`
       line-height: 1.23;
     }
   }
-  @media screen and (min-width: 768px) {
-    
-  }
 `;
 
 export const ButtonAddWater = styled.button`
@@ -27,7 +24,18 @@ export const ButtonAddWater = styled.button`
   border: none;
   background-color: transparent;
   color: ${theme.colors.blue};
-  margin-top: 12px;
-  margin-bottom: 24px;
+  margin-top: ${theme.spacing(6)};
+  margin-bottom: ${theme.spacing(12)};
   line-height: 1.25;
+  cursor: pointer;
+  transition: color ${theme.transition};
+  & svg {
+    transition: stroke ${theme.transition};
+  }
+  &:hover {
+    color: ${theme.colors.orange};
+  }
+  &:hover svg {
+    stroke: ${theme.colors.orange};
+  }
 `;
