@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react';
 // import { selectWater } from 'redux/user/selectors';
 // import { deleteWater } from 'redux/user/waterOperations';
 import SpriteIcons from '../../../images/sprite.svg';
-import { ButtonAddWater, List } from './TodayWaterList.styled';
+import { ButtonAddWater, List, TodayHead } from './TodayWaterList.styled';
 import { TodayListModal } from '../TodayListModal/TodayListModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTodayWaterThunk } from 'redux/consumedwaters/consumedwatersOperations';
@@ -47,23 +47,25 @@ export const TodayWaterList = () => {
   // const sortedDailyWaterList = dailyWaterList;
 
   return (
-    <List>
-      <h2>Today</h2>
-      {sortedDailyWaterList.map(portion => (
-        <OnePortionWater
-          key={portion._id}
-          _id={portion._id}
-          waterVolume={portion.waterVolume}
-          time={portion.time}
-        />
-      ))}
-      <ButtonAddWater type="button" onClick={OpenModal}>
-        <svg width="24" height="24" stroke="#407BFF" fill="none">
-          <use xlinkHref={`${SpriteIcons}#icon-plus-small`} />
-        </svg>
-        Add water
-      </ButtonAddWater>
-      <TodayListModal modalIsOpen={modalIsOpen} closeModal={closeModal} />
-    </List>
+    <>
+      <TodayHead>Today</TodayHead>
+      <List>
+        {sortedDailyWaterList.map(portion => (
+          <OnePortionWater
+            key={portion._id}
+            _id={portion._id}
+            waterVolume={portion.waterVolume}
+            time={portion.time}
+          />
+        ))}
+        <ButtonAddWater type="button" onClick={OpenModal}>
+          <svg width="24" height="24" stroke="#407BFF" fill="none">
+            <use xlinkHref={`${SpriteIcons}#icon-plus-small`} />
+          </svg>
+          Add water
+        </ButtonAddWater>
+        <TodayListModal modalIsOpen={modalIsOpen} closeModal={closeModal} />
+      </List>
+    </>
   );
 };
