@@ -14,4 +14,7 @@ export const ItemWrapper = styled.div`
   height: 52px;
   border-radius: 10px;
   background: ${theme.colors.light};
+  @media screen and (max-width: 767px) {
+    margin: 24px 0px;
+  }
 `;

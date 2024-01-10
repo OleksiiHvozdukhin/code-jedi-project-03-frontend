@@ -4,10 +4,10 @@ import { theme } from 'components/theme';
 
 export const StyledDatePicker = styled(TimePicker)`
   width: 100%;
-  margin-bottom: ${theme.spacing(12)};
+  margin-bottom: 24px;
   border: 1px solid ${theme.colors.skyblue};
   border-radius: 8px;
-  padding: ${theme.spacing(5)};
+  padding: 10px;
   outline: none;
 `;
 export const FormWrapper = styled.div`
@@ -21,35 +21,41 @@ export const FormWrapper = styled.div`
     padding: 32px 24px;
   }
   @media (min-width: 320px) and (max-width: 767px) {
-    width: 280px;
+    width: 256px;
   }
 `;
 export const TitleForm = styled.p`
   font-weight: 500;
   font-size: 18px;
-  margin-bottom: ${theme.spacing(8)};
+  margin-bottom: 16px;
 `;
 
-export const TextForm = styled.p``;
+export const TextForm = styled.p`
+  font-size: 16px;
+`;
 
 export const StyledInput = styled.input`
   width: 100%;
   border-radius: 8px;
-  margin-bottom: ${theme.spacing(12)};
-  padding: ${theme.spacing(5)};
+  margin-bottom: 24px;
+  padding: 10px;
   border: 1px solid ${theme.colors.skyblue};
   outline: none;
   color: ${theme.colors.blue};
+  font-size: 16px;
+  &:hover {
+    border-color: ${theme.colors.blue};
+  }
 `;
 
 export const AmountWrap = styled.div`
   display: flex;
-  gap: ${theme.spacing(8)};
+  gap: 16px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   @media (min-width: 768px) {
-    gap: ${theme.spacing(12)};
+    gap: 24px;
     flex-direction: row;
     justify-content: end;
   }
@@ -65,15 +71,18 @@ export const ButtonSvg = styled.button`
   background-color: ${theme.colors.white};
   border-radius: 30px;
   border: 1px solid ${theme.colors.lightblue};
-  cursor: pointer;
+  box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
+  &:hover {
+    box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
+  }
 `;
 
 export const CounterWrap = styled.div`
   display: flex;
-  margin-top: ${theme.spacing(6)};
-  margin-bottom: ${theme.spacing(12)};
+  margin-top: 12px;
+  margin-bottom: 24px;
   align-items: center;
-  gap: ${theme.spacing(3.5)};
+  gap: 7px;
 `;
 export const SvgIcon = styled.svg`
   stroke: ${theme.colors.blue};
@@ -94,11 +103,12 @@ export const CounterContent = styled.div`
   background-color: ${theme.colors.skyblue};
 `;
 export const TitleInputTime = styled.p`
-  margin-bottom: ${theme.spacing(6)};
+  font-size: 16px;
+  margin-bottom: 12px;
 `;
 export const TitleInputText = styled.p`
   font-size: 18px;
-  margin-bottom: ${theme.spacing(8)};
+  margin-bottom: 16px;
   font-weight: 500;
 `;
 export const ButtonSubmit = styled.button`
@@ -107,18 +117,16 @@ export const ButtonSubmit = styled.button`
   width: 100%;
   height: 36px;
   color: ${theme.colors.white};
+  font-size: 16px;
   line-height: 1.3;
   border-radius: 10px;
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
-  cursor: pointer;
-  transition: box-shadow ${theme.transition};
 
   &:hover {
-    box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
+    box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.74);
   }
   &:focus {
     box-shadow: none;
-    outline: none;
   }
 
   @media (min-width: 768px) {

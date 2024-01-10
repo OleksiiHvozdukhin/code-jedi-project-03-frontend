@@ -2,10 +2,16 @@ import { theme } from 'components/theme';
 import styled from 'styled-components';
 
 export const ModalHeader = styled.div`
-  height: 32px;
-  width: auto;
+  height: auto;
+  /* width: auto; */
   display: flex;
   justify-content: space-between;
+  @media screen and (max-width: 767px) {
+    max-width: 256px;
+  }
+  @media screen and (min-width: 768px) {
+    margin-bottom: 24px;
+  }
 `;
 
 export const ModalTitle = styled.h2`

@@ -102,7 +102,7 @@ export const EditModal = ({ onRequestClose }) => {
         <CounterWrap>
           <ButtonSvg
             onClick={decrement}
-            // disabled={waterVolume <= 49 ? true : false}
+            disabled={waterVolume <= 49 ? true : false}
           >
             <SvgIcon>
               <use xlinkHref={`${SpriteIcons}#icon-minus-small`} />
@@ -111,7 +111,7 @@ export const EditModal = ({ onRequestClose }) => {
           <CounterContent>{waterVolume} ml</CounterContent>
           <ButtonSvg
             onClick={increment}
-            // disabled={waterVolume >= 1451 ? true : false}
+            disabled={waterVolume >= 1451 ? true : false}
           >
             <SvgIcon>
               <use xlinkHref={`${SpriteIcons}#icon-plus-small`} />
