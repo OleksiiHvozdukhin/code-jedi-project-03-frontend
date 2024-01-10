@@ -129,30 +129,85 @@ export const SignInLink = styled(Link)`
 `;
 
 export const AuthPagesWrapper = styled.div`
+  position: relative;
   height: 115vh;
-  background: top center no-repeat url(${m1}),
-    top 400px center no-repeat url(${mb1});
-  @media (min-device-pixel-ratio: 2),
-    (min-resolution: 192dpi),
-    (min-resolution: 2dppx) {
-    background-image: url(${m2}), url(${mb2});
-  }
+  overflow: visible;
 
-  @media screen and (min-width: 768px) {
-    background: top -70px center / cover no-repeat url(${t1});
+  &::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: -32px;
+    width: 100vw;
+    margin: 0;
+    background: top center no-repeat url(${m1}),
+    top  center no-repeat url(${mb1});
+    background-size: cover;
+
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
-      background-image: url(${t2});
+      background-image: url(${m2}), url(${mb2});;
     }
-  }
 
-  @media screen and (min-width: 1440px) {
-    background: top right -80px no-repeat url(${d1}), left -160px top no-repeat url(${db1});
-    @media (min-device-pixel-ratio: 2),
-      (min-resolution: 192dpi),
-      (min-resolution: 2dppx) {
-      background-image: url(${d2}), url(${db2});
+    @media screen and (min-width: 768px) {
+      height: 115vh;
+      top: 5px;
+      left: -32px;
+      width: 100vw;
+      margin: 0;
+      background: top -120px center / cover no-repeat url(${t1});
+      
+
+      @media (min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi),
+        (min-resolution: 2dppx) {
+        background-image: url(${t2});
+        
+      }
     }
+
+    @media screen and (min-width: 1440px) {
+      height: 115vh;
+      top: -20px;
+      left: -32px;
+      width: 100vw;
+      margin-left: -80px;
+      background: top 30px left 6px no-repeat url(${d1}),
+        left -60px top no-repeat url(${db1});
+      
+
+      @media (min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi),
+        (min-resolution: 2dppx) {
+        background-image: url(${d2}), url(${db2});
+        
+      }
+    }
+
+    @media screen and (min-width: 1920px) and (min-aspect-ratio: 16/9) {
+      height: 115vh;
+      top: -20px;
+      left: -32px;
+      width: 100vw;
+      margin-left: -321px;
+      background: top right -80px no-repeat url(${d1}),
+        left -160px top no-repeat url(${db1});
+      
+
+      @media (min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi),
+        (min-resolution: 2dppx) {
+        height: 115vh;
+        top: -20px;
+        left: -32px;
+        width: 100vw;
+        margin-left: -321px;
+        background-image: url(${d2}), url(${db2});
+        
+      }
+    }
+
+    z-index: -1;
   }
 `;
