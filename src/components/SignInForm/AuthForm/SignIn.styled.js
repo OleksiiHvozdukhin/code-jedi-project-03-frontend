@@ -7,15 +7,42 @@ export const SignInContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 280px;
+  margin-top: ${theme.spacing(12)};
 
   @media screen and (min-width: 768px) {
     width: 336px;
+    margin-top: ${theme.spacing(20)};
   }
 
   @media screen and (min-width: 1440px) {
     width: 384px;
+    margin-top: ${theme.spacing(0)};
+    position: absolute;
+    top: 222px;
+    right: 211px;
   }
 `;
+
+export const SignUpContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  margin-top: ${theme.spacing(12)};
+
+  @media screen and (min-width: 768px) {
+    width: 336px;
+    margin-top: ${theme.spacing(20)};
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 384px;
+    margin-top: ${theme.spacing(0)};
+    position: absolute;
+    top: 200px;
+    right: 211px;
+  }
+`;
+
 
 export const TitleForm = styled.h2`
   margin-bottom: ${theme.spacing(8)};

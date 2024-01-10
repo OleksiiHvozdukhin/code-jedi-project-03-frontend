@@ -13,19 +13,11 @@ import d2 from '../../images/Desktop/Desktop-Background-element-Main-Page-1x.png
 import db1 from '../../images/Desktop/Desktop-Bottle-for-Sign-in-1x.png';
 import db2 from '../../images/Desktop/Desktop-Bottle-for-Sign-in-2x.png';
 
-export const Subcontainer = styled.div`
-  max-width: 1440px;
-`;
-
-export const Container = styled.div`
-  @media screen and (min-width: 1440px) {
-    margin-top: ${theme.spacing(60)};
-    margin-left: ${theme.spacing(310)};
-  }
-`;
-
 export const Title = styled.h2`
   margin-bottom: ${theme.spacing(8)};
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 1.23;
 `;
 
 export const Label = styled.label`
