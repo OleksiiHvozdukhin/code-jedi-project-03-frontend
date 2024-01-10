@@ -16,9 +16,10 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { LogoutModal } from '../LogoutModal/LogoutModal';
 
-export const UserLogoModal = () => {
+export const UserLogoModal = ({setIsOpen}) => {
   const [isSettingOpen, setIsSettingOpen] = useState(false);
   const [isLogoutOpen, setIsLogoutOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(true);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -27,12 +28,23 @@ export const UserLogoModal = () => {
     navigate('/signin');
   };
 
+  const handleOpenModal = (modal) => {
+    setIsDropdownOpen(false);
+    modal === 'setting' ? setIsSettingOpen(true) : setIsLogoutOpen(true);
+    
+  }
+  const handleCloseModal = (modal) => {
+    setIsOpen(false);
+  modal === 'setting' ? setIsSettingOpen(false) : setIsLogoutOpen(false);
+  
+  
+};
   return (
     <>
-      <Dropdown>
+      {isDropdownOpen && <Dropdown>
         <MenuList>
           <MenuItem>
-            <MenuBtn type="button" onClick={() => setIsSettingOpen(true)}>
+            <MenuBtn type="button" onClick={() => handleOpenModal("setting")}>
               <IconBox>
                 <Icon width="16" height="16">
                   <use href={SpriteIcons + '#icon-cog-6-tooth'}></use>
@@ -43,7 +55,7 @@ export const UserLogoModal = () => {
           </MenuItem>
 
           <MenuItem>
-            <MenuBtn type="button" onClick={() => setIsLogoutOpen(true)}>
+            <MenuBtn type="button" onClick={() => handleOpenModal("logout")}>
               <IconBox>
                 <Icon width="16" height="16">
                   <use
@@ -55,20 +67,20 @@ export const UserLogoModal = () => {
             </MenuBtn>
           </MenuItem>
         </MenuList>
-      </Dropdown>
+      </Dropdown>}
 
       <ModalWindow
         title="Setting"
         isOpen={isSettingOpen}
         onRequestClose={() => {
-          setIsSettingOpen(false);
+          handleCloseModal('setting');
         }}
       >
         <SettingModal
           title="Setting"
           isOpen={isSettingOpen}
           onRequestClose={() => {
-            setIsSettingOpen(false);
+            handleCloseModal('setting');
           }}
         />
       </ModalWindow>
@@ -77,14 +89,14 @@ export const UserLogoModal = () => {
         title="Log out"
         isOpen={isLogoutOpen}
         onRequestClose={() => {
-          setIsLogoutOpen(false);
+          handleCloseModal("logout");
         }}
       >
         <LogoutModal
           title="Log out"
           isOpen={isLogoutOpen}
           onRequestClose={() => {
-            setIsLogoutOpen(false);
+            handleCloseModal('logout');
           }}
         />
       </ModalWindow>
