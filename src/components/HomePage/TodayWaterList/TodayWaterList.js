@@ -42,6 +42,7 @@ export const TodayWaterList = () => {
     }
     return timeA[1] - timeB[1];
   });
+
   // const sortedDailyWaterList = dailyWaterList;
 
   return (
