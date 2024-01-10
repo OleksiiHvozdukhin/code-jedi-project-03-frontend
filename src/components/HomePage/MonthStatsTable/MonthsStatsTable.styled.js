@@ -117,7 +117,7 @@ export const DayPercentage = styled.p`
   }
 `;
 
-export const MonthsHead = styled.p`
+export const MonthsHead = styled.h2`
   padding: 0;
   margin: 0;
   font-size: 24px;
