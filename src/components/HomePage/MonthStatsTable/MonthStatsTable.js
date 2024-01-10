@@ -8,7 +8,6 @@ import {
   MonthsHead,
   MonthBackButton,
   MonthNextButton,
-  MonthTableWrap,
   PaginationWrap,
 } from './MonthsStatsTable.styled';
 import { useEffect, useState } from 'react';
@@ -45,10 +44,14 @@ export const MonthStatsTable = () => {
   const userToken = useSelector(selectUserToken);
   const [isLoading, setIsLoading] = useState(false);
   const [statsPosition, setStatsPosition] = useState({ top: 0, right: 0 });
-  const [currentMonthIndex] = useState(new Date().getMonth());
-  const [currentYear] = useState(new Date().getFullYear());
-  const [currentDate] = useState(new Date().getDate())
-  const [selectedMonthIndex, setSelectedMonthIndex] = useState(currentMonthIndex);
+  const [currentDateInfo] = useState({
+    currentMonthIndex: new Date().getMonth(),
+    currentYear: new Date().getFullYear(),
+    currentDate: new Date().getDate(),
+  });
+  const { currentMonthIndex, currentYear, currentDate } = currentDateInfo;
+  const [selectedMonthIndex, setSelectedMonthIndex] =
+    useState(currentMonthIndex);
   const [selectedYear, setSelectedYear] = useState(currentYear);
 
   const initialDaysArray = (month, year) => {
@@ -58,15 +61,15 @@ export const MonthStatsTable = () => {
         return {
           month: getMonthName(month),
           date: index + 1,
-          totalProcent: '0',
-          numOfWaterRecords: '0',
+          totalProcent: 0,
+          numOfWaterRecords: 0,
         };
       }
     );
     return fullDaysArray;
   };
 
-    const handleMonthChange = direction => {
+  const handleMonthChange = direction => {
     const totalMonths = 12;
     const newMonthIndex =
       (selectedMonthIndex + direction + totalMonths) % totalMonths;
@@ -175,18 +178,18 @@ export const MonthStatsTable = () => {
     setStatsPosition({ top, left });
   };
 
-  const borderColor = (percent) => {
+  const borderColor = percent => {
     if (percent === 100) {
       return '1px solid #32CD32';
-    } 
+    }
     if (percent > 0 && percent < 100) {
       return '1px solid #FF9D43';
     }
     return;
-  }
+  };
 
   return (
-    <MonthTableWrap>
+    <>
       <PaginationWrap>
         <MonthsHead>Month</MonthsHead>
         <MonthSelector>
@@ -214,7 +217,7 @@ export const MonthStatsTable = () => {
         </MonthSelector>
       </PaginationWrap>
       {isLoading ? (
-        <Loader />
+        <Loader isMonthTable />
       ) : (
         <DaysList>
           {daysArray &&
@@ -227,7 +230,8 @@ export const MonthStatsTable = () => {
                     style={{
                       border:
                         day.date === currentDate &&
-                        currentMonthIndex === selectedMonthIndex && day.totalProcent >0
+                        currentMonthIndex === selectedMonthIndex &&
+                        day.totalProcent > 0
                           ? '1px solid #407BFF'
                           : borderColor(day.totalProcent),
                       backgroundColor:
@@ -244,7 +248,7 @@ export const MonthStatsTable = () => {
                     {day.date}
                   </DayNumber>
                   <DayPercentage>
-                    {day.totalProcent == 0 ? '-' : `${day.totalProcent}%`}
+                    {day.totalProcent === 0 ? '-' : `${day.totalProcent}%`}
                   </DayPercentage>
                 </DayItem>
               );
@@ -259,6 +263,6 @@ export const MonthStatsTable = () => {
           statsPosition={statsPosition}
         />
       )}
-    </MonthTableWrap>
+    </>
   );
 };
