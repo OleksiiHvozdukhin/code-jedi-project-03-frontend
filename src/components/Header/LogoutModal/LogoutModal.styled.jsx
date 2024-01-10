@@ -40,9 +40,10 @@ export const LogOutBtn = styled.button`
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
   color: ${theme.colors.white};
   text-align: center;
-  font-size: 16px;
   font-weight: 500;
   line-height: 1.25;
+  cursor: pointer;
+  transition: box-shadow ${theme.transition};
   &:hover {
     box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
   }
@@ -68,9 +69,10 @@ export const CancelBtn = styled.button`
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
   color: ${theme.colors.blue};
   text-align: center;
-  font-size: 16px;
   font-weight: 500;
   line-height: 1.25;
+  cursor: pointer;
+  transition: box-shadow ${theme.transition};
   &:hover {
     box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
   }

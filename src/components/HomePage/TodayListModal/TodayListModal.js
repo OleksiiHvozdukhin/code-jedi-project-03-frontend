@@ -5,7 +5,6 @@ import { ModalWindow } from 'components/ModalWindow/ModalWindow';
 
 // import { addWater } from 'redux/user/waterOperations';
 // import { useDispatch } from 'react-redux';
-
 import {
   AmountWater,
   AmountWrap,
@@ -26,7 +25,6 @@ import { selectWaterRate } from 'redux/auth/authSelectors';
 import { useDispatch, useSelector } from 'react-redux';
 import toast from 'react-hot-toast';
 import { addWaterThunk } from 'redux/consumedwaters/consumedwatersOperations';
-// import { addWater } from 'redux/Api';
 // import { toast } from 'react-hot-toast';
 
 export const TodayListModal = ({ modalIsOpen, closeModal }) => {
@@ -122,7 +120,7 @@ export const TodayListModal = ({ modalIsOpen, closeModal }) => {
           <CounterWrap>
             <ButtonSvg
               onClick={decrement}
-              // disabled={waterVolume <= 49 ? true : false}
+              disabled={waterVolume <= 49 ? true : false}
             >
               <SvgIcon>
                 <use xlinkHref={`${SpriteIcons}#icon-minus-small`} />
@@ -131,7 +129,7 @@ export const TodayListModal = ({ modalIsOpen, closeModal }) => {
             <CounterContent>{waterVolume} ml</CounterContent>
             <ButtonSvg
               onClick={increment}
-              // disabled={waterVolume >= 1451 ? true : false}
+              disabled={waterVolume >= 1451 ? true : false}
             >
               <SvgIcon>
                 <use xlinkHref={`${SpriteIcons}#icon-plus-small`} />

@@ -70,7 +70,7 @@ export const TextWrapper = styled.ul`
 `;
 
 export const SmallTextWrapper = styled.div`
-  padding: 10px;
+  padding: ${theme.spacing(5)};
   border-radius: 10px;
   border: 1px solid ${theme.colors.skyblue};
   margin-bottom: ${theme.spacing(12)};

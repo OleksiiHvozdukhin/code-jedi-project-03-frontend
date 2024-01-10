@@ -36,7 +36,6 @@ export const UserBtn = styled.button`
   & img {
     flex-shrink: 0;
     border-radius: 50%;
-    /* margin-right: ${theme.spacing(2)}; */
   }
 
   & svg {
@@ -62,6 +61,14 @@ export const MenuAvatarWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: ${theme.spacing(2)};
+  & svg {
+    cursor: pointer;
+    color: ${theme.colors.blue};
+    transition: color ${theme.transition};
+    &:hover {
+      color: ${theme.colors.orange};
+    }
+  }
 `;
 
 export const UserIconBox = styled.div`

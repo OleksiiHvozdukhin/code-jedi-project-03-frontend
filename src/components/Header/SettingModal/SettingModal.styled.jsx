@@ -54,7 +54,13 @@ export const AvatarBtnText = styled.span`
   display: block;
   font-weight: 500;
   line-height: 1.28;
+  font-size: 14px;
   color: ${theme.colors.blue};
+  cursor: pointer;
+  transition: color ${theme.transition};
+  &:hover {
+    color: ${theme.colors.orange};
+  }
 `;
 
 export const FileInput = styled.input`
@@ -73,6 +79,9 @@ export const StyledForm = styled(Form)`
 export const RadioBox = styled.div`
   display: flex;
   margin-bottom: ${theme.spacing(26)};
+  &:hover input {
+    cursor: pointer;
+  }
 `;
 
 export const Input = styled(Field)`
@@ -80,7 +89,6 @@ export const Input = styled(Field)`
   border: none;
   &::placeholder {
     color: ${theme.colors.skyblue};
-    font-size: 16px;
     line-height: 1.25;
   }
   &:focus {
@@ -103,7 +111,6 @@ export const LabelRadioGender = styled.label`
 export const LabelRadio = styled.label`
   padding-left: ${theme.spacing(4)};
   margin-right: ${theme.spacing(12)};
-  font-size: 16px;
   line-height: 1.25;
 `;
 
@@ -132,7 +139,6 @@ export const PasswordBoxTitle = styled.h3`
 `;
 
 export const PasswordLabel = styled.label`
-  font-size: 16px;
   line-height: 1.25;
   margin-bottom: ${theme.spacing(4)};
 `;
@@ -147,7 +153,6 @@ export const InputWrapper = styled.div`
 
   & input {
     color: ${theme.colors.blue};
-    font-size: 16px;
     line-height: 1.25;
     width: 210px;
     &:invalid {
@@ -175,6 +180,7 @@ export const SubmitBtn = styled.button`
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
   color: ${theme.colors.white};
   cursor: pointer;
+  transition: box-shadow ${theme.transition};
 
   @media screen and (min-width: 768px) {
     width: 160px;
@@ -198,4 +204,8 @@ export const StyledErrorMessage = styled(ErrorMessage)`
 export const EyeBtn = styled.button`
   border: none;
   background: none;
+  cursor: pointer;
+  &:hover svg{
+    stroke: ${theme.colors.orange};
+  }
 `;

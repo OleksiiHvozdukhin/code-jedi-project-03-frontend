@@ -8,7 +8,10 @@ export const StyledLink = styled(NavLink)`
   gap: ${theme.spacing(4)};
   color: ${theme.colors.blue};
   line-height: 1.33;
-  font-size: 16px;
+  transition: color ${theme.transition};
+  &:hover {
+    color: ${theme.colors.orange};
+  }
 
   @media screen and (min-width: 768px) {
     font-size: 18px;

@@ -46,7 +46,7 @@ export const WaterRatioPanel = () => {
         <svg width="24" height="24" stroke='#fff' fill='none'>
           <use xlinkHref={`${SpriteIcons}#icon-plus-circle`} />
         </svg>
-        Add water
+        <span>Add water</span>
       </BtnAddWater>
       <TodayListModal modalIsOpen={modalIsOpen} closeModal={closeModal} />
     </WaterWrapper>

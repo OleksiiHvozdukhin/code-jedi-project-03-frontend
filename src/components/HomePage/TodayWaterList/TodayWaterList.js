@@ -1,7 +1,7 @@
 import { OnePortionWater } from './OnePortionWater';
 import React, { useEffect, useState } from 'react';
-import { ModalWindow } from 'components/ModalWindow/ModalWindow';
-import { OnePortionForma } from '../TodayListModal/OnePortionForma';
+// import { ModalWindow } from 'components/ModalWindow/ModalWindow';
+// import { OnePortionForma } from '../TodayListModal/OnePortionForma';
 // import { useDispatch } from 'react-redux';
 // import { selectWater } from 'redux/user/selectors';
 // import { deleteWater } from 'redux/user/waterOperations';

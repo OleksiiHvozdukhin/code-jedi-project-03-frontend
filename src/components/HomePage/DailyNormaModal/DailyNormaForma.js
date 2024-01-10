@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 import { Field, Formik } from 'formik';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import {
   BtnSave,
   Input,
@@ -11,17 +11,14 @@ import {
   StyledErrorMessage,
   StyledForm,
 } from './DailyNormaForma.styled';
-import { useDispatch, useSelector } from 'react-redux';
-// import { saveWaterRateAsync } from 'redux/waterRate/waterRateOperations';
-import { selectError, selectIsLoading } from 'redux/waterRate/selectors';
+import { useDispatch } from 'react-redux';
 import { Loader } from 'components/Loader';
-// import { saveWaterRate } from 'redux/waterRate/waterRateSlice';
 import { updateWaterNormThunk } from 'redux/auth/authOperations';
+import { useState } from 'react';
 
 export const DailyNormaForma = ({ onRequestClose }) => {
   const dispatch = useDispatch();
-  const isError = useSelector(selectError);
-  const isLoading = useSelector(selectIsLoading);
+  const [isLoading, setIsLoading] = useState(false);
 
   const formValidationSchema = Yup.object().shape({
     gender: Yup.string().required('Please select a gender'),
@@ -61,102 +58,89 @@ export const DailyNormaForma = ({ onRequestClose }) => {
 
   const handleSubmit = async values => {
     const dailyNormaValue = values.dailyNorma;
-    // dispatch(saveWaterRate(dailyNormaValue));
-    try {
-      await dispatch(updateWaterNormThunk(dailyNormaValue));
-
-      toast.success('Daily norma saved');
-      onRequestClose();
-    } catch (error) {
-      toast.error(isError.message || 'An error occurred');
-    }
+    setIsLoading(true);
+    await dispatch(updateWaterNormThunk(dailyNormaValue));
+    onRequestClose();
+    setIsLoading(false);
   };
-
   return (
-    <>
-      <Formik
-        initialValues={{
-          gender: 'woman',
-          weight: 0,
-          activityTime: 0,
-          dailyNorma: 0,
-        }}
-        validationSchema={formValidationSchema}
-        onSubmit={handleSubmit}
-      >
-        {({ errors, touched, values, handleChange }) => {
-          return (
-            <StyledForm>
-              <RadioGroup>
-                <Input
-                  type="radio"
-                  id="woman"
-                  name="gender"
-                  value="woman"
-                  checked={values.gender === 'woman'}
-                  onChange={handleChange}
-                  className={errors.gender && touched.gender ? 'error' : ''}
-                />
-                <LabelRadio htmlFor="woman">For woman</LabelRadio>
-                <Field
-                  type="radio"
-                  id="man"
-                  name="gender"
-                  value="man"
-                  checked={values.gender === 'man'}
-                  onChange={handleChange}
-                />
-                <LabelRadio htmlFor="man">For man</LabelRadio>
-              </RadioGroup>
-              <StyledErrorMessage name="gender" component="div" />
-              <Label htmlFor="weight">Your weight in kilograms:</Label>
+    <Formik
+      initialValues={{
+        gender: 'woman',
+        weight: 0,
+        activityTime: 0,
+        dailyNorma: 0,
+      }}
+      validationSchema={formValidationSchema}
+      onSubmit={handleSubmit}
+    >
+      {({ errors, touched, values, handleChange }) => {
+        return (
+          <StyledForm>
+            <RadioGroup>
               <Input
-                type="number"
-                name="weight"
-                value={values.weight}
+                type="radio"
+                id="woman"
+                name="gender"
+                value="woman"
+                checked={values.gender === 'woman'}
                 onChange={handleChange}
-                className={`special ${
-                  errors.weight && touched.weight ? 'error' : ''
-                }`}
+                className={errors.gender && touched.gender ? 'error' : ''}
               />
-              <StyledErrorMessage name="weight" component="div" />
-              <Label htmlFor="activityTime">
-                The time of active participation in sports or other activities
-                with a high physical. load:
-              </Label>
-              <Input
-                type="number"
-                name="activityTime"
-                value={values.activityTime}
-                className={`special ${
-                  errors.activityTime && touched.activityTime ? 'error' : ''
-                }`}
+              <LabelRadio htmlFor="woman">For woman</LabelRadio>
+              <Field
+                type="radio"
+                id="man"
+                name="gender"
+                value="man"
+                checked={values.gender === 'man'}
+                onChange={handleChange}
               />
-              <StyledErrorMessage name="activityTime" component="div" />
-              <Label className="special">
-                The required amount of water in liters per day:{' '}
-                <Span>{calculateWaterRate(values)} L</Span>
-              </Label>
-              <Label htmlFor="dailyNorma" className="special last">
-                Write down how much water you will drink:
-              </Label>
-              <Input
-                type="number"
-                name="dailyNorma"
-                className={
-                  errors.dailyNorma && touched.dailyNorma ? 'error' : ''
-                }
-              />
-              <StyledErrorMessage name="dailyNorma" component="div" />
-              <BtnSave type="submit">Save</BtnSave>
-              {isLoading && <Loader />}
-              {/* {error && !isLoading && <p>{error}</p>} */}
-              {/* {isError && !isLoading && toast.error('Network error')} */}
-            </StyledForm>
-          );
-        }}
-      </Formik>
-      <Toaster />
-    </>
+              <LabelRadio htmlFor="man">For man</LabelRadio>
+            </RadioGroup>
+            <StyledErrorMessage name="gender" component="div" />
+            <Label htmlFor="weight">Your weight in kilograms:</Label>
+            <Input
+              type="number"
+              name="weight"
+              value={values.weight}
+              onChange={handleChange}
+              className={`special ${
+                errors.weight && touched.weight ? 'error' : ''
+              }`}
+            />
+            <StyledErrorMessage name="weight" component="div" />
+            <Label htmlFor="activityTime">
+              The time of active participation in sports or other activities
+              with a high physical. load:
+            </Label>
+            <Input
+              type="number"
+              name="activityTime"
+              value={values.activityTime}
+              className={`special ${
+                errors.activityTime && touched.activityTime ? 'error' : ''
+              }`}
+            />
+            <StyledErrorMessage name="activityTime" component="div" />
+            <Label className="special">
+              The required amount of water in liters per day:{' '}
+              <Span>{calculateWaterRate(values)} L</Span>
+            </Label>
+            <Label htmlFor="dailyNorma" className="special last">
+              Write down how much water you will drink:
+            </Label>
+            <Input
+              type="number"
+              name="dailyNorma"
+              className={errors.dailyNorma && touched.dailyNorma ? 'error' : ''}
+            />
+            <StyledErrorMessage name="dailyNorma" component="div" />
+            <BtnSave type="submit">Save</BtnSave>
+            {isLoading && <Loader />}
+          </StyledForm>
+        );
+      }}
+    </Formik>
   );
 };
