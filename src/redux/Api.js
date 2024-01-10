@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // !Вставить сюда ссылку на онрендер
 // axios.defaults.baseURL = 'http://localhost:8000';
-axios.defaults.baseURL = 'https://water-tracker-back-end.onrender.com';
+axios.defaults.baseURL = 'https://water-tracker-3v20.onrender.com';
 
 const token = {
   set(token) {

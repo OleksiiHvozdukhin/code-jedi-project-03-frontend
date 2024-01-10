@@ -104,7 +104,7 @@ export const MonthStatsTable = () => {
       try {
         setIsLoading(true);
         const response = await axios.get(
-          `https://water-tracker-back-end.onrender.com/consumed-water/month/${monthName}`,
+          `https://water-tracker-3v20.onrender.com/consumed-water/month/${monthName}`,
           // `http://localhost:8000/consumed-water/month/${monthName}`,
           config
         );
