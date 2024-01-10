@@ -72,4 +72,24 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     margin: 0;
   }
+
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #D7E3FF;
+    width: 3px;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #9EBBFF;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #407BFF;
+  }
 `;
+
