@@ -1,3 +1,4 @@
+import { deleteWaterThunk } from 'redux/consumedwaters/consumedwatersOperations';
 import {
   ButtonGroup,
   CancelBtn,
@@ -5,10 +6,16 @@ import {
   DeleteBtn,
   DeleteText,
 } from './DeleteModal.styled';
+import { useDispatch } from 'react-redux';
 
-export const DeleteModal = ({ onRequestClose }) => {
+export const DeleteModal = ({ onRequestClose, idForDelete }) => {
+  const dispatch = useDispatch();
   const handleCansel = () => onRequestClose();
-  const handleDelete = () => onRequestClose();
+
+  const handleDelete = async () => {
+    await dispatch(deleteWaterThunk(idForDelete));
+    onRequestClose();
+  };
 
   return (
     <DeleteBody>

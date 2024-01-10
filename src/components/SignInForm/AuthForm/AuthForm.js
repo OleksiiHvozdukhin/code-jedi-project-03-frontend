@@ -5,6 +5,7 @@ import { AuthFormLabel, AuthFormButton, AuthFormInput } from './SignIn.styled';
 import { useDispatch } from 'react-redux';
 import { loginThunk } from 'redux/auth/authOperations';
 import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const validationSchema = Yup.object({
   email: Yup.string()
@@ -57,6 +58,7 @@ export const AuthForm = ({
     if (data.payload.message === 'Request failed with status code 401') {
       setEmailWrong(true);
     }
+    if (data.payload.message === 'Network Error') toast.error('Network error');
   };
 
   return (

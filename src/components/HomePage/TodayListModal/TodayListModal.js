@@ -22,17 +22,23 @@ import {
   TitleInputText,
   TitleInputTime,
 } from './TodayListModal_1.styled';
-// import { addWaters } from 'redux/Api';
+import { selectWaterRate } from 'redux/auth/authSelectors';
+import { useDispatch, useSelector } from 'react-redux';
+import toast from 'react-hot-toast';
+import { addWaterThunk } from 'redux/consumedwaters/consumedwatersOperations';
+// import { addWater } from 'redux/Api';
 // import { toast } from 'react-hot-toast';
+
 export const TodayListModal = ({ modalIsOpen, closeModal }) => {
   const [waterVolume, setWaterVolume] = useState(0);
   const [startDate, setStartDate] = useState(new Date());
+  const dispatch = useDispatch();
   // const dispatch = useDispatch();
 
   const hours = startDate.getHours().toString().padStart(2, '0');
   const minutes = startDate.getMinutes().toString().padStart(2, '0');
   const increment = () => {
-    console.log(setWaterVolume(state => state + 50));
+    // console.log(setWaterVolume(state => state + 50));
     setWaterVolume(state => state + 50);
   };
 
@@ -60,16 +66,28 @@ export const TodayListModal = ({ modalIsOpen, closeModal }) => {
     setStartDate(new Date());
   };
 
+  const waterNorma = useSelector(selectWaterRate);
+
   const handleSubmit = async e => {
     e.preventDefault();
-    // if (waterVolume < 0 || waterVolume > 1500) {
-    //   return toast.error('You can enter value from 0 to 1500');
-    // }
-    if (waterVolume > 0) {
-      console.log('Запрос');
-      // dispatch(addWater({ waterVolume, date: startDate }));
+
+    const time = startDate.toLocaleTimeString([], {
+      hour: '2-digit',
+      minute: '2-digit',
+    });
+    const date = startDate.getDate();
+    const month = startDate.toLocaleString('en-US', { month: 'long' });
+    const percent = Math.round((waterVolume / waterNorma) * 100);
+
+    if (waterVolume < 0 || waterVolume > 1500) {
+      return toast.error('You can enter value from 0 to 1500');
+    } else if (waterVolume > 0) {
+      const data = await dispatch(
+        addWaterThunk({ waterVolume, time, date, month, percent })
+      );
+      handleCloseModal();
+      return toast.success(`${waterVolume} water added`);
     }
-    handleCloseModal();
   };
 
   const disabledTime = now => {

@@ -36,9 +36,10 @@ import { Formik } from 'formik';
 import toast, { Toaster } from 'react-hot-toast';
 
 export const SettingModal = ({ isOpen, onRequestClose }) => {
-  const { avatarUrl } = useSelector(selectUser);
+  const { avatarURL } = useSelector(selectUser);
   const [selectedFile, setSelectedFile] = useState(null);
 
+  console.log(avatarURL);
   const [emailNotCorrect, setemailNotCorrect] = useState(false);
   const [newPasswordIsOld, setNewPasswordIsOld] = useState(false);
   const [passwordMismatch, setaPasswordMismatch] = useState(false);
@@ -51,23 +52,25 @@ export const SettingModal = ({ isOpen, onRequestClose }) => {
     confirmPassword: false,
   });
 
-  const handleUploadPhoto = () => {
-    console.log('File to upload:', selectedFile);
-    dispatch(updateAvatarThunk(selectedFile));
-  };
-
-  const initialValues = {
-    name: '',
-    email: '',
-    gender: 'woman',
-    oldPassword: '',
-    newPassword: '',
-    confirmPassword: '',
-  };
+  // const handleUploadPhoto = () => {
+  //   console.log('File to upload:', selectedFile);
+  // };
 
   const handleFileChange = event => {
     const file = event.target.files[0];
-    setSelectedFile(file);
+    dispatch(updateAvatarThunk({ avatarURL: file }));
+    // console.log(file);
+    // setSelectedFile(file);
+  };
+
+  const { email, gender, name } = useSelector(selectUser);
+  const initialValues = {
+    name: name,
+    email: '',
+    gender: gender,
+    oldPassword: '',
+    newPassword: '',
+    confirmPassword: '',
   };
 
   const handleTogglePassword = passwordKey => {
@@ -76,7 +79,6 @@ export const SettingModal = ({ isOpen, onRequestClose }) => {
       [passwordKey]: !prev[passwordKey],
     }));
   };
-  const { email, gender, name } = useSelector(selectUser);
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -129,7 +131,7 @@ export const SettingModal = ({ isOpen, onRequestClose }) => {
     if (!!emailValue && emailValue !== email && !oldPassword)
       toast.error('You must confirm your password to change your email');
 
-    if (emailValue == email)
+    if (emailValue === email)
       toast.error('You want to switch to the same e-mail address.');
 
     // Смена пароля. Можно, но только с подтверждением старого пароля и currentPassword
@@ -164,12 +166,13 @@ export const SettingModal = ({ isOpen, onRequestClose }) => {
     // if (!!oldPassword && !newPassword && !passwordMismatch && newPasswordIsOld)
 
     if (
-      !nameValue &&
-      !emailValue &&
-      !oldPassword &&
-      !newPassword &&
-      !confirmPassword &&
-      genderValue === gender
+      // !nameValue &&
+      // !emailValue &&
+      // !oldPassword &&
+      // !newPassword &&
+      // !confirmPassword &&
+      // genderValue === gender
+      Object.keys(userObject).length === 0
     )
       toast.error('You havent changed anything');
     //       nameValue: formElements.name.value,
@@ -179,8 +182,10 @@ export const SettingModal = ({ isOpen, onRequestClose }) => {
     //       newPassword: formElements.newPassword.value,
     //       confirmPassword: formElements.confirmPassword.value,
     else {
-      const data = await dispatch(editUserInfoThunk(userObject));
-      console.log(data);
+      await dispatch(editUserInfoThunk(userObject));
+      toast.success(`You changed ${Object.keys(userObject)}`);
+      // console.log(data);
+      // onRequestClose();
     }
 
     // if (
@@ -194,7 +199,6 @@ export const SettingModal = ({ isOpen, onRequestClose }) => {
     //     console.log('Data: ', data);
     //   }
     // if(!!)
-    // onRequestClose()
   };
 
   return (
@@ -209,7 +213,7 @@ export const SettingModal = ({ isOpen, onRequestClose }) => {
             <Text>Your photo</Text>
             <AvatarWrapper>
               <AvatarBox>
-                <AvatarImg src={avatarUrl} alt="user avatar" />
+                <AvatarImg src={avatarURL} alt="user avatar" />
               </AvatarBox>
 
               <FileInput
@@ -219,7 +223,11 @@ export const SettingModal = ({ isOpen, onRequestClose }) => {
                 onChange={handleFileChange}
                 id="uploadInput"
               />
-              <AvatarBtn type="button" onClick={handleUploadPhoto}>
+              <AvatarBtn
+                type="button"
+                htmlFor="uploadInput"
+                // onClick={handleUploadPhoto}
+              >
                 <svg width="16" height="16" stroke="#407BFF" fill="none">
                   <use xlinkHref={`${sprite}#icon-arrow-up-tray`} />
                 </svg>
@@ -266,7 +274,7 @@ export const SettingModal = ({ isOpen, onRequestClose }) => {
                     <StyledErrorMessage
                       component="div"
                       name="email"
-                      autocomplete="new-password"
+                      autoComplete="new-password"
                     />
                   </InputWrapper>
                 </FieldWrapper>
@@ -287,7 +295,7 @@ export const SettingModal = ({ isOpen, onRequestClose }) => {
                       name="oldPassword"
                       placeholder="Password"
                       type={isPassword.oldPassword ? 'text' : 'password'}
-                      autocomplete="new-password"
+                      autoComplete="new-password"
                     />
 
                     <EyeBtn

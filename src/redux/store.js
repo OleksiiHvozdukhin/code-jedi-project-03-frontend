@@ -11,6 +11,8 @@ import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth/authSlice';
 import { waterRateReducer } from './waterRate/waterRateSlice';
+// import { waterReducer } from './users/waterSlice';
+import { waterReducer } from './consumedwaters/consumedwatersSlice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -31,6 +33,7 @@ export const store = configureStore({
   reducer: {
     waterRate: waterRateReducer,
     auth: persistReducer(authPersistConfig, authReducer),
+    waterData: waterReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

@@ -21,7 +21,7 @@ import { EditModal } from './EditModal';
 //   PortionText,
 //   TodoBtn,
 // } from './OnePortionWater.styled';
-export const OnePortionWater = () => {
+export const OnePortionWater = ({ _id, waterVolume, time }) => {
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
 
@@ -31,8 +31,8 @@ export const OnePortionWater = () => {
         <GlassIcon>
           <use xlinkHref={`${SpriteIcons}#icon-glass`} />
         </GlassIcon>
-        <PortionText>250 ml</PortionText>
-        <TimeText>7:00 AM</TimeText>
+        <PortionText>{waterVolume} ml</PortionText>
+        <TimeText>{time} AM</TimeText>
         <WrapperIcons>
           <EditButton type="button" onClick={() => setIsEditOpen(true)}>
             <SvgEdit>
@@ -59,6 +59,7 @@ export const OnePortionWater = () => {
           onRequestClose={() => {
             setIsDeleteOpen(false);
           }}
+          idForDelete={_id}
         />
       </ModalWindow>
       <ModalWindow
@@ -74,6 +75,7 @@ export const OnePortionWater = () => {
           onRequestClose={() => {
             setIsEditOpen(false);
           }}
+          params={{ _id, waterVolume, time }}
         />
       </ModalWindow>
     </>

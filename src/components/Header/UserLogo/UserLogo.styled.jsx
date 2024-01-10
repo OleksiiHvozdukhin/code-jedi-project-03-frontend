@@ -36,7 +36,7 @@ export const UserBtn = styled.button`
   & img {
     flex-shrink: 0;
     border-radius: 50%;
-    margin-right: ${theme.spacing(2)};
+    /* margin-right: ${theme.spacing(2)}; */
   }
 
   & svg {

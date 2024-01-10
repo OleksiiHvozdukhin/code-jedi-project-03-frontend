@@ -14,7 +14,7 @@ import { useEffect } from 'react';
 
 export const UserLogo = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { avatarUrl, name } = useSelector(selectUser);
+  const { avatarURL, name } = useSelector(selectUser);
 
   // useEffect(() => {
   //   const handleFocus = () => {
@@ -65,7 +65,7 @@ export const UserLogo = () => {
 
         <MenuAvatarWrapper>
           <UserIconBox>
-            <img height="28" width="28" src={avatarUrl} alt="User avatar" />
+            <img height="28" width="28" src={avatarURL} alt="User avatar" />
           </UserIconBox>
 
           <svg width="24" height="24">

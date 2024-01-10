@@ -21,7 +21,12 @@ import {
 } from '../TodayListModal/TodayListModal_1.styled';
 import { GlassIcon, PortionText, TimeText } from './OnePortionWater.styled';
 import { EditBody, ItemWrapper } from './EditModal.styled';
-export const EditModal = ({ onRequestClose }) => {
+import { useDispatch, useSelector } from 'react-redux';
+import { selectWaterRate } from 'redux/auth/authSelectors';
+import toast from 'react-hot-toast';
+import { editWaterThunk } from 'redux/consumedwaters/consumedwatersOperations';
+
+export const EditModal = ({ onRequestClose, params }) => {
   const [waterVolume, setWaterVolume] = useState(0);
   const [startDate, setStartDate] = useState(new Date());
   // const dispatch = useDispatch();
@@ -29,7 +34,7 @@ export const EditModal = ({ onRequestClose }) => {
   const hours = startDate.getHours().toString().padStart(2, '0');
   const minutes = startDate.getMinutes().toString().padStart(2, '0');
   const increment = () => {
-    console.log(setWaterVolume(state => state + 50));
+    // console.log(setWaterVolume(state => state + 50));
     setWaterVolume(state => state + 50);
   };
 
@@ -57,16 +62,33 @@ export const EditModal = ({ onRequestClose }) => {
     setStartDate(new Date());
   };
 
+  const dispatch = useDispatch();
+  const waterNorma = useSelector(selectWaterRate);
+
   const handleSubmit = async e => {
     e.preventDefault();
-    // if (waterVolume < 0 || waterVolume > 1500) {
-    //   return toast.error('You can enter value from 0 to 1500');
-    // }
-    if (waterVolume > 0) {
-      console.log('Запрос');
-      // dispatch(addWater({ waterVolume, date: startDate }));
+
+    const time = startDate.toLocaleTimeString([], {
+      hour: '2-digit',
+      minute: '2-digit',
+    });
+    const date = startDate.getDate();
+    const month = startDate.toLocaleString('en-US', { month: 'long' });
+    const percent = Math.round((waterVolume / waterNorma) * 100);
+
+    if (waterVolume < 0 || waterVolume > 1500) {
+      return toast.error('You can enter value from 0 to 1500');
+    } else if (waterVolume > 0) {
+      const { _id } = params;
+      await dispatch(
+        editWaterThunk({
+          _id,
+          body: { waterVolume, time, date, month, percent },
+        })
+      );
+      handleCloseModal();
+      return toast.success(`${waterVolume} water added`);
     }
-    handleCloseModal();
   };
 
   const disabledTime = now => {
@@ -93,8 +115,8 @@ export const EditModal = ({ onRequestClose }) => {
         <GlassIcon>
           <use xlinkHref={`${SpriteIcons}#icon-glass`} />
         </GlassIcon>
-        <PortionText>250 ml</PortionText>
-        <TimeText>7:00 AM</TimeText>
+        <PortionText>{params.waterVolume} ml</PortionText>
+        <TimeText>{params.time} AM</TimeText>
       </ItemWrapper>
       <FormWrapper onSubmit={handleSubmit}>
         <TitleForm>Correct entered data:</TitleForm>
