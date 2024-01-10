@@ -73,7 +73,7 @@ export const UserLogo = () => {
           </svg>
         </MenuAvatarWrapper>
       </UserBtn>
-      {isOpen && <UserLogoModal />}
+      {isOpen && <UserLogoModal setIsOpen={setIsOpen} />}
     </UserLogoWrapper>
   );
 };
